@@ -55,3 +55,4 @@ $route['translate_uri_dashes'] = FALSE;
 $route['api/users/login'] = 'users/api_login';
 $route['api/([a-z]+)']['get'] = '$1/api_get';
 $route['api/([a-z]+)']['post'] = '$1/api_set';
+$route['api/([a-z]+)/id/([0-9]+)']['get'] = '$1/api_get_specific/id/$2';
