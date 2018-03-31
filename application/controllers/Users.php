@@ -11,26 +11,26 @@ class Users extends CI_Controller{
         $user = json_decode(file_get_contents('php://input'),true);
         
         $data = array(
-            'first_name' => $user['firstname'],
-            'last_name' => $user['lastname'],
-            'birth_date' => $user['birthdate'],
-            'email_address' => $user['email'],
+            'first_name' => $user['first_name'],
+            'last_name' => $user['last_name'],
+            'birth_date' => $user['birth_date'],
+            'email_address' => $user['email_address'],
             'password' => $user['password'],
-            'contact_number' => $user['mobile'],
+            'contact_number' => $user['contact_number'],
             'user_token'=> bin2hex(openssl_random_pseudo_bytes(64))
         );
 
         if($this->db->insert('customer',$data)){
-
+            
             $this->output->set_status_header(200)
                             ->set_content_type('application/json', 'utf-8')
-                            ->set_output(json_encode($user));
+                            ->set_output(json_encode($result));
         }
         else{
-            $q = array('message'=>'Sign up unsuccessful');
+            $q = $this->db->error();
             $this->output->set_status_header(400)
                             ->set_content_type('application/json', 'utf-8')
-                            ->set_output(json_encode($user));
+                            ->set_output(json_encode($q));
         }
     }
 
@@ -38,23 +38,24 @@ class Users extends CI_Controller{
         $user = json_decode(file_get_contents('php://input'),true);
 
         $query = $this->db->from('customer')
-                    ->where('email_address',$user['email'])
+                    ->where('email_address',$user['email_address'])
                 ->count_all_results();
 
         if($query){
             $pwquery = $this->db->from('customer')
-                                ->select('password')
-                                ->where('email_address',$user['email'])
+                                ->where('email_address',$user['email_address'])
                                 ->get();
 
-            foreach($pwquery->result() as $row){
-                if($row->password == $user['password']){
-                    $this->output->set_status_header(200);
-                }
-                else{
-                    $this->output->set_status_header(400)
-                                    ->set_output("Password is invalid");
-                }
+
+            $result = $pwquery->row();
+
+            if(password_verify($user['password'],$result->password)){
+                $this->output->set_status_header(200)
+                                ->set_output(json_encode($result));
+            }
+            else{
+                $this->output->set_status_header(400)
+                                ->set_output("Password is invalid");
             }
         }
         else{
