@@ -2,9 +2,30 @@
 
 class Users extends CI_Controller{
     public function api_get(){
-        
-        $this->output->set_content_type('application/json')
-                    ->set_output(json_encode(array('foo'=>'bar')));
+        $auth = $this->input->get_request_header('Authentication');
+        $auth_arr = explode(" ",$auth);
+        $whereIs = array('email_address'=>$auth_arr[0],'user_token'=>$auth_arr[1]);
+
+        $query = $this->db->from('customer')
+                            ->where($whereIs);
+
+        if($query->count_all_results() > 0){
+            $query = $this->db->select('customer_id,first_name,middle_name,last_name,birth_date,email_address,contact_number')
+                                ->from('customer')
+                                ->where($whereIs)
+                                ->get();
+                $this->output->set_status_header(200)
+                    ->set_content_type('application/json', 'utf-8')
+                    ->set_output(json_encode($query->result()));            
+        }
+        else{
+            $result = array(
+                "message" => "Bad request"
+            );
+            $this->output->set_status_header(400)
+                         ->set_content_type('application/json', 'utf-8')
+                         ->set_output(json_encode($result));
+        }
     }
 
     public function api_set(){
