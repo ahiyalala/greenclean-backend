@@ -46,13 +46,21 @@ class Appointments extends CI_Controller{
             array_push($values, $row['housekeeper_id']);
         }
 
-
-        $list_query = $this->db->select('*')
-                                ->from('housekeeper')
-                                ->where_not_in('housekeeper_id',$values)
-                                ->order_by('RAND()')
-                                ->get()
-                                ->row();
+        if(count($values)>0){
+            $list_query = $this->db->select('*')
+                ->from('housekeeper')
+                ->where_not_in('housekeeper_id',$values)
+                ->order_by('RAND()')
+                ->get()
+                ->row();
+        }
+        else{
+            $list_query = $this->db->select('*')
+                                    ->from('housekeeper')
+                                    ->order_by('RAND()')
+                                    ->get()
+                                    ->row();
+        }
 
         if(isset($list_query->housekeeper_id)){
             $time = new DateTime($format_time);
