@@ -16,7 +16,7 @@ class Users extends CI_Controller{
                                 ->get();
                 $this->output->set_status_header(200)
                     ->set_content_type('application/json', 'utf-8')
-                    ->set_output(json_encode($query->result()));            
+                    ->set_output(json_encode($query->row()));            
         }
         else{
             $result = array(
@@ -42,10 +42,8 @@ class Users extends CI_Controller{
         );
 
         if($this->db->insert('customer',$data)){
-            
             $this->output->set_status_header(200)
-                            ->set_content_type('application/json', 'utf-8')
-                            ->set_output(json_encode($result));
+                            ->set_content_type('application/json', 'utf-8');
         }
         else{
             $q = $this->db->error();
