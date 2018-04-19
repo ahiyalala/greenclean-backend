@@ -83,3 +83,9 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+
+//URLs
+defined('PAYMAYA_URL')         OR define('PAYMAYA_URL','https://pg-sandbox.paymaya.com/payments/v1');
+defined('PAYMAYA_PUBLIC')      OR define('PAYMAYA_PUBLIC','pk-nRO7clSfJrojuRmShqRbihKPLdGeCnb9wiIWF8meJE9');
+defined('PAYMAYA_SECRET')      OR define('PAYMAYA_SECRET','sk-jZK0i8yZ30ph8xQSWlNsF9AMWfGOd3BaxJjQ2CDCCZb');

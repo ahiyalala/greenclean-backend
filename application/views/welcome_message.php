@@ -72,7 +72,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	<div id="body">
 		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-		<?php echo bin2hex(openssl_random_pseudo_bytes(64)); ?>
 		<p>If you would like to edit this page you'll find it located at:</p>
 		<code>application/views/welcome_message.php</code>
 

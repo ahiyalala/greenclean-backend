@@ -31,8 +31,40 @@ class Users extends CI_Controller{
     public function api_set(){
         $user = json_decode(file_get_contents('php://input'),true);
         
+
+        $paymaya_data = array(
+            'firstName' => $user['first_name'],
+            'middleName'=>(isset($user['middle_name']))? $user['middle_name']:'',
+            'lastName' => $user['last_name'],
+            'birthday' => $user['birth_date'],
+            'contact' => array(
+                'email'=>$user['email_address']
+            )
+        );
+    
+        $curl = curl_init(PAYMAYA_URL.'/customers/');
+        curl_setopt($curl, CURLOPT_POST,1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS,json_encode($paymaya_data));
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($curl, CURLOPT_HTTPHEADER,array(
+            'Content-Type: application/json',
+            'Authorization: Basic '.base64_encode(PAYMAYA_SECRET.':') 
+        ));
+
+        $result = curl_exec($curl);
+        $httpResponse = curl_getinfo($curl,CURLINFO_HTTP_CODE);
+        $arr = json_decode($result,true);
+        curl_close($curl);
+
+        if($httpResponse != 200){
+            return $this->output->set_status_header(500);
+        }
+
         $data = array(
+            'paymaya_customer_id'=>$arr['id'],
             'first_name' => $user['first_name'],
+            'middle_name'=>(isset($user['middle_name']))? $user['middle_name']:'',
             'last_name' => $user['last_name'],
             'birth_date' => $user['birth_date'],
             'email_address' => $user['email_address'],
@@ -40,7 +72,7 @@ class Users extends CI_Controller{
             'contact_number' => $user['contact_number'],
             'user_token'=> bin2hex(openssl_random_pseudo_bytes(64))
         );
-
+        
         if($this->db->insert('customer',$data)){
             $this->output->set_status_header(200)
                             ->set_content_type('application/json', 'utf-8');

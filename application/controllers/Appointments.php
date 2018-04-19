@@ -6,8 +6,6 @@ class Appointments extends CI_Controller{
         $post_data = json_decode(file_get_contents('php://input'),true);
         $auth = $this->input->get_request_header('Authentication');
         $auth_arr = explode(" ",$auth);
-        $whereIs = array('email_address'=>$auth_arr[0],'user_token'=>$auth_arr[1]);
-        $message = array("message"=>"Bad request");
         
         /*
             SELECT *  FROM `housekeeper` 
@@ -18,14 +16,15 @@ class Appointments extends CI_Controller{
                             ->set_content_type('application/json', 'utf-8')
                             ->set_output(json_encode($message));
         }
-        else{
-            $whereIs['customer_id'] = $post_data['customer_id'];
-        }
+
+        $whereIs = array('email_address'=>$auth_arr[0],'user_token'=>$auth_arr[1]);
+        $message = array("message"=>"Bad request");
+        $whereIs['customer_id'] = $post_data['customer_id'];
 
         $query = $this->db->from('customer')
                     ->where($whereIs);
 
-        if($query->count_all_results() != 1){
+        if($query->count_all_results()){
             return $this->output->set_status_header(400)
                             ->set_content_type('application/json', 'utf-8')
                             ->set_output(json_encode($message));
