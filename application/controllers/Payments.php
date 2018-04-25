@@ -29,7 +29,6 @@ class Payments extends CI_Controller{
         
         $whereIs = array('email_address'=>$auth_arr[0],'user_token'=>$auth_arr[1]);
         $message = array("message"=>"Bad request");
-        $whereIs['customer_id'] = $post_data['customer_id'];
         
         $query = $this->db->from('customer')
                     ->where($whereIs);
@@ -41,11 +40,24 @@ class Payments extends CI_Controller{
         }
 
         //retrieve user information
-        $user_result = $query->row();
+
+        $user_result = $this->db->select('*')
+                            ->from('customer')
+                            ->where($whereIs)
+                            ->get()
+                            ->row();
+
+        $card_by_customer_query = $this->db->select('*')
+                                            ->from('paymaya_card_vaults')
+                                            ->where(array(
+                                                'paymaya_customer_id' => $user_result->paymaya_customer_id
+                                            ))
+                                            ->count_all_results();
 
         //initialize paymaya data
         $paymaya_data = array(
-            'paymentTokenId' => $paymentToken['paymentTokenId']
+            'paymentTokenId' => $paymentToken['paymentTokenId'],
+            'isDefault'=>($card_by_customer_query)?true:false
         );
     
         $curl = curl_init(PAYMAYA_URL.'/customers/'.$user_result->paymaya_customer_id.'/cards');
@@ -64,29 +76,48 @@ class Payments extends CI_Controller{
         curl_close($curl);
 
         if($httpResponse != 200){
-            return $this->output->set_status_header(500);
+            return $this->output->set_status_header(500)
+                                ->set_output($result);
         }
 
-        $this->db->trans_start(TRUE);
+        $this->db->trans_start();
         $uuid = $this->db->select('UUID() as id')
                             ->get()
                             ->row();
         $this->db->insert('paymaya_card_vaults', array(
-            'payment_id'=>$uuid,
+            'payment_id'=>$uuid->id,
             'pcv_id'=>$arr['cardTokenId'],
-            'paymaya_customer_id'=>$user_result->payama_customer_id,
-            'masked_number'=>$arr['maskedPan']
+            'paymaya_customer_id'=>$user_result->paymaya_customer_id,
+            'masked_number'=>$arr['maskedPan'],
+            'verification_url'=>$arr['verificationUrl']
         ));
         $recent_data = $this->db->select('payment_id,masked_number')
                                 ->from('paymaya_card_vaults')
                                 ->where(array(
-                                    'payment_id'=>$uuid
-                                ));
+                                    'payment_id'=>$uuid->id
+                                ))
+                                ->get();
         $this->db->trans_complete();
         if ($this->db->trans_status()){
             return $this->output->set_status_header(200)
                         ->set_content_type('application/json', 'utf-8')
-                        ->set_output(json_encode($recent_data));
+                        ->set_output(json_encode($recent_data->row()));
+        }
+        else{
+            $curl = curl_init(PAYMAYA_URL.'/customers/'.$user_result->paymaya_customer_id.'/cards/'.$arr['cardTokenId']);
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST,"DELETE");
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($curl, CURLOPT_HTTPHEADER,array(
+                'Content-Type: application/json',
+                'Authorization: Basic '.base64_encode(PAYMAYA_SECRET.':') 
+            ));
+
+            $result = curl_exec($curl);
+            $httpResponse = curl_getinfo($curl,CURLINFO_HTTP_CODE);
+            curl_close($curl);
+            return $this->output->set_status_header($httpResponse)
+                                ->set_output($result);
         }
     }
 }

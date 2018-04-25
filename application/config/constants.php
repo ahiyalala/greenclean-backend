@@ -87,5 +87,5 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 //URLs
 defined('PAYMAYA_URL')         OR define('PAYMAYA_URL','https://pg-sandbox.paymaya.com/payments/v1');
-defined('PAYMAYA_PUBLIC')      OR define('PAYMAYA_PUBLIC','pk-nRO7clSfJrojuRmShqRbihKPLdGeCnb9wiIWF8meJE9');
-defined('PAYMAYA_SECRET')      OR define('PAYMAYA_SECRET','sk-jZK0i8yZ30ph8xQSWlNsF9AMWfGOd3BaxJjQ2CDCCZb');
+defined('PAYMAYA_PUBLIC')      OR define('PAYMAYA_PUBLIC','pk-6y2WX6WhWxfQOg8ezKIUuiJxa7gC4sDvOipn9NFXlwz');
+defined('PAYMAYA_SECRET')      OR define('PAYMAYA_SECRET','sk-BoTm71oqA1jdCd6bwLwxK3QsVPo9ZOcr1dpYfyAPUUd');
