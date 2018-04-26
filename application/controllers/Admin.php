@@ -14,6 +14,39 @@ class Admin extends CI_Controller {
                 "is_super" => 0
             )
         );
-        $this->load->view("gc_adm-1-dashboard",$data);
+        $this->load->view("_header",$data);
+        $this->load->view("admin_dashboard",$data);
+        $this->load->view("_footer");
+    }
+
+    public function management(){
+        $this->load->helper('form');
+        $services = $this->db->select('*')->from('services')->get()->result();
+        $data = array(
+            'services'=>$services,
+            'admin' => array(
+                'first_name' => "Kuroneko",
+                'middle_name' => "Kuro",
+                'last_name' => "Kuroro",
+                "is_super" => 0
+            )
+        );
+        $this->load->view("_header",$data);
+        $this->load->view('admin_service',$data);
+        $this->load->view("_footer");
+    }
+
+    public function employee(){
+        $data = array(
+            'admin' => array(
+                'first_name' => "Kuroneko",
+                'middle_name' => "Kuro",
+                'last_name' => "Kuroro",
+                "is_super" => 0
+            )
+        );
+        $this->load->view("_header",$data);
+        $this->load->view('admin_employee',$data);
+        $this->load->view("_footer");
     }
 }

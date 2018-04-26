@@ -1,84 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="front/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="front/css_admin/styles.css" />
-    <title>Admin Dashboard</title>
-
-    <style>
-      @media (max-width: 576px) {
-        nav .container {
-          width: 100%;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-
-    <!-- NAV START -->
-    <div class="nav">
-      <nav class="navbar navbar-light navbar-toggleable-md bg-success fixed-top">
-
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="#">
-          <img src="http://via.placeholder.com/60x50" class="img-responsive" alt="Cinque Terre">
-        </a>
-        <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item m-2 dropdown">
-              <a class="nav-link dropdown-toggle  dropleft" href="#" data-toggle="dropdown">
-                apple
-              </a>
-              <div class="dropdown-menu  dropdown-menu-right">
-                <a href="#" class="dropdown-item font-weight-bold">John Doe</a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">View Profile</a>
-                <a href="gc_0-indexpage.html" class="dropdown-item">Logout</a>
-              </div>
-            </li>
-          </ul>
-
-      </nav>
-      <!-- NAV END -->
-      </div>
-
-      <br>
-      <br>
-      <br>
-
-      <div id="wrapper">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper" class="bg-dark">
-          <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-              <a href="gc_adm-1-dashboard.html" class="text-warning active">Home</a>
-            </li>
-            <li>
-              <a href="gc_adm-2-admin mgmt.html" class="text-warning">Admin Management</a>
-            </li>
-            <li>
-              <a href="gc_adm-3-employee mgmt.html" class="text-warning ">Employee Management</a>
-            </li>
-            <li>
-              <a href="gc_adm-5-user mgmt.html" class="text-warning">User Management</a>
-            </li>
-          </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
         <!-- Page Content -->
         <div id="page-content-wrapper ">
           <div class="container-fluid bg-secondary">
@@ -173,6 +92,29 @@
                   <button class="btn btn-outline-success mx-1">Update</button>
                   <button class="btn btn-outline-danger mx-1">Delete</button>
                 </div>
+                <ul class="pagination pt-2 d-flex justify-content-center mt-4">
+                  <li class="page-item">
+                    <a class="page-link text-muted" href="#">Previous</a>
+                  </li>
+                  <li class="page-item active">
+                    <a class="page-link text-inverse" href="#">1</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link text-inverse" href="#">2</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link text-inverse" href="#">3</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link text-inverse" href="#">4</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link text-inverse" href="#">5</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link text-muted" href="#">Next</a>
+                  </li>
+                </ul>
                 <?php endif ?>
                 <!-- MODAL ADD-->
                 <div class="modal" id="myModal">
@@ -259,70 +201,9 @@
                 </div>
 
 
-                <ul class="pagination pt-2 d-flex justify-content-center mt-4">
-                  <li class="page-item">
-                    <a class="page-link text-muted" href="#">Previous</a>
-                  </li>
-                  <li class="page-item active">
-                    <a class="page-link text-inverse" href="#">1</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link text-inverse" href="#">2</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link text-inverse" href="#">3</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link text-inverse" href="#">4</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link text-inverse" href="#">5</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link text-muted" href="#">Next</a>
-                  </li>
-                </ul>
+                
               </div>
             </main>
           </div>
         </div>
         <!-- /#page-content-wrapper -->
-        <br>
-        <div>
-          <footer class="footer">
-            <div class="container-fluid text-center text-light bg-success ">
-              <p class="font-weight-bold m-2 p-2">
-                <span>(c) Green Clean Copyrights 2018 Developed by CodeBehind Inc.</span>
-              </p>
-            </div>
-          </footer>
-        </div>
-      </div>
-      <!-- /#wrapper -->
-
-
-
-  </body>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="front/js/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-    crossorigin="anonymous"></script>
-
-  <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
-    crossorigin="anonymous"></script>
-  <!-- Menu Toggle Script -->
-
-  <script>
-    $("#menu-toggle").click(function (e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
-
-  </body>
-
-</html>
