@@ -5,15 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>gcHomepage</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="front/css/bootstrap.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
-    <link rel="stylesheet" href="css_admin/Features-Blue.css">
-    <link rel="stylesheet" href="css_admin/Header-Blue.css">
-    <link rel="stylesheet" href="css_admin/Pretty-Footer.css">
-    <link rel="stylesheet" href="css_admin/Registration-Form-with-Photo.css">
-    <link rel="stylesheet" href="css_admin/styles.css">
+    <link rel="stylesheet" href="front/css_admin/Features-Blue.css">
+    <link rel="stylesheet" href="front/css_admin/Header-Blue.css">
+    <link rel="stylesheet" href="front/css_admin/Pretty-Footer.css">
+    <link rel="stylesheet" href="front/css_admin/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="front/css_admin/styles.css">
 </head>
 
 <body>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
                         <div class="iphone-mockup">
-                            <img src="assets/img/broom.jpg" class="device">
+                            <img src="front/img/broom.jpg" class="device">
 
                         </div>
                     </div>
@@ -230,8 +230,8 @@
                 </div>
             </div>
         </footer>
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="front/js/jquery.min.js"></script>
+        <script src="front/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function () {
                 // Add scrollspy to <body>

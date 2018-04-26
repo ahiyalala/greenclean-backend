@@ -10,13 +10,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-    crossorigin="anonymous">
-
-  <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
-
-  <head>
+  <link rel="stylesheet" href="front/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="front/css_admin/styles.css" />
     <title>Admin Dashboard</title>
 
     <style>
@@ -38,13 +33,13 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-          <img src="http://lorempixel.com/60/50/sports/" class="img-responsive" alt="Cinque Terre">
+          <img src="http://via.placeholder.com/60x50" class="img-responsive" alt="Cinque Terre">
         </a>
         <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item m-2 dropdown">
               <a class="nav-link dropdown-toggle  dropleft" href="#" data-toggle="dropdown">
-                <img src="apple.jpg" class="img-responsive rounded-circle" alt="APPLE" width="30" height="30">
+                apple
               </a>
               <div class="dropdown-menu  dropdown-menu-right">
                 <a href="#" class="dropdown-item font-weight-bold">John Doe</a>
@@ -96,28 +91,16 @@
                   <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle"
                     alt="Generic placeholder thumbnail">
                   <h4>Users</h4>
-                  <div class="text-muted">230</div>
-                </div>
-                <div class="col-6 col-sm-3 placeholder">
-                  <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle"
-                    alt="Generic placeholder thumbnail">
-                  <h4>Daily Users</h4>
-                  <span class="text-muted">60</span>
-                </div>
-                <div class="col-6 col-sm-3 placeholder">
-                  <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle"
-                    alt="Generic placeholder thumbnail">
-                  <h4>Monthly Users</h4>
-                  <span class="text-muted">170</span>
+                  <div class="text-muted"><?php echo $customer ?></div>
                 </div>
                 <div class="col-6 col-sm-3 placeholder">
                   <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle"
                     alt="Generic placeholder thumbnail">
                   <h4>Employees</h4>
-                  <span class="text-muted">20</span>
+                  <span class="text-muted"><?php echo $housekeeper ?></span>
                 </div>
               </section>
-
+              <?php if($admin['is_super']): ?>
               <h2 class="pb-2">Administrators</h2>
               <div class="table-responsive">
                 <table class="table table-striped">
@@ -184,12 +167,13 @@
 
                   </tbody>
                 </table>
+                
                 <div class="d-flex justify-content-center clearfix">
                   <button class="btn btn-outline-primary mx-1 " data-toggle="modal" data-target="#myModal">Add</button>
                   <button class="btn btn-outline-success mx-1">Update</button>
                   <button class="btn btn-outline-danger mx-1">Delete</button>
                 </div>
-
+                <?php endif ?>
                 <!-- MODAL ADD-->
                 <div class="modal" id="myModal">
                   <div class="modal-dialog modal-lg">
@@ -321,7 +305,7 @@
   </body>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="front/js/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.js"></script>
