@@ -37,7 +37,12 @@ class Admin extends CI_Controller {
     }
 
     public function employee(){
+        $this->load->model('housekeeper');
+
+        $employee_list = $this->housekeeper->get_all();
+
         $data = array(
+            'housekeepers' => $employee_list,
             'admin' => array(
                 'first_name' => "Kuroneko",
                 'middle_name' => "Kuro",

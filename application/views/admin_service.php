@@ -13,7 +13,7 @@
             
             <div id="accordion" role="tablist">
             <?php
-              foreach($services as $service){
+              foreach($services as $service):
               ?>
               <div class="card">
                 <div class="card-header" role="tab" id="heading">
@@ -31,7 +31,7 @@
                   </div>
                 </div>
               </div>
-              <?php } ?>
+              <?php endforeach; ?>
             </div>
             <div class="d-flex justify-content-center clearfix pt-5">
               <button class="btn btn-outline-primary mx-1 " data-toggle="modal" data-target="#addService">Add Service Package</button>

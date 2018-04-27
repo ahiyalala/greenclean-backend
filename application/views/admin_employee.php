@@ -1,94 +1,161 @@
-                  <!-- Page Content -->
-                  <div id="page-content-wrapper ">
-                        <!-- Full Section -->
-                        <div class="container-fluid bg-secondary">
-                              <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
-                              <!-- START OF MAIN -->
-                              <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-                                    <h1 class="text-center display-4">John Doe's Profile</h1>
-                                    <div class="dropdown-divider"></div>
-                                    <!-- START OF 1ST CARD -->
+ <!-- Page Content -->
+ <div id="page-content-wrapper ">
+        <div class="container-fluid bg-secondary">
 
-                                    <div class="card  w-75 container">
-                                          <div class="card-header bg-success h3">Personal Infomation</div>
-                                          <!-- START OF 1ST CARD BODY -->
-                                          <div class="card-block bg-faded">
-                                                <div class="d-flex justify-content-center">
-                                                      <img src="apple.jpg" class="img-fluid rounded-circle" alt="APPLE" width="250" height="250">
-                                                </div>
-                                                <div class="text-center mb-3">
-                                                      <h3 class="h3">John Doe</h3>
-                                                </div>
-                                                <table class="table bg-faded">
-                                                      <tbody>
-                                                            <tr>
-                                                                  <th scope="row">Address: </th>
-                                                                  <td>Blk. 23 Lot. 12 Colorado St. Phase 2 Ampid San Mateo, Rizal</td>
-                                                            </tr>
-                                                            <tr>
-                                                                  <th scope="row">Birthday: </th>
-                                                                  <td>October 31, 1997</td>
-                                                            </tr>
-                                                            <tr>
-                                                                  <th scope="row">Gender: </th>
-                                                                  <td>Male</td>
-                                                            </tr>
-                                                            <tr>
-                                                                  <th scope="row">Date Registered: </th>
-                                                                  <td>July 21, 2018</td>
-                                                            </tr>
-                                                            <tr>
-                                                                  <th scope="row">Work Registered: </th>
-                                                                  <td>Monday - Friday</td>
-                                                            </tr>
-                                                            <tr>
-                                                                  <th scope="row">OFF Days: </th>
-                                                                  <td>Saturday, Sunday</td>
-                                                            </tr>
-                                                      </tbody>
-                                                </table>
+          <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
+          <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+            <h1 class="text-center display-4">Employee Management</h1>
+            <div class="dropdown-divider"></div>
+            <h2 class="display-5 pt-5 pb-3">Employees</h2>
 
-                                          </div>
-                                          <!-- END OF 1ST CARD BODY -->
-                                          <div class="card-footer">
-                                                <div class="d-flex justify-content-center clearfix pt-2">
-                                                      <button class="btn btn-outline-success mx-1">Update</button>
-                                                      <button class="btn btn-outline-danger mx-1">Delete</button>
-                                                </div>
-                                          </div>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Full Name</th>
+                    <th>Gender</th>
+                    <th>Date Registered</th>
+                    <th>Customer's Rating</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <!-- stuffff -->
+                <?php foreach($housekeepers as $housekeeper): ?>
+                  <tr>
+                    <td><?php echo $housekeeper->housekeeper_id ?></td>
+                    <td>
+                      <a href="<?php echo base_url("/employee/".$housekeeper->housekeeper_id) ?>"> John Doe </a>
+                    </td>
+                    <td><?php echo $housekeeper->gender ?></td>
+                    <td>Date registered not yet available</td>
+                    <th> Rating not yet available </th>
+                  </tr>
+                <?php endforeach; ?>
+                  <!-- stuffff -->
+                </tbody>
+              </table>
+            </div>
+            <div class="d-flex justify-content-center clearfix pt-5">
+              <button class="btn btn-outline-primary mx-1" data-toggle="modal" data-target="#myModal">Add New Employee</button>
 
-                                    </div>
-                                    <!-- END OF 1ST CARD -->
-
-                                    <div class="card mt-3 w-75 container">
-                                          <div class="card-header bg-success h3">Work Infomation</div>
-                                          <!-- START OF 2ND CARD BODY -->
-                                          <div class="card-block bg-faded">
-                                                <table class="table bg-faded">
-                                                      <thead>
-                                                            <tr>
-                                                                  <th scope="col">#</th>
-                                                                  <th scope="col">Client Name</th>
-                                                                  <th scope="col">Date</th>
-                                                                  <th scope="col">Time</th>
-                                                            </tr>
-                                                      </thead>
-                                                      <tbody>
-                                                            <tr>
-                                                                  <th scope="row"> 1 </th>
-                                                                  <td>Kat Cruz</td>
-                                                                  <td>July 26, 2019</td>
-                                                                  <td>16:00 - 17:00</td>
-                                                            </tr>
-                                                      </tbody>
-                                                </table>
-                                          </div>
-                                    </div>
+              <button class="btn btn-outline-danger mx-1">Delete</button>
+            </div>
 
 
+            <h2 class="display-5 pt-5 pb-3">Employees Schedule</h2>
 
-                              </main>
-                              <!-- END OF MAIN -->
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <td> </td>
+                    <th>No.</th>
+                    <th>Employee Name</th>
+                    <th>Client Name</th>
+                    <th>Date of Service</th>
+                    <th>Time of Service</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p class="float-right">
+                        <input class="form-check-input" name="a1" type="radio" value="option1">
+                      </p>
+                    </td>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>Kat Cruz</td>
+                    <td>February 1, 2018</td>
+                    <td>8:00am - 12:00pm</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="float-right">
+                        <input class="form-check-input" name="a1" type="radio" value="option1">
+                      </p>
+                    </td>
+                    <td>2</td>
+                    <td>John Doe</td>
+                    <td>Pat Santos</td>
+                    <td>February 1, 2018</td>
+                    <td>1:00pm - 4:00pm</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="float-right">
+                        <input class="form-check-input" name="a1" type="radio" value="option1">
+                      </p>
+                    </td>
+                    <td>3</td>
+                    <td>Mark Poe</td>
+                    <td>Juan dela Cruz</td>
+                    <td>February 3, 2018</td>
+                    <td>10:00am - 2:00pm</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="float-right">
+                        <input class="form-check-input" name="a1" type="radio" value="option1">
+                      </p>
+                    </td>
+                    <td>4</td>
+                    <td>John Doe</td>
+                    <td>Kat Cruz</td>
+                    <td>February 5, 2018</td>
+                    <td>8:00am - 12:00pm</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="float-right">
+                        <input class="form-check-input" name="a1" type="radio" value="option1">
+                      </p>
+                    </td>
+                    <td>5</td>
+                    <td>Lisa Zoe</td>
+                    <td>Kat Cruz</td>
+                    <td>February 8, 2018</td>
+                    <td>4:00pm - 8:00pm</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="d-flex justify-content-center clearfix pt-5">
+              <button class="btn btn-outline-primary mx-1">Re-assign Employee</button>
+              <button class="btn btn-outline-danger mx-1">Delete</button>
+            </div>
 
-                        </div>
- 
+            <ul class="pagination pt-2 d-flex justify-content-center mt-4">
+              <li class="page-item">
+                <a class="page-link text-muted" href="#">Previous</a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link text-inverse" href="#">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link text-inverse" href="#">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link text-inverse" href="#">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link text-inverse" href="#">4</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link text-inverse" href="#">5</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link text-muted" href="#">Next</a>
+              </li>
+            </ul>
+
+
+          </main>
+
+
+        </div>
+
+
+      </div>
+      <!-- /#page-content-wrapper -->
