@@ -13,6 +13,15 @@ class Housekeeper extends CI_Model{
     public function get_all(){
         return $this->db->select('*')
                             ->from('housekeeper')
+                            ->order_by('last_name')
                             ->get()->result();
+    }
+
+    public function get_specific($id){
+        return $this->db->select('*')
+                        ->from('housekeeper')
+                        ->where(array('housekeeper_id'=>$id))
+                        ->get()
+                        ->row();
     }
 }

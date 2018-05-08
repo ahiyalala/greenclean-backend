@@ -21,13 +21,13 @@ class Appointments extends CI_Controller{
         $message = array("message"=>"Bad request");
         $whereIs['customer_id'] = $post_data['customer_id'];
 
-        $query = $this->db->from('customer')
-                    ->where($whereIs);
+        $query = $this->db->select('*')->from('customer')
+                    ->where($whereIs)->count_all_results();
 
-        if($query->count_all_results()){
+        if(!$query){
             return $this->output->set_status_header(400)
                             ->set_content_type('application/json', 'utf-8')
-                            ->set_output(json_encode($message));
+                            ->set_output(json_encode($query));
         }
 
         
@@ -68,7 +68,7 @@ class Appointments extends CI_Controller{
                                 ->get()
                                 ->row();
             
-            $this->db->trans_start(TRUE);
+            $this->db->trans_start();
             $schedule_data = array(
                 'housekeeper_id'=>$list_query->housekeeper_id,
                 'date'=>$date,
@@ -88,10 +88,12 @@ class Appointments extends CI_Controller{
             );
             $this->db->insert('booking_request',$booking_request);
             $booking_data = $this->db->select('*')->from('booking_request')->where(array('booking_request_id'=>$uuid->id))->get()->row();
-            $this->db->insert('payment_transaction',array('booking_request_id'=>$booking_data->booking_request_id));
-            $transaction_id = $this->db->insert_id();
+            $transaction_uid = $this->db->select('UUID() as id')->get()->row();
+            $service_uid = $this->db->select('UUID() as id')->get()->row();
+            $this->db->insert('payment_transaction',array('transaction_id'=>$transaction_uid->id,'booking_request_id'=>$booking_data->booking_request_id));
             $service_data = array(
-                'transaction_id' => $transaction_id,
+                'service_cleaning_id'=>$service_uid->id,
+                'transaction_id' => $transaction_uid->id,
                 'housekeeper_id' => $list_query->housekeeper_id
             );
             $this->db->insert('service_cleaning',$service_data);
@@ -99,15 +101,15 @@ class Appointments extends CI_Controller{
             $service = $this->db->select('*')->from('services')->where(array('service_type_key'=>$post_data['service_type_key']))->get()->row();
             $schedule = $this->db->select('*')->from('housekeeper_schedule')->where(array('schedule_id'=>$schedule_id))->get()->row();
             $appointment_data = array(
-                'booking_request_id'=>$booking_data->booking_request_id,
+                'service_cleaning_id'=>$service_uid->id,
                 'service'=>$service,
                 'location'=>$location,
                 'housekeeper'=>$list_query,
                 'date'=>$schedule->date,
                 'start_time'=>$schedule->start_time,
                 'end_time'=>$schedule->end_time,
-                'is_paid'=>0,
-                'is_finished'=>0,
+                'is_paid'=>false,
+                'is_finished'=>false,
                 'payment_type'=>$booking_data->payment_type
             );
             $this->db->trans_complete();
@@ -130,5 +132,80 @@ class Appointments extends CI_Controller{
                             ->set_content_type('application/json', 'utf-8')
                             ->set_output(json_encode($message));
         
+    }
+
+    public function api_get($id = null){
+        $auth = $this->input->get_request_header('Authentication');
+        $auth_arr = explode(" ",$auth);
+        
+        if(count($auth_arr)!=2){
+            return $this->output->set_status_header(400)
+                            ->set_content_type('application/json', 'utf-8')
+                            ->set_output(json_encode($message));
+        }
+
+        $whereIs = array('email_address'=>$auth_arr[0],'user_token'=>$auth_arr[1]);
+        $message = array("message"=>"Bad request");
+
+        $customer_query = $this->db->select('*')->from('customer')
+                    ->where($whereIs);
+
+        if(!$customer_query->count_all_results()){
+            return $this->output->set_status_header(400)
+                            ->set_content_type('application/json', 'utf-8')
+                            ->set_output(json_encode($message));
+        }
+
+        $customer = $this->db->select('*')->from('customer')
+                                        ->where($whereIs)->get()->row();
+
+        if($id){
+            $query = $this->db->query('call select_specific_appointment(?,?)', array($customer->customer_id,$id));
+            $result = $query->row();
+            if(isset($result)){
+                $appointment = array(
+                    'service_cleaning_id'=>$result->service_cleaning_id,
+                    'service'=>array("service_type_key"=>$result->service_type_key,"service_price"=>$result->service_price),
+                    'location'=>array("street_address"=>$result->street_address,"barangay"=>$result->barangay,"city_address"=>$result->city_address),
+                    'housekeeper'=>array("housekeeper_id"=>$result->housekeeper_id, "first_name"=>$result->first_name, "middle_name"=>$result->middle_name, "last_name"=>$result->last_name, "rating"=>$result->rating),
+                    'date'=>$result->date,
+                    'start_time'=>$result->start_time,
+                    'end_time'=>$result->end_time,
+                    'is_paid'=>($result->is_paid)?true:false,
+                    'is_finished'=>($result->is_finished)?true:false,
+                    'payment_type'=>$result->payment_type
+                );
+            }
+            else{
+                return $this->output->set_status_header(404)
+                                    ->set_content_type('application/json', 'utf-8')
+                                    ->set_output(json_encode(array("message"=>"Content not found")));
+            }
+        }
+        else{
+            $query = $this->db->query('call select_all_pending_appointments(?)',array($customer->customer_id))->result();
+            $appointment = array();
+            foreach($query as $result){
+                $appointment_data = array(
+                    'service_cleaning_id'=>$result->service_cleaning_id,
+                    'service'=>array("service_type_key"=>$result->service_type_key,"service_price"=>$result->service_price),
+                    'location'=>array("street_address"=>$result->street_address,"barangay"=>$result->barangay,"city_address"=>$result->city_address),
+                    'housekeeper'=>array("housekeeper_id"=>$result->housekeeper_id, "first_name"=>$result->first_name, "middle_name"=>$result->middle_name, "last_name"=>$result->last_name, "rating"=>$result->rating),
+                    'date'=>$result->date,
+                    'start_time'=>$result->start_time,
+                    'end_time'=>$result->end_time,
+                    'is_paid'=>($result->is_paid)?"true":"false",
+                    'is_finished'=>($result->is_finished)?"true":"false",
+                    'payment_type'=>$result->payment_type,
+                    'rating'=>$result->rating
+                );
+                array_push($appointment,$appointment_data);
+            }
+        }
+
+        return $this->output->set_status_header(200)
+                            ->set_content_type('application/json', 'utf-8')
+                            ->set_output(json_encode($appointment));
+
     }
 }

@@ -5,7 +5,7 @@
                               <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
                               <!-- START OF MAIN -->
                               <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-                                    <h1 class="text-center display-4">John Doe's Profile</h1>
+                                    <h1 class="text-center display-4"><?php echo $housekeepers->first_name; ?>'s Profile</h1>
                                     <div class="dropdown-divider"></div>
                                     <!-- START OF 1ST CARD -->
 
@@ -17,33 +17,33 @@
                                                       <img src="apple.jpg" class="img-fluid rounded-circle" alt="APPLE" width="250" height="250">
                                                 </div>
                                                 <div class="text-center mb-3">
-                                                      <h3 class="h3">John Doe</h3>
+                                                      <h3 class="h3"><?php echo $housekeepers->first_name." ".$housekeepers->last_name; ?></h3>
                                                 </div>
                                                 <table class="table bg-faded">
                                                       <tbody>
                                                             <tr>
-                                                                  <th scope="row">Address: </th>
-                                                                  <td>Blk. 23 Lot. 12 Colorado St. Phase 2 Ampid San Mateo, Rizal</td>
+                                                                  <th scope="row">Email-address: </th>
+                                                                  <td><?php echo $housekeepers->email_address; ?></td>
                                                             </tr>
                                                             <tr>
                                                                   <th scope="row">Birthday: </th>
-                                                                  <td>October 31, 1997</td>
+                                                                  <td><?php echo $housekeepers->birth_date; ?></td>
                                                             </tr>
                                                             <tr>
                                                                   <th scope="row">Gender: </th>
-                                                                  <td>Male</td>
+                                                                  <td><?php echo $housekeepers->gender; ?></td>
                                                             </tr>
                                                             <tr>
                                                                   <th scope="row">Date Registered: </th>
-                                                                  <td>July 21, 2018</td>
+                                                                  <td>Data not available</td>
                                                             </tr>
                                                             <tr>
                                                                   <th scope="row">Work Registered: </th>
-                                                                  <td>Monday - Friday</td>
+                                                                  <td>Data not available</td>
                                                             </tr>
                                                             <tr>
                                                                   <th scope="row">OFF Days: </th>
-                                                                  <td>Saturday, Sunday</td>
+                                                                  <td>Data not available</td>
                                                             </tr>
                                                       </tbody>
                                                 </table>

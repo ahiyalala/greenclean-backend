@@ -91,7 +91,7 @@ class Payments extends CI_Controller{
             'masked_number'=>$arr['maskedPan'],
             'verification_url'=>$arr['verificationUrl']
         ));
-        $recent_data = $this->db->select('payment_id,masked_number')
+        $recent_data = $this->db->select('payment_id,masked_number,verification_url,status')
                                 ->from('paymaya_card_vaults')
                                 ->where(array(
                                     'payment_id'=>$uuid->id

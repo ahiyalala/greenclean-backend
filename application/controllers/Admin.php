@@ -36,13 +36,10 @@ class Admin extends CI_Controller {
         $this->load->view("_footer");
     }
 
-    public function employee(){
+    public function employee($id=null){
         $this->load->model('housekeeper');
-
-        $employee_list = $this->housekeeper->get_all();
-
+        
         $data = array(
-            'housekeepers' => $employee_list,
             'admin' => array(
                 'first_name' => "Kuroneko",
                 'middle_name' => "Kuro",
@@ -50,8 +47,17 @@ class Admin extends CI_Controller {
                 "is_super" => 0
             )
         );
+        if($id){
+            $data['housekeepers'] = $this->housekeeper->get_specific($id);
+            $view = 'admin_employee_specific';
+        }
+        else{
+            $data['housekeepers'] = $this->housekeeper->get_all();
+            $view = 'admin_employee';
+        }
+
         $this->load->view("_header",$data);
-        $this->load->view('admin_employee',$data);
+        $this->load->view($view,$data);
         $this->load->view("_footer");
     }
 }

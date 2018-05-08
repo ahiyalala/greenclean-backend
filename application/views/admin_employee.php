@@ -12,7 +12,6 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>No.</th>
                     <th>Full Name</th>
                     <th>Gender</th>
                     <th>Date Registered</th>
@@ -23,9 +22,8 @@
                 <!-- stuffff -->
                 <?php foreach($housekeepers as $housekeeper): ?>
                   <tr>
-                    <td><?php echo $housekeeper->housekeeper_id ?></td>
                     <td>
-                      <a href="<?php echo base_url("/employee/".$housekeeper->housekeeper_id) ?>"> John Doe </a>
+                      <a href="<?php echo base_url("/admin/employee/".$housekeeper->housekeeper_id) ?>"> <?php echo $housekeeper->last_name.", ".$housekeeper->first_name ?> </a>
                     </td>
                     <td><?php echo $housekeeper->gender ?></td>
                     <td>Date registered not yet available</td>
@@ -38,8 +36,6 @@
             </div>
             <div class="d-flex justify-content-center clearfix pt-5">
               <button class="btn btn-outline-primary mx-1" data-toggle="modal" data-target="#myModal">Add New Employee</button>
-
-              <button class="btn btn-outline-danger mx-1">Delete</button>
             </div>
 
 
