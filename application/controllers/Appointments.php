@@ -163,18 +163,7 @@ class Appointments extends CI_Controller{
             $query = $this->db->query('call select_specific_appointment(?,?)', array($customer->customer_id,$id));
             $result = $query->row();
             if(isset($result)){
-                $appointment = array(
-                    'service_cleaning_id'=>$result->service_cleaning_id,
-                    'service'=>array("service_type_key"=>$result->service_type_key,"service_price"=>$result->service_price),
-                    'location'=>array("street_address"=>$result->street_address,"barangay"=>$result->barangay,"city_address"=>$result->city_address),
-                    'housekeeper'=>array("housekeeper_id"=>$result->housekeeper_id, "first_name"=>$result->first_name, "middle_name"=>$result->middle_name, "last_name"=>$result->last_name, "rating"=>$result->rating),
-                    'date'=>$result->date,
-                    'start_time'=>$result->start_time,
-                    'end_time'=>$result->end_time,
-                    'is_paid'=>($result->is_paid)?true:false,
-                    'is_finished'=>($result->is_finished)?true:false,
-                    'payment_type'=>$result->payment_type
-                );
+                $appointment = $this->curate_appointment_data($result);
             }
             else{
                 return $this->output->set_status_header(404)
@@ -186,19 +175,7 @@ class Appointments extends CI_Controller{
             $query = $this->db->query('call select_all_pending_appointments(?)',array($customer->customer_id))->result();
             $appointment = array();
             foreach($query as $result){
-                $appointment_data = array(
-                    'service_cleaning_id'=>$result->service_cleaning_id,
-                    'service'=>array("service_type_key"=>$result->service_type_key,"service_price"=>$result->service_price),
-                    'location'=>array("street_address"=>$result->street_address,"barangay"=>$result->barangay,"city_address"=>$result->city_address),
-                    'housekeeper'=>array("housekeeper_id"=>$result->housekeeper_id, "first_name"=>$result->first_name, "middle_name"=>$result->middle_name, "last_name"=>$result->last_name, "rating"=>$result->rating),
-                    'date'=>$result->date,
-                    'start_time'=>$result->start_time,
-                    'end_time'=>$result->end_time,
-                    'is_paid'=>($result->is_paid)?"true":"false",
-                    'is_finished'=>($result->is_finished)?"true":"false",
-                    'payment_type'=>$result->payment_type,
-                    'rating'=>$result->rating
-                );
+                $appointment_data = $this->curate_appointment_data($result);
                 array_push($appointment,$appointment_data);
             }
         }
@@ -207,5 +184,21 @@ class Appointments extends CI_Controller{
                             ->set_content_type('application/json', 'utf-8')
                             ->set_output(json_encode($appointment));
 
+    }
+
+    private function curate_appointment_data($result){
+        return array(
+            'service_cleaning_id'=>$result->service_cleaning_id,
+            'service'=>array("service_type_key"=>$result->service_type_key,"service_price"=>$result->service_price),
+            'location'=>array("street_address"=>$result->street_address,"barangay"=>$result->barangay,"city_address"=>$result->city_address),
+            'housekeeper'=>array("housekeeper_id"=>$result->housekeeper_id, "first_name"=>$result->first_name, "middle_name"=>$result->middle_name, "last_name"=>$result->last_name, "rating"=>$result->rating),
+            'date'=>$result->date,
+            'start_time'=>$result->start_time,
+            'end_time'=>$result->end_time,
+            'is_paid'=>($result->is_paid)?true:false,
+            'is_finished'=>($result->is_finished)?true:false,
+            'payment_type'=>$result->payment_type,
+            'rating'=>$result->rating
+        );
     }
 }
