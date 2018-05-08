@@ -14,9 +14,7 @@ class Admin extends CI_Controller {
                 "is_super" => 0
             )
         );
-        $this->load->view("_header",$data);
-        $this->load->view("admin_dashboard",$data);
-        $this->load->view("_footer");
+        $this->load->view("admin-2-dashboard",$data);
     }
 
     public function management(){
@@ -31,9 +29,7 @@ class Admin extends CI_Controller {
                 "is_super" => 0
             )
         );
-        $this->load->view("_header",$data);
-        $this->load->view('admin_service',$data);
-        $this->load->view("_footer");
+        $this->load->view('admin-2-dashboard',$data);
     }
 
     public function employee($id=null){
@@ -49,15 +45,13 @@ class Admin extends CI_Controller {
         );
         if($id){
             $data['housekeepers'] = $this->housekeeper->get_specific($id);
-            $view = 'admin_employee_specific';
+            $view = 'admin-5-employee-profile';
         }
         else{
             $data['housekeepers'] = $this->housekeeper->get_all();
-            $view = 'admin_employee';
+            $view = 'admin-4-employee';
         }
 
-        $this->load->view("_header",$data);
         $this->load->view($view,$data);
-        $this->load->view("_footer");
     }
 }
