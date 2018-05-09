@@ -4,16 +4,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gcHomepage</title>
-    <link rel="stylesheet" href="front/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <title>Welcome to Green Clean!</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="fonts/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
-    <link rel="stylesheet" href="front/css_admin/Features-Blue.css">
-    <link rel="stylesheet" href="front/css_admin/Header-Blue.css">
-    <link rel="stylesheet" href="front/css_admin/Pretty-Footer.css">
-    <link rel="stylesheet" href="front/css_admin/Registration-Form-with-Photo.css">
-    <link rel="stylesheet" href="front/css_admin/styles.css">
+    <link rel="stylesheet" href="css_admin/Features-Blue.css">
+    <link rel="stylesheet" href="css_admin/Header-Blue.css">
+    <link rel="stylesheet" href="css_admin/Pretty-Footer.css">
+    <link rel="stylesheet" href="css_admin/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="css_admin/styles.css">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
         <div class="header-blue">
             <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
                 <div class="container">
-                    <a class="navbar-brand" href="#">Company Name</a>
+                    <a class="navbar-brand" href="#">Green Clean</a>
                     <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="navbar-toggler-icon"></span>
@@ -67,7 +67,7 @@
                                         <label class="form-check-label text-dark" for="exampleCheck1">
                                             <a href="gc_adm-1-dashboard.html"> Forgot Account?</a>
                                         </label>
-                                        <button class="btn btn-outline-success">Submit</button>
+                                        <button href="" class="btn btn-outline-success">Submit</button>
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
                         <div class="iphone-mockup">
-                            <img src="front/img/broom.jpg" class="device">
+                            <img src="img/broom.jpg" class="device">
 
                         </div>
                     </div>
@@ -178,18 +178,18 @@
                     </h3>
                     <p class="links">
                         <a href="#">Home</a>
-                        <strong> Â· </strong>
+                        <strong> · </strong>
                         <a href="#">Blog</a>
-                        <strong> Â· </strong>
+                        <strong> · </strong>
                         <a href="#">Pricing</a>
-                        <strong> Â· </strong>
+                        <strong> · </strong>
                         <a href="#">About</a>
-                        <strong> Â· </strong>
+                        <strong> · </strong>
                         <a href="#">Faq</a>
-                        <strong> Â· </strong>
+                        <strong> · </strong>
                         <a href="#">Contact</a>
                     </p>
-                    <p class="company-name">Company Name Â© 2015 </p>
+                    <p class="company-name">Green Clean © 2015 </p>
                 </div>
                 <div class="col-sm-6 col-md-4 footer-contacts">
                     <div>
@@ -230,8 +230,8 @@
                 </div>
             </div>
         </footer>
-        <script src="front/js/jquery.min.js"></script>
-        <script src="front/js/bootstrap.min.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function () {
                 // Add scrollspy to <body>

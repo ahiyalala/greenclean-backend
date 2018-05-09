@@ -1,0 +1,21 @@
+Table of Contents
+
+USER
+1. No Transaction Page
+2. Transaction
+3. Set Appointment
+4. Booking Details
+5. Booking Success
+6. Employee Profile
+7. Transactions (Accordian Fix) 
+8. My Profile
+9. Edit Profile
+10. Place
+11. Add Place
+12. Edit Place
+13. Payments
+14. Add Payment
+15. Edit Card Info
+
+Admin
+7. FIX Responsiveness
