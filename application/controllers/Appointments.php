@@ -6,6 +6,7 @@ class Appointments extends CI_Controller{
         $post_data = json_decode(file_get_contents('php://input'),true);
         $auth = $this->input->get_request_header('Authentication');
         $auth_arr = explode(" ",$auth);
+        $this->load->helper('sms_helper');
         
         /*
             SELECT *  FROM `housekeeper` 
@@ -68,7 +69,7 @@ class Appointments extends CI_Controller{
                                 ->get()
                                 ->row();
             
-            $this->db->trans_start();
+            $this->db->trans_begin();
             $schedule_data = array(
                 'housekeeper_id'=>$list_query->housekeeper_id,
                 'date'=>$date,
@@ -100,6 +101,7 @@ class Appointments extends CI_Controller{
             $location = $this->db->select('*')->from('location')->where(array('location_id'=>$post_data['location_id'],'customer_id'=>$post_data['customer_id']))->get()->row();
             $service = $this->db->select('*')->from('services')->where(array('service_type_key'=>$post_data['service_type_key']))->get()->row();
             $schedule = $this->db->select('*')->from('housekeeper_schedule')->where(array('schedule_id'=>$schedule_id))->get()->row();
+            $customer = $this->db->select('*')->from('customer')->where($whereIs)->get()->row();
             $appointment_data = array(
                 'service_cleaning_id'=>$service_uid->id,
                 'service'=>$service,
@@ -112,13 +114,15 @@ class Appointments extends CI_Controller{
                 'is_finished'=>false,
                 'payment_type'=>$booking_data->payment_type
             );
-            $this->db->trans_complete();
-            if ($this->db->trans_status()){
+            $didSendMessage = send_appointment_details_to_employee($appointment_data,$customer);
+            if ($this->db->trans_status() && $didSendMessage){
+                $this->db->trans_commit();
                 return $this->output->set_status_header(200)
                             ->set_content_type('application/json', 'utf-8')
                             ->set_output(json_encode($appointment_data));
             }
             else{
+                $this->db->trans_rollback();
                 $trans_error = array(
                     'message'=>'Failed to provide you a booking'
                 );

@@ -89,3 +89,9 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 defined('PAYMAYA_URL')         OR define('PAYMAYA_URL','https://pg-sandbox.paymaya.com/payments/v1');
 defined('PAYMAYA_PUBLIC')      OR define('PAYMAYA_PUBLIC','pk-6y2WX6WhWxfQOg8ezKIUuiJxa7gC4sDvOipn9NFXlwz');
 defined('PAYMAYA_SECRET')      OR define('PAYMAYA_SECRET','sk-BoTm71oqA1jdCd6bwLwxK3QsVPo9ZOcr1dpYfyAPUUd');
+
+
+//Globe API stuff
+defined('GLOBE_SHORT_CODE') OR define('GLOBE_SHORT_CODE','3910');
+defined('GLOBE_API_ID') OR define('GLOBE_API_ID','rgaRHKAXAzhMoc6xjyTXMKh75gzxHkEg');
+defined('GLOBE_APP_SECRET') OR define('GLOBE_APP_SECRET','c58e409e960c2d6f3838aaab21103ed7c7b941d0d2c61a5785fe80930326f7b5');
