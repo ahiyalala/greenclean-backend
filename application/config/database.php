@@ -75,9 +75,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => 'rajotide123',
+	'hostname' => 'greenklean-mysqldbserver.mysql.database.azure.com',
+	'username' => 'gkmysql@greenklean-mysqldbserver',
+	'password' => 'rajotide123!',
 	'database' => 'db_green_clean',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
