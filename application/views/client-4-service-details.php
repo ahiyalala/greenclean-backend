@@ -36,11 +36,11 @@
             <form class="container">
             <div class="form-group">
                <label for="inputAddress">Address</label>
-               <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+               <input type="text" class="form-control" name="address" id="inputAddress" placeholder="1234 Main St">
             </div>
             <div class="form-group">
                <label for="inputState">Mode of Payment</label>
-               <select id="inputState" class="form-control">
+               <select id="inputState" name="mode_of_payment" class="form-control">
                <option selected>Choose...</option>
                <option>...</option>
                </select>
@@ -50,14 +50,14 @@
                <label for="inputState">Schedule</label>
                <div class="row border-0">
                   <div class="col">
-                  <select id="inputState" class="form-control">
+                  <select id="inputState" name="schedule_start" class="form-control">
                         <option selected>Start...</option>
                         <option>...</option>
                   </select>
 
                   </div>
                   <div class="col">
-                  <select id="inputState" class="form-control">
+                  <select id="inputState" name="schedule_end" class="form-control">
                         <option selected>End...</option>
                         <option>...</option>
                   </select>
@@ -78,7 +78,7 @@
 
             <div class="form-group">
                <label for="inputAddress">Promo Code (Optional)</label>
-               <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+               <input type="text" class="form-control" name="promo_code" id="inputAddress" placeholder="1234 Main St">
             </div>
 
                

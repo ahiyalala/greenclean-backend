@@ -37,7 +37,7 @@
                     <tr>
                       <td>
                         <p class="float-right">
-                          <input class="form-check-input" name="a1" type="radio" value="option1">
+                          <input class="form-check-input" name="a1" type="radio" placeholder="option1">
                         </p>
                       </td>
                       <td>1,001</td>
@@ -49,7 +49,7 @@
                     <tr>
                       <td>
                         <p class="float-right">
-                          <input class="form-check-input" name="a1" type="radio" value="option2">
+                          <input class="form-check-input" name="a1" type="radio" placeholder="option2">
                         </p>
                       </td>
                       <td>1,002</td>
@@ -61,7 +61,7 @@
                     <tr>
                       <td>
                         <p class="float-right">
-                          <input class="form-check-input" name="a1" type="radio" value="option3">
+                          <input class="form-check-input" name="a1" type="radio" placeholder="option3">
                         </p>
                       </td>
                       <td>1,003</td>
@@ -73,7 +73,7 @@
                     <tr>
                       <td>
                         <p class="float-right">
-                          <input class="form-check-input" name="a1" type="radio" value="option4">
+                          <input class="form-check-input" name="a1" type="radio" placeholder="option4">
                         </p>
                       </td>
                       <td>1,003</td>
@@ -126,9 +126,17 @@
                       </div>
                       <div class="modal-body">
                         <div class="form-group row">
-                          <label for="example-text-input" class="col-2 col-form-label">Full Name:</label>
+                          <label for="example-text-input" class="col-2 col-form-label">First Name:</label>
                           <div class="col-10">
-                            <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                            <input class="form-control" name="first_name" type="text" placeholder="John" id="example-text-input">
+                          </div>
+                          <label for="example-text-input"  class="col-2 col-form-label">Middle Name:</label>
+                          <div class="col-10">
+                            <input class="form-control" name="middle_name" type="text" placeholder="Michael" id="example-text-input">
+                          </div>
+                          <label for="example-text-input" class="col-2 col-form-label">Last Name:</label>
+                          <div class="col-10">
+                            <input class="form-control" name="last_name" type="text" placeholder="Doe" id="example-text-input">
                           </div>
                         </div>
 
@@ -136,19 +144,19 @@
 
                           <label for="example-search-input" class="col-2 col-form-label">Birthday:</label>
                           <div class="col-4">
-                            <input class="form-control" type="date" value="How do I shoot web" id="example-search-input">
+                            <input class="form-control" type="date" name="birthday" placeholder="How do I shoot web" id="example-search-input">
                           </div>
 
 
                           <label for="example-text-input" class="col-1 col-form-label">Gender:</label>
                           <div class="col-5 mt-2">
                             <label class="custom-control custom-radio">
-                              <input id="radio1" name="radio" type="radio" class="custom-control-input">
+                              <input id="radio1" name="gender" type="radio" class="custom-control-input">
                               <span class="custom-control-indicator"></span>
                               <span class="custom-control-description">Male</span>
                             </label>
                             <label class="custom-control custom-radio">
-                              <input id="radio2" name="radio" type="radio" class="custom-control-input">
+                              <input id="radio2" name="gender" type="radio" class="custom-control-input">
                               <span class="custom-control-indicator"></span>
                               <span class="custom-control-description">Female</span>
                             </label>
@@ -161,40 +169,40 @@
                         <div class="form-group row">
                           <label for="example-search-input" class="col-2 col-form-label">Address:</label>
                           <div class="col-10">
-                            <input class="form-control" type="text" value="How do I shoot web" id="example-search-input">
+                            <input class="form-control" type="text" name="address" placeholder="How do I shoot web" id="example-search-input">
                           </div>
                         </div>
 
                         <div class="form-group row">
                           <label for="example-email-input" class="col-2 col-form-label">E-mail Address:</label>
                           <div class="col-10">
-                            <input class="form-control" type="email" value="bootstrap@example.com" id="example-email-input">
+                            <input class="form-control" type="email" name="email" placeholder="bootstrap@example.com" id="example-email-input">
                           </div>
                         </div>
 
                         <div class="form-group row">
                           <label for="example-search-input" class="col-2 col-form-label">Username:</label>
                           <div class="col-10">
-                            <input class="form-control" type="text" value="How do I shoot web" id="example-search-input">
+                            <input class="form-control" type="text" name="username" placeholder="How do I shoot web" id="example-search-input">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="example-search-input" class="col-2 col-form-label">Password:</label>
                           <div class="col-10">
-                            <input class="form-control" type="password" value="How do I shoot web" id="example-search-input">
+                            <input class="form-control" type="password" name="password" placeholder="How do I shoot web" id="example-search-input">
                           </div>
                         </div>
 
                         <div class="form-group row">
                           <label for="example-search-input" class="col-2 col-form-label">Upload Photo:</label>
                           <div class="col-10">
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
                           </div>
                         </div>
 
                       </div>
                       <div class="modal-footer d-flex justify-content-center">
-                        <button class="btn btn-outline-success">Submit</button>
+                        <button class="btn btn-outline-success" name="submit">Submit</button>
                       </div>
                     </div>
                   </div>

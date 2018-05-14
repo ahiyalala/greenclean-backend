@@ -53,7 +53,7 @@
                       <?php echo form_open('services/add'); ?>
                       <div class="form-row">
                         <div class="form-group col-sm-12">
-                          <input type="text" class="form-control" id="service_type" name="type" required placeholder="Service name" />
+                          <input type="text" class="form-control"  id="service_type" name="service_type" required placeholder="Service name" />
                         </div>
                       </div>
                       <div class="form-row">

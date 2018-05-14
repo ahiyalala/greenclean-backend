@@ -102,7 +102,7 @@
                   <tr>
                     <td>
                       <p class="float-right">
-                        <input class="form-check-input" name="a1" type="radio" value="option1">
+                        <input class="form-check-input" name="a1" type="radio" placeholder="option1">
                       </p>
                     </td>
                     <td>1</td>
@@ -115,7 +115,7 @@
                   <tr>
                     <td>
                       <p class="float-right">
-                        <input class="form-check-input" name="a1" type="radio" value="option1">
+                        <input class="form-check-input" name="a1" type="radio" placeholder="option1">
                       </p>
                     </td>
                     <td>2</td>
@@ -128,7 +128,7 @@
                   <tr>
                     <td>
                       <p class="float-right">
-                        <input class="form-check-input" name="a1" type="radio" value="option1">
+                        <input class="form-check-input" name="a1" type="radio" placeholder="option1">
                       </p>
                     </td>
                     <td>3</td>
@@ -263,9 +263,17 @@
           </div>
           <div class="modal-body">
             <div class="form-group row">
-              <label for="example-text-input" class="col-2 col-form-label">Full Name:</label>
+            <label for="example-text-input" class="col-2 col-form-label">First Name:</label>
+              <div class="col-10 mb-2">
+                <input class="form-control" type="text" placeholder="John" id="example-text-input">
+              </div>
+              <label for="example-text-input" class="col-2 col-form-label">Middle Name:</label>
+              <div class="col-10 mb-2">
+                <input class="form-control" type="text" placeholder="Vincent" id="example-text-input">
+              </div>
+              <label for="example-text-input" class="col-2 col-form-label">Last Name:</label>
               <div class="col-10">
-                <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                <input class="form-control" type="text" placeholder="Doe" id="example-text-input">
               </div>
             </div>
 
@@ -273,7 +281,7 @@
 
               <label for="example-search-input" class="col-2 col-form-label">Birthday:</label>
               <div class="col-4">
-                <input class="form-control" type="date" value="How do I shoot web" id="example-search-input">
+                <input class="form-control" type="date" placeholder="How do I shoot web" id="example-search-input">
               </div>
 
 
@@ -295,27 +303,27 @@
             <div class="form-group row">
               <label for="example-search-input" class="col-2 col-form-label">Address:</label>
               <div class="col-10">
-                <input class="form-control" type="text" value="How do I shoot web" id="example-search-input">
+                <input class="form-control" type="text" placeholder="How do I shoot web" id="example-search-input">
               </div>
             </div>
 
             <div class="form-group row">
               <label for="example-email-input" class="col-2 col-form-label">E-mail Address:</label>
               <div class="col-10">
-                <input class="form-control" type="email" value="bootstrap@example.com" id="example-email-input">
+                <input class="form-control" type="email" placeholder="bootstrap@example.com" id="example-email-input">
               </div>
             </div>
 
             <div class="form-group row">
               <label for="example-search-input" class="col-2 col-form-label">Username:</label>
               <div class="col-10">
-                <input class="form-control" type="text" value="How do I shoot web" id="example-search-input">
+                <input class="form-control" type="text" placeholder="How do I shoot web" id="example-search-input">
               </div>
             </div>
             <div class="form-group row">
               <label for="example-search-input" class="col-2 col-form-label">Password:</label>
               <div class="col-10">
-                <input class="form-control" type="password" value="How do I shoot web" id="example-search-input">
+                <input class="form-control" type="password" placeholder="How do I shoot web" id="example-search-input">
               </div>
             </div>
 
@@ -325,28 +333,28 @@
                 <div class="row">
                   <div class="col">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Monday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Tuesday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Wednesday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Thursday
                       </label>
@@ -354,21 +362,21 @@
                   </div>
                   <div class="col">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Friday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Saturday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Sunday
                       </label>
