@@ -2,11 +2,10 @@
 
 class Admin extends CI_Controller {
     public function index(){
-        $housekeepers = $this->db->count_all_results('housekeeper');
-        $customers = $this->db->count_all_results('customer');
+        $this->load->helper('form');
+        $services = $this->db->select('*')->from('services')->get()->result();
         $data = array(
-            'housekeeper' => $housekeepers,
-            'customer' => $customers,
+            'services'=>$services,
             'admin' => array(
                 'first_name' => "Kuroneko",
                 'middle_name' => "Kuro",
@@ -14,7 +13,7 @@ class Admin extends CI_Controller {
                 "is_super" => 0
             )
         );
-        $this->load->view("admin-2-dashboard",$data);
+        $this->load->view('admin-3-service',$data);
     }
 
     public function management(){

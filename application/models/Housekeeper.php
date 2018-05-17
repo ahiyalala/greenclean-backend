@@ -48,6 +48,8 @@ class Housekeeper extends CI_Model{
             return $id;
         }
         else{
+            $message = $this->db->error();
+            log_message('Error',json_encode($message));
             return false;
         }
 
