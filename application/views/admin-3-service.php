@@ -1,7 +1,7 @@
-<?php $this->view("includes/admin_header.php"); 
+<?php $this->view("includes/admin_header.php");
       $this->view("includes/admin_nav.php");
       $this->view("includes/admin_sidebar.php");
-	  
+
 ?>
       <!-- Page Content -->
       <div id="page-content-wrapper ">
@@ -14,17 +14,17 @@
             <h2 class="display-5 pt-5 pb-3">Available Packages</h2>
 
             <!-- ACCORDION -->
-            <?php foreach($services as $service): ?>
+            <?php foreach($services as $key=>$service): ?>
             <div id="accordion" role="tablist">
               <div class="card">
                 <div class="card-header" role="tab" id="heading">
                   <h5 class="mb-0">
-                    <a href="#collapse1" data-parent="#accordion" data-toggle="collapse">
+                    <a href="#collapse_<?php echo $key?>" data-parent="#accordion" data-toggle="collapse">
                       <?php echo $service->service_type_key; ?>
                     </a>
                   </h5>
                 </div>
-                <div id="collapse1" class="collapse">
+                <div id="collapse_<?php echo $key?>" class="collapse">
                   <div class="card-block">
                     <br/> Time Duration: <?php echo $service->service_duration; ?> hours
                     <br/> Price: <?php echo $service->service_price; ?>
@@ -61,15 +61,15 @@
                       </div>
                       <div class="form-row">
                         <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                          <input type="number" class="form-control" id="service_price" name="price" required placeholder="Price" />
+                          <input type="number" class="form-control" id="service_price" name="service_price" required placeholder="Price" />
                         </div>
                         <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                          <input type="number" class="form-control" id="service_duration" name="duration" required placeholder="Duration" />
+                          <input type="number" class="form-control" id="service_duration" name="service_duration" required placeholder="Duration" />
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group col-sm-12">
-                          <textarea class="form-control" id="service_description" name="description" placeholder="Description" required ></textarea>
+                          <textarea class="form-control" id="service_description" name="service_description" placeholder="Description" required ></textarea>
                         </div>
                       </div>
                       <div class="form-row">
