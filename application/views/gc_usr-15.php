@@ -14,7 +14,7 @@
          <div class="form-group row border-0 mx-2">
             <label for="inputCardNumber" class="col-sm-2 col-form-label">Card Number:</label>
             <div class="col-sm-8">
-               <input type="number" class="form-control" id="inputCardNumber" placeholder="XXXX XXXX XXXX 1234">
+               <input type="number" name="card_number" class="form-control" id="inputCardNumber" placeholder="XXXX XXXX XXXX 1234">
             </div>
             <div class="col-sm-2">
             <img src="img/paypal.png" class="rounded float-right img-fluid " />
@@ -23,13 +23,13 @@
          <div class="form-group row border-0 mx-2">
          <label for="example-date-input" class="col-2 col-form-label">Date:</label>
          <div class="col-10">
-            <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+            <input class="form-control" type="date"  name="date" placeholder="2011-08-19" id="example-date-input">
          </div>
          </div>
          <div class="form-group row border-0 mx-2">
             <label for="inputCVV" class="col-sm-2 col-form-label">CVV:</label>
             <div class="col-sm-10">
-               <input type="number" class="form-control" id="inputCVV" placeholder="XXX">
+               <input type="number" class="form-control" name="cw" id="inputCVV" placeholder="XXX">
             </div>
          </div>
       </form>

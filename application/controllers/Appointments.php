@@ -3,11 +3,12 @@
 class Appointments extends CI_Controller{
 
     public function api_set(){
+        
         $post_data = json_decode(file_get_contents('php://input'),true);
         $auth = $this->input->get_request_header('Authentication');
         $auth_arr = explode(" ",$auth);
         $this->load->helper('sms_helper');
-        
+        log_message('info',json_encode($post_data));
         /*
             SELECT *  FROM `housekeeper` 
             WHERE housekeeper_id NOT IN (SELECT housekeeper_id FROM `housekeeper_schedule` WHERE ((date IS NULL) AND ((start_time >= '16:00' AND start_time <= '19:00') OR (end_time>= '16:00' AND end_time<='19:00'))) OR (date = '2018-04-11'))
@@ -36,8 +37,7 @@ class Appointments extends CI_Controller{
         $date = $this->db->escape_str($post_data["date"]);
         $format_time = date("H:i", strtotime($post_data["start_time"]));
         $start_time = $this->db->escape_str($format_time);
-
-        $sql = "SELECT housekeeper_id FROM housekeeper_schedule WHERE ((date IS NULL) AND ((start_time >= '".$start_time."' AND start_time <= '".$start_time."') OR (end_time >= '".$start_time."' AND end_time <= '".$start_time."'))) OR (date = '".$date."')";
+        $sql = "SELECT housekeeper_id FROM housekeeper_schedule WHERE (date = '".$date."' AND start_time >= '".$start_time."' AND start_time <= '".$start_time."' ) OR (date = '".$date."' AND end_time >= '".$start_time."' AND end_time <= '".$start_time."' ) OR (date = '".$date."' AND availability='0')";
 
         $schedule_query = $this->db->query($sql);
             

@@ -14,17 +14,17 @@
                         <form>
                               <div class="form-group">
                                     <label for="exampleFormControlInput1 mx-2">Name:</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Francis Gella">
+                                    <input type="text" class="form-control" name="full_name" id="exampleFormControlInput1" placeholder="Francis Gella">
                               </div>
                               <div class="form-group">
                                     <label for="exampleFormControlInput1 mx-2">Email:</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="gella.faffy@gmail.com">
+                                    <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="gella.faffy@gmail.com">
                               </div>
                               <div class="form-group">
                                     <label for="exampleFormControlInput1 mx-2">Contact Number:</label>
                                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                                           <div class="input-group-addon">63</div>
-                                          <input type="number" class="form-control" id="inlineFormInputGroup" placeholder="123456789">
+                                          <input type="number" name="contact_number" class="form-control" id="inlineFormInputGroup" placeholder="123456789">
                                     </div>
                               </div>
 

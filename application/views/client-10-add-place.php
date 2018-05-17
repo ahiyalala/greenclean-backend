@@ -14,19 +14,19 @@
             <form>
                <div class="form-group mx-2">
                   <label for="exampleFormControlInput1">Name:</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="gella.faffy@gmail.com">
+                  <input type="text" class="form-control" id="exampleFormControlInput1" name="full_name" placeholder="gella.faffy@gmail.com">
                </div>
                <div class="form-group mx-2">
                   <label for="exampleFormControlInput1">Address 1:</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="gella.faffy@gmail.com">
+                  <input type="text" class="form-control" id="exampleFormControlInput1" name="address1" placeholder="gella.faffy@gmail.com">
                </div>
                <div class="form-group mx-2">
                   <label for="exampleFormControlInput1">Address 2:</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="gella.faffy@gmail.com">
+                  <input type="text" class="form-control" id="exampleFormControlInput1" name="address2" placeholder="gella.faffy@gmail.com">
                </div>
                <div class="form-group mx-2">
                   <label for="exampleFormControlSelect1">City</label>
-                  <select class="form-control" id="exampleFormControlSelect1">
+                  <select class="form-control" id="exampleFormControlSelect1" name="city">
                      <option>1</option>
                      <option>2</option>
                      <option>3</option>

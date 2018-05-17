@@ -24,4 +24,32 @@ class Housekeeper extends CI_Model{
                         ->get()
                         ->row();
     }
+
+    public function add(){
+        $this->first_name = $this->input->post('first_name');
+
+        if(isset($_POST['middle_name']))
+        $this->middle_name = $this->input->post('middle_name');
+        
+        $this->last_name = $this->input->post('last_name');
+
+        $this->birth_date = $this->input->post('birth_date');
+        $this->email_address = $this->input->post('email_address');
+        $this->contact_number = $this->input->post('contact_number');
+
+        $this->gender = $this->input->post('gender');
+
+        $this->db->trans_start();
+        $this->db->insert('housekeeper',$this);
+        $id = $this->db->insert_id();
+        $this->db->trans_complete();
+        
+        if($this->db->trans_status()){
+            return $id;
+        }
+        else{
+            return false;
+        }
+
+    }
 }

@@ -30,7 +30,7 @@
           <tr>
             <td>
               <p class="float-right">
-                <input class="form-check-input" name="a1" type="radio" value="option1">
+                <input class="form-check-input" name="a1" type="radio" placeholder="option1">
               </p>
             </td>
             <td>1</td>

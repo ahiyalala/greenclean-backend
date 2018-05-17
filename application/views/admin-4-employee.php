@@ -11,7 +11,12 @@
           <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             <h1 class="text-center display-4">Employee Management</h1>
             <div class="dropdown-divider"></div>
-            <h2 class="display-5 pt-5 pb-3">Employees</h2>
+            <h2 class="display-5 pt-5 pb-3">Employees <?php 
+            $message = $this->session->flashdata('message');
+            if($message != null){
+              echo $message;
+            }
+            ?></h2>
 
             <div class="table-responsive">
               <table class="table table-striped">
@@ -68,7 +73,7 @@
                   <tr>
                     <td>
                       <p class="float-right">
-                        <input class="form-check-input" name="a1" type="radio" value="option1">
+                        <input class="form-check-input" name="a1" type="radio" placeholder="option1">
                       </p>
                     </td>
                     <td>1</td>
@@ -80,7 +85,7 @@
                   <tr>
                     <td>
                       <p class="float-right">
-                        <input class="form-check-input" name="a1" type="radio" value="option1">
+                        <input class="form-check-input" name="a1" type="radio" placeholder="option1">
                       </p>
                     </td>
                     <td>2</td>
@@ -92,7 +97,7 @@
                   <tr>
                     <td>
                       <p class="float-right">
-                        <input class="form-check-input" name="a1" type="radio" value="option1">
+                        <input class="form-check-input" name="a1" type="radio" placeholder="option1">
                       </p>
                     </td>
                     <td>3</td>
@@ -104,7 +109,7 @@
                   <tr>
                     <td>
                       <p class="float-right">
-                        <input class="form-check-input" name="a1" type="radio" value="option1">
+                        <input class="form-check-input" name="a1" type="radio" placeholder="option1">
                       </p>
                     </td>
                     <td>4</td>
@@ -116,7 +121,7 @@
                   <tr>
                     <td>
                       <p class="float-right">
-                        <input class="form-check-input" name="a1" type="radio" value="option1">
+                        <input class="form-check-input" name="a1" type="radio" placeholder="option1">
                       </p>
                     </td>
                     <td>5</td>
@@ -172,10 +177,19 @@
             <button class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
+          <?php echo form_open('employee/add'); ?>
             <div class="form-group row">
-              <label for="example-text-input" class="col-2 col-form-label">Full Name:</label>
+            <label for="example-text-input" class="col-2 col-form-label">First Name:</label>
+              <div class="col-10 mb-2">
+                <input class="form-control" type="text" name="first_name" placeholder="John" id="example-text-input">
+              </div>
+              <label for="example-text-input" class="col-2 col-form-label">Middle Name:</label>
+              <div class="col-10 mb-2">
+                <input class="form-control" type="text" name="middle_name" placeholder="Vincent" id="example-text-input">
+              </div>
+              <label for="example-text-input" class="col-2 col-form-label">Last Name:</label>
               <div class="col-10">
-                <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                <input class="form-control" type="text" name="last_name" placeholder="Doe" id="example-text-input">
               </div>
             </div>
 
@@ -183,19 +197,19 @@
 
               <label for="example-search-input" class="col-2 col-form-label">Birthday:</label>
               <div class="col-4">
-                <input class="form-control" type="date" value="How do I shoot web" id="example-search-input">
+                <input class="form-control" type="date" name="birth_date" placeholder="How do I shoot web" id="example-search-input">
               </div>
 
 
               <label for="example-text-input" class="col-1 col-form-label">Gender:</label>
               <div class="col-5 mt-2">
                 <label class="custom-control custom-radio">
-                  <input id="radio1" name="radio" type="radio" class="custom-control-input">
+                  <input id="radio1" name="gender" type="radio" value="Male" class="custom-control-input">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">Male</span>
                 </label>
                 <label class="custom-control custom-radio">
-                  <input id="radio2" name="radio" type="radio" class="custom-control-input">
+                  <input id="radio2" name="gender" type="radio" value="Female" class="custom-control-input">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">Female</span>
                 </label>
@@ -203,29 +217,16 @@
             </div>
 
             <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Address:</label>
+              <label for="example-search-input" class="col-2 col-form-label">Contact number:</label>
               <div class="col-10">
-                <input class="form-control" type="text" value="How do I shoot web" id="example-search-input">
+                <input class="form-control" type="tel" name="contact_number" placeholder="9361234567" id="example-search-input">
               </div>
             </div>
 
             <div class="form-group row">
               <label for="example-email-input" class="col-2 col-form-label">E-mail Address:</label>
               <div class="col-10">
-                <input class="form-control" type="email" value="bootstrap@example.com" id="example-email-input">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Username:</label>
-              <div class="col-10">
-                <input class="form-control" type="text" value="How do I shoot web" id="example-search-input">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Password:</label>
-              <div class="col-10">
-                <input class="form-control" type="password" value="How do I shoot web" id="example-search-input">
+                <input class="form-control" type="email" name="email" placeholder="bootstrap@example.com" id="example-email-input">
               </div>
             </div>
 
@@ -235,28 +236,28 @@
                 <div class="row">
                   <div class="col">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Monday" name="work_schedule[]" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Monday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Tuesday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Tuesday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Wednesday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Wednesday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Thursday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Thursday
                       </label>
@@ -264,21 +265,21 @@
                   </div>
                   <div class="col">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Friday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Friday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Saturday"  value="" name="work_schedule[]" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Saturday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Sunday" name="work_schedule[]" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Sunday
                       </label>
@@ -293,7 +294,7 @@
             <div class="form-group row">
               <label for="example-search-input" class="col-2 col-form-label">Upload Photo:</label>
               <div class="col-10">
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
               </div>
             </div>
 
@@ -301,6 +302,7 @@
           <div class="modal-footer d-flex justify-content-center">
             <button class="btn btn-outline-success">Submit</button>
           </div>
+          <?php echo form_close(); ?>
         </div>
       </div>
     </div>

@@ -33,6 +33,7 @@ class Admin extends CI_Controller {
     }
 
     public function employee($id=null){
+        $this->load->helper('form');
         $this->load->model('housekeeper');
         
         $data = array(

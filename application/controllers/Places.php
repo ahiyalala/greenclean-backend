@@ -43,7 +43,7 @@ class Places extends CI_Controller{
 
         if($query->count_all_results() > 0){
             if($this->db->insert('location',$data)){
-                $result = array("message" => "OK");
+                $result = array_push($data,array("location_id"=>$this->db->insert_id()));
                 $this->output->set_status_header(200)
                             ->set_content_type('application/json', 'utf-8')
                             ->set_output(json_encode($result));
