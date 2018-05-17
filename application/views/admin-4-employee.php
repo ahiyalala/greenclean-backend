@@ -1,7 +1,7 @@
-<?php $this->view("includes/admin_header.php"); 
+<?php $this->view("includes/admin_header.php");
       $this->view("includes/admin_nav.php");
       $this->view("includes/admin_sidebar.php");
-	  
+
 ?>
       <!-- Page Content -->
       <div id="page-content-wrapper ">
@@ -11,7 +11,7 @@
           <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             <h1 class="text-center display-4">Employee Management</h1>
             <div class="dropdown-divider"></div>
-            <h2 class="display-5 pt-5 pb-3">Employees <?php 
+            <h2 class="display-5 pt-5 pb-3">Employees <?php
             $message = $this->session->flashdata('message');
             if($message != null){
               echo $message;
@@ -62,7 +62,6 @@
                 <thead>
                   <tr>
                     <td> </td>
-                    <th>No.</th>
                     <th>Employee Name</th>
                     <th>Client Name</th>
                     <th>Date of Service</th>
@@ -70,72 +69,24 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <?php foreach($housekeeper_schedules as $housekeeper_schedule): ?>
                   <tr>
                     <td>
                       <p class="float-right">
                         <input class="form-check-input" name="a1" type="radio" placeholder="option1">
                       </p>
                     </td>
-                    <td>1</td>
-                    <td>John Doe</td>
-                    <td>Kat Cruz</td>
-                    <td>February 1, 2018</td>
-                    <td>8:00am - 12:00pm</td>
+                    <td><?php echo $housekeeper_schedule->h_first_name." ".$housekeeper_schedule->h_last_name ?></td>
+                    <td><?php echo $housekeeper_schedule->c_first_name." ".$housekeeper_schedule->c_last_name ?></td>
+                    <td><?php echo $housekeeper_schedule->date ?></td>
+                    <td><?php echo $housekeeper_schedule->start_time." - ".$housekeeper_schedule->end_time ?></td>
                   </tr>
-                  <tr>
-                    <td>
-                      <p class="float-right">
-                        <input class="form-check-input" name="a1" type="radio" placeholder="option1">
-                      </p>
-                    </td>
-                    <td>2</td>
-                    <td>John Doe</td>
-                    <td>Pat Santos</td>
-                    <td>February 1, 2018</td>
-                    <td>1:00pm - 4:00pm</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p class="float-right">
-                        <input class="form-check-input" name="a1" type="radio" placeholder="option1">
-                      </p>
-                    </td>
-                    <td>3</td>
-                    <td>Mark Poe</td>
-                    <td>Juan dela Cruz</td>
-                    <td>February 3, 2018</td>
-                    <td>10:00am - 2:00pm</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p class="float-right">
-                        <input class="form-check-input" name="a1" type="radio" placeholder="option1">
-                      </p>
-                    </td>
-                    <td>4</td>
-                    <td>John Doe</td>
-                    <td>Kat Cruz</td>
-                    <td>February 5, 2018</td>
-                    <td>8:00am - 12:00pm</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p class="float-right">
-                        <input class="form-check-input" name="a1" type="radio" placeholder="option1">
-                      </p>
-                    </td>
-                    <td>5</td>
-                    <td>Lisa Zoe</td>
-                    <td>Kat Cruz</td>
-                    <td>February 8, 2018</td>
-                    <td>4:00pm - 8:00pm</td>
-                  </tr>
+                <?php endforeach; ?>
                 </tbody>
               </table>
             </div>
             <div class="d-flex justify-content-center clearfix pt-5">
               <button class="btn btn-outline-primary mx-1">Re-assign Employee</button>
-              <button class="btn btn-outline-danger mx-1">Delete</button>
             </div>
 
             <ul class="pagination pt-2 d-flex justify-content-center mt-4">
@@ -310,5 +261,5 @@
       </div>
       <!-- /#page-content-wrapper -->
 
-    
+
 <?php $this->view("includes/admin_footer.php"); ?>
