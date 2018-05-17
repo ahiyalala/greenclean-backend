@@ -72,13 +72,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $active_group = 'default';
 $query_builder = TRUE;
+$url = parse_url(getenv("mysql://bdcc77e02bc95f:4dfcf8c4@us-cdbr-iron-east-04.cleardb.net/heroku_1a4cdb1673dec1f?reconnect=true"));
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'greenklean-mysqldbserver.mysql.database.azure.com',
-	'username' => 'gkmysql@greenklean-mysqldbserver.mysql.database.azure.com',
-	'password' => 'rajotide123!',
-	'database' => 'db_green_clean',
+	'hostname' => $url['host'],
+	'username' => $url['url'],
+	'password' => $url['pass'],
+	'database' => substr($url['path'],1),
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
