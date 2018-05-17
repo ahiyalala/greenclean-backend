@@ -76,10 +76,10 @@ $url = parse_url(getenv("mysql://bdcc77e02bc95f:4dfcf8c4@us-cdbr-iron-east-04.cl
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => $url['host'],
-	'username' => $url['url'],
-	'password' => $url['pass'],
-	'database' => substr($url['path'],1),
+	'hostname' => 'us-cdbr-iron-east-04.cleardb.net',
+	'username' => 'bdcc77e02bc95f',
+	'password' => '4dfcf8c4',
+	'database' => 'db_green_clean',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
