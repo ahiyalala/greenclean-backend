@@ -11,7 +11,12 @@
           <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             <h1 class="text-center display-4">Employee Management</h1>
             <div class="dropdown-divider"></div>
-            <h2 class="display-5 pt-5 pb-3">Employees</h2>
+            <h2 class="display-5 pt-5 pb-3">Employees <?php 
+            $message = $this->session->flashdata('message');
+            if($message != null){
+              echo $message;
+            }
+            ?></h2>
 
             <div class="table-responsive">
               <table class="table table-striped">
@@ -231,28 +236,28 @@
                 <div class="row">
                   <div class="col">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" name="work_schedule" placeholder="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Monday" name="work_schedule[]" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Monday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox"  name="work_schedule" placeholder="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Tuesday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Tuesday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox"  name="work_schedule" placeholder="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Wednesday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Wednesday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox"  name="work_schedule" placeholder="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Thursday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Thursday
                       </label>
@@ -260,21 +265,21 @@
                   </div>
                   <div class="col">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox"  name="work_schedule" placeholder="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Friday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Friday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox"  name="work_schedule" placeholder="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Saturday"  value="" name="work_schedule[]" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Saturday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox"  name="work_schedule" placeholder="" id="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Sunday" name="work_schedule[]" placeholder="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Sunday
                       </label>

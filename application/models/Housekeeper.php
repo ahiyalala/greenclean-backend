@@ -27,7 +27,10 @@ class Housekeeper extends CI_Model{
 
     public function add(){
         $this->first_name = $this->input->post('first_name');
+
+        if(isset($_POST['middle_name']))
         $this->middle_name = $this->input->post('middle_name');
+        
         $this->last_name = $this->input->post('last_name');
 
         $this->birth_date = $this->input->post('birth_date');
@@ -38,5 +41,15 @@ class Housekeeper extends CI_Model{
 
         $this->db->trans_start();
         $this->db->insert('housekeeper',$this);
+        $id = $this->db->insert_id();
+        $this->db->trans_complete();
+        
+        if($this->db->trans_status()){
+            return $id;
+        }
+        else{
+            return false;
+        }
+
     }
 }
