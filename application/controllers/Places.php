@@ -28,7 +28,7 @@ class Places extends CI_Controller{
             $this->output->set_status_header(400)
                          ->set_content_type('application/json', 'utf-8')
                          ->set_output(json_encode($result));
-        }      
+        }
     }
 
     public function api_set(){
@@ -43,10 +43,10 @@ class Places extends CI_Controller{
 
         if($query->count_all_results() > 0){
             if($this->db->insert('location',$data)){
-                $result = array_push($data,array("location_id"=>$this->db->insert_id()));
+                $data["location_id"] = $this->db->insert_id();
                 $this->output->set_status_header(200)
                             ->set_content_type('application/json', 'utf-8')
-                            ->set_output(json_encode($result));
+                            ->set_output(json_encode($data));
             }
             else{
                 $result = $this->db->error();
@@ -56,7 +56,7 @@ class Places extends CI_Controller{
             }
 
 
-            
+
         }
         else{
             $result = array(
@@ -65,7 +65,7 @@ class Places extends CI_Controller{
             $this->output->set_status_header(400)
                          ->set_content_type('application/json', 'utf-8')
                          ->set_output(json_encode($result));
-        }  
+        }
 
 
     }
