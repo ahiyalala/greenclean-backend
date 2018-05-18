@@ -1,1 +1,3 @@
 phpmyadmin/**
+application/logs/**
+application/cache/**
