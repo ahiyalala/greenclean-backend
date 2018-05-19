@@ -58,6 +58,7 @@ class Users extends CI_Controller{
         curl_close($curl);
 
         if($httpResponse != 200){
+            log_message('error','httpResponse: '.$httpResponse);
             return $this->output->set_status_header(500);
         }
 
