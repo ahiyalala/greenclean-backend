@@ -2,23 +2,10 @@
 
 class Feedback extends CI_Controller{
   public function add(){
+    if(!$this->isAuth)
+      return $this->output->set_status_header($this->header);
+
     $post_data = json_decode(file_get_contents('php://input'),true);
-    $auth = $this->input->get_request_header('Authentication');
-    $auth_arr = explode(" ",$auth);
-
-    if(count($auth_arr)!=2){
-        return $this->output->set_status_header(401);
-    }
-
-    $whereIs = array('email_address'=>$auth_arr[0],'user_token'=>$auth_arr[1]);
-    $whereIs['customer_id'] = $post_data['customer_id'];
-
-    $query = $this->db->select('*')->from('customer')
-                ->where($whereIs)->count_all_results();
-
-    if(!$query){
-        return $this->output->set_status_header(401);
-    }
 
     //transaction for rating
     $this->db->trans_begin();

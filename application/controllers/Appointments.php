@@ -1,38 +1,13 @@
-<?php 
+<?php
 
 class Appointments extends CI_Controller{
 
     public function api_set(){
-        
+      if(!$this->isAuth)
+        return $this->output->set_status_header($this->header);
+
         $post_data = json_decode(file_get_contents('php://input'),true);
-        $auth = $this->input->get_request_header('Authentication');
-        $auth_arr = explode(" ",$auth);
         $this->load->helper('sms_helper');
-        log_message('info',json_encode($post_data));
-        /*
-            SELECT *  FROM `housekeeper` 
-            WHERE housekeeper_id NOT IN (SELECT housekeeper_id FROM `housekeeper_schedule` WHERE ((date IS NULL) AND ((start_time >= '16:00' AND start_time <= '19:00') OR (end_time>= '16:00' AND end_time<='19:00'))) OR (date = '2018-04-11'))
-        */
-        if(count($auth_arr)!=2){
-            return $this->output->set_status_header(400)
-                            ->set_content_type('application/json', 'utf-8')
-                            ->set_output(json_encode($message));
-        }
-
-        $whereIs = array('email_address'=>$auth_arr[0],'user_token'=>$auth_arr[1]);
-        $message = array("message"=>"Bad request");
-        $whereIs['customer_id'] = $post_data['customer_id'];
-
-        $query = $this->db->select('*')->from('customer')
-                    ->where($whereIs)->count_all_results();
-
-        if(!$query){
-            return $this->output->set_status_header(400)
-                            ->set_content_type('application/json', 'utf-8')
-                            ->set_output(json_encode($query));
-        }
-
-        
 
         $date = $this->db->escape_str($post_data["date"]);
         $format_time = date("H:i", strtotime($post_data["start_time"]));
@@ -40,7 +15,7 @@ class Appointments extends CI_Controller{
         $sql = "SELECT housekeeper_id FROM housekeeper_schedule WHERE (date = '".$date."' AND start_time >= '".$start_time."' AND start_time <= '".$start_time."' ) OR (date = '".$date."' AND end_time >= '".$start_time."' AND end_time <= '".$start_time."' ) OR (date = '".$date."' AND availability='0')";
 
         $schedule_query = $this->db->query($sql);
-            
+
         $values = array();
         foreach($schedule_query->result_array() as $row ){
             array_push($values, $row['housekeeper_id']);
@@ -68,7 +43,7 @@ class Appointments extends CI_Controller{
             $uuid = $this->db->select('UUID() as id')
                                 ->get()
                                 ->row();
-            
+
             $this->db->trans_begin();
             $schedule_data = array(
                 'housekeeper_id'=>$list_query->housekeeper_id,
@@ -101,7 +76,7 @@ class Appointments extends CI_Controller{
             $location = $this->db->select('*')->from('location')->where(array('location_id'=>$post_data['location_id'],'customer_id'=>$post_data['customer_id']))->get()->row();
             $service = $this->db->select('*')->from('services')->where(array('service_type_key'=>$post_data['service_type_key']))->get()->row();
             $schedule = $this->db->select('*')->from('housekeeper_schedule')->where(array('schedule_id'=>$schedule_id))->get()->row();
-            $customer = $this->db->select('*')->from('customer')->where($whereIs)->get()->row();
+            $customer = $this->db->select('*')->from('customer')->where($this->whereIs)->get()->row();
             $appointment_data = array(
                 'service_cleaning_id'=>$service_uid->id,
                 'service'=>$service,
@@ -129,39 +104,22 @@ class Appointments extends CI_Controller{
                 return $this->output->set_status_header(500)
                         ->set_content_type('application/json', 'utf-8')
                         ->set_output(json_encode($trans_error));
-            }            
+            }
         }
 
         return $this->output->set_status_header(404)
                             ->set_content_type('application/json', 'utf-8')
                             ->set_output(json_encode($message));
-        
+
     }
 
     public function api_get($id = null){
-        $auth = $this->input->get_request_header('Authentication');
-        $auth_arr = explode(" ",$auth);
-        
-        if(count($auth_arr)!=2){
-            return $this->output->set_status_header(400)
-                            ->set_content_type('application/json', 'utf-8')
-                            ->set_output(json_encode($message));
-        }
+      if(!$this->isAuth)
+        return $this->output->set_status_header($this->header);
 
-        $whereIs = array('email_address'=>$auth_arr[0],'user_token'=>$auth_arr[1]);
-        $message = array("message"=>"Bad request");
-
-        $customer_query = $this->db->select('*')->from('customer')
-                    ->where($whereIs);
-
-        if(!$customer_query->count_all_results()){
-            return $this->output->set_status_header(400)
-                            ->set_content_type('application/json', 'utf-8')
-                            ->set_output(json_encode($message));
-        }
 
         $customer = $this->db->select('*')->from('customer')
-                                        ->where($whereIs)->get()->row();
+                                        ->where($this->whereIs)->get()->row();
 
         if($id){
             $query = $this->db->query('call select_specific_appointment(?,?)', array($customer->customer_id,$id));
