@@ -19,7 +19,7 @@
                                           <!-- START OF 1ST CARD BODY -->
                                           <div class="card-block bg-faded">
                                                 <div class="d-flex justify-content-center">
-                                                      <img src="http://via.placeholder.com/250x250" class="img-fluid rounded-circle" alt="APPLE">
+                                                      <img src="https://via.placeholder.com/250x250" class="img-fluid rounded-circle" alt="APPLE">
                                                 </div>
                                                 <div class="text-center mb-3">
                                                       <h3 class="h3">Kat Cruz</h3>

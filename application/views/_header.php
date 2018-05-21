@@ -33,7 +33,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-          <img src="http://via.placeholder.com/60x50" class="img-responsive" alt="Cinque Terre">
+          <img src="https://via.placeholder.com/60x50" class="img-responsive" alt="Cinque Terre">
         </a>
         <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
           <ul class="navbar-nav">
