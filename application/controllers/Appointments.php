@@ -1,6 +1,6 @@
 <?php
-
-class Appointments extends CI_Controller{
+include 'Api_Controller.php';
+class Appointments extends Api_Controller{
 
     public function api_set(){
       if(!$this->isAuth)

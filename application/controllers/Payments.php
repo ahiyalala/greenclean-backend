@@ -3,7 +3,7 @@ include 'Api_Controller.php';
 class Payments extends Api_Controller{
     public function api_get(){
       if(!$this->isAuth)
-        return $this->output->set_status_header($this->header);
+        return $this->output->set_status_header(401);
 
         $customer = $this->db->select('*')->from('customer')
                                           ->where($this->whereIs)
@@ -71,7 +71,7 @@ class Payments extends Api_Controller{
 
     public function api_set(){
       if(!$this->isAuth)
-        return $this->output->set_status_header($this->header);
+        return $this->output->set_status_header(401);
 
       $cardDetails = json_decode(file_get_contents('php://input'),true);
 

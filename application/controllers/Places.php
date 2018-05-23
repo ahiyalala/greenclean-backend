@@ -1,6 +1,6 @@
 <?php
-
-class Places extends CI_Controller{
+include 'Api_Controller.php';
+class Places extends Api_Controller{
     public function api_get(){
       if(!$this->isAuth)
         return $this->output->set_status_header($this->header);
