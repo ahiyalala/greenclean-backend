@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Green Clean!</title>
+    <title>EZWelcome to Green Clean!</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="fonts/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
@@ -178,18 +178,18 @@
                     </h3>
                     <p class="links">
                         <a href="#">Home</a>
-                        <strong> · </strong>
+                        <strong> ï¿½ </strong>
                         <a href="#">Blog</a>
-                        <strong> · </strong>
+                        <strong> ï¿½ </strong>
                         <a href="#">Pricing</a>
-                        <strong> · </strong>
+                        <strong> ï¿½ </strong>
                         <a href="#">About</a>
-                        <strong> · </strong>
+                        <strong> ï¿½ </strong>
                         <a href="#">Faq</a>
-                        <strong> · </strong>
+                        <strong> ï¿½ </strong>
                         <a href="#">Contact</a>
                     </p>
-                    <p class="company-name">Green Clean © 2015 </p>
+                    <p class="company-name">Green Clean ï¿½ 2015 </p>
                 </div>
                 <div class="col-sm-6 col-md-4 footer-contacts">
                     <div>
