@@ -50,8 +50,8 @@
                                           <!-- END OF 1ST CARD BODY -->
                                           <div class="card-footer">
                                                 <div class="d-flex justify-content-center clearfix pt-2">
-                                                      <button class="btn btn-outline-success mx-1">Update</button>
-                                                      <button class="btn btn-outline-danger mx-1">Delete</button>
+                                                      <button class="btn btn-outline-success mx-1" data-toggle="modal" data-target="#updateEmployee">Update</button>
+                                                      <button class="btn btn-outline-danger mx-1" data-toggle="modal" data-target="#deleteEmployee">Delete</button>
                                                 </div>
                                           </div>
 
@@ -83,8 +83,165 @@
                                           </div>
                                     </div>
 
+<!-- MODAL UPDATE EMPLOYEE-->
+    <div class="modal" id="updateEmployee">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">Update an Employee</h5>
+            <button class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+         
+            <div class="form-group row">
+            <label for="example-text-input" class="col-2 col-form-label">First Name:</label>
+              <div class="col-10 mb-2">
+                <input class="form-control" type="text" name="first_name" placeholder="John" id="example-text-input">
+              </div>
+              <label for="example-text-input" class="col-2 col-form-label">Middle Name:</label>
+              <div class="col-10 mb-2">
+                <input class="form-control" type="text" name="middle_name" placeholder="Vincent" id="example-text-input">
+              </div>
+              <label for="example-text-input" class="col-2 col-form-label">Last Name:</label>
+              <div class="col-10">
+                <input class="form-control" type="text" name="last_name" placeholder="Doe" id="example-text-input">
+              </div>
+            </div>
+
+            <div class="form-group row">
+
+              <label for="example-search-input" class="col-2 col-form-label">Birthday:</label>
+              <div class="col-4">
+                <input class="form-control" type="date" name="birth_date" placeholder="How do I shoot web" id="example-search-input">
+              </div>
 
 
+              <label for="example-text-input" class="col-1 col-form-label">Gender:</label>
+              <div class="col-5 mt-2">
+                <label class="custom-control custom-radio">
+                  <input id="radio1" name="gender" type="radio" value="Male" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Male</span>
+                </label>
+                <label class="custom-control custom-radio">
+                  <input id="radio2" name="gender" type="radio" value="Female" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Female</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="example-search-input" class="col-2 col-form-label">Contact number:</label>
+              <div class="col-10">
+                <input class="form-control" type="tel" name="contact_number" placeholder="9361234567" id="example-search-input">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="example-email-input" class="col-2 col-form-label">E-mail Address:</label>
+              <div class="col-10">
+                <input class="form-control" type="email" name="email" placeholder="bootstrap@example.com" id="example-email-input">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="example-search-input" class="col-2 col-form-label">Work Schedule</label>
+              <div class="col-10">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Monday" name="work_schedule[]" placeholder="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Monday
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Tuesday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Tuesday
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Wednesday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Wednesday
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Thursday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Thursday
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Friday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Friday
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Saturday"  value="" name="work_schedule[]" placeholder="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Saturday
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Sunday" name="work_schedule[]" placeholder="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Sunday
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="form-group row">
+              <label for="example-search-input" class="col-2 col-form-label">Upload Photo:</label>
+              <div class="col-10">
+                <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-outline-success">Update</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+<!-- /MODAL UPDATE EMPLOYEE-->
+<!-- MODAL DELETE EMPLOYEE-->
+    <div class="modal" id="deleteEmployee">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">Delete an Employee</h5>
+            <button class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+		  Are you sure you want to delete this employee?
+		  </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-danger">Delete</button>
+			<button class="btn btn-primary">Cancel</button>
+          </div>
+          
+        </div>
+      </div>
+</div> 
+		  <!-- /MODAL DELETE EMPLOYEE-->
                               </main>
                               <!-- END OF MAIN -->
 

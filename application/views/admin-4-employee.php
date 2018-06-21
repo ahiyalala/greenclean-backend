@@ -11,6 +11,21 @@
           <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             <h1 class="text-center display-4">Employee Management</h1>
             <div class="dropdown-divider"></div>
+			<div class="alert alert-success alert-dismissible fade show">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					</button>
+					Employee <strong>created</strong>!
+			  </div>
+			  <div class="alert alert-success alert-dismissible fade show">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					</button>
+					Employee <strong>updated</strong>!
+			  </div>
+			  <div class="alert alert-success alert-dismissible fade show">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					</button>
+					Employee <strong>deleted</strong>!
+			  </div>
             <h2 class="display-5 pt-5 pb-3">Employees <?php
             $message = $this->session->flashdata('message');
             if($message != null){
@@ -49,9 +64,7 @@
               </table>
             </div>
             <div class="d-flex justify-content-center clearfix pt-5">
-              <button class="btn btn-outline-primary mx-1" data-toggle="modal" data-target="#myModal">Add New Employee</button>
-
-              <button class="btn btn-outline-danger mx-1">Delete</button>
+              <button class="btn btn-outline-primary mx-1" data-toggle="modal" data-target="#addEmployee">Add New Employee</button>
             </div>
 
 
@@ -61,7 +74,7 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <td> </td>
+                    <th>No.</th>
                     <th>Employee Name</th>
                     <th>Client Name</th>
                     <th>Date of Service</th>
@@ -86,7 +99,7 @@
               </table>
             </div>
             <div class="d-flex justify-content-center clearfix pt-5">
-              <button class="btn btn-outline-primary mx-1">Re-assign Employee</button>
+              <button class="btn btn-outline-primary mx-1" data-toggle="modal" data-target="#assignEmployee">Re-assign Employee</button>
             </div>
 
             <ul class="pagination pt-2 d-flex justify-content-center mt-4">
@@ -119,8 +132,8 @@
 
         </div>
 	<!-- /#wrapper -->
-    <!-- MODAL ADD-->
-    <div class="modal" id="myModal">
+    <!-- MODAL ADD EMPLOYEE-->
+    <div class="modal" id="addEmployee">
       <div class="modal-dialog modal-lg">
         <div class="modal-content ">
           <div class="modal-header">
@@ -257,6 +270,109 @@
         </div>
       </div>
     </div>
+<!-- /MODAL ADD EMPLOYEE-->
+
+<!-- MODAL REASSIGN EMPLOYEE-->
+    <div class="modal" id="assignEmployee">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">Reassign an Employee</h5>
+            <button class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+			<div class="dropdown d-flex justify-content-center mt-2 mb-3">
+				<select style="width:80%">
+					<option placeholder="1">Re-assign an Employee</option>
+					<option placeholder="1" selected>Sample Employee</option>
+					<option placeholder="2">Employee 1</option>
+					<option placeholder="3">Employee 2</option>
+					<option placeholder="4">Employee 3</option>
+				</select>
+			</div>
+			
+			To employee
+			<div class="modal-body">
+			<div class="dropdown d-flex justify-content-center mt-2 mb-3">
+				<select style="width:80%">
+					<option placeholder="1">Re-assign an Employee</option>
+					<option placeholder="1" selected>Joe Doe</option>
+					<option placeholder="2">Employee 1</option>
+					<option placeholder="3">Employee 2</option>
+					<option placeholder="4">Employee 3</option>
+				</select>
+			</div>
+			
+            <div class="form-group row">
+              <label for="example-search-input" class="col-2 col-form-label">Work Schedule</label>
+              <div class="col-10">
+                <div class="row">
+                  <div class="col">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Monday" name="work_schedule[]" placeholder="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Monday
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Tuesday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Tuesday
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Wednesday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Wednesday
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Thursday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Thursday
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Friday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Friday
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Saturday"  value="" name="work_schedule[]" placeholder="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Saturday
+                      </label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="Sunday" name="work_schedule[]" placeholder="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Sunday
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-outline-success">Re-assign</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+<!-- /MODAL REASSIGN EMPLOYEE-->
+
+
 
       </div>
       <!-- /#page-content-wrapper -->
