@@ -52,7 +52,7 @@ class Admin extends CI_Controller {
                       left join housekeeper as h on h.housekeeper_id=hs.housekeeper_id
                       left join booking_request as b on b.schedule_id=hs.schedule_id
                       left join customer as c on c.customer_id=b.customer_id
-                      where hs.availability <> 0';
+                      where hs.availability <> 0 and hs.date >= CURDATE() and hs.end_time >= CURTIME()';
             $data['housekeeper_schedules'] = $this->db->query($query)->result();
             $data['housekeepers'] = $this->housekeeper->get_all();
             $view = 'admin-4-employee';
@@ -60,4 +60,15 @@ class Admin extends CI_Controller {
 
         $this->load->view($view,$data);
     }
+
+  public function customer(){
+
+		$this->load->view('admin-6-client');
+
+	}
+	public function appointment(){
+
+		$this->load->view('admin-8-appointment');
+
+	}
 }
