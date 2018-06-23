@@ -15,10 +15,10 @@ class Services extends CI_Controller{
         $this->load->model('servicesmodel');
 
         if($this->servicesmodel->add()){
-            $this->session->set_flashdata('message','Successfully added employee');
+            $this->session->set_flashdata('status',true);
         }
         else{
-            $this->session->set_flashdata('message','Something went wrong');
+            $this->session->set_flashdata('status',false);
         }
 
         redirect('admin/');

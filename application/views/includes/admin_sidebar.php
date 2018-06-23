@@ -15,6 +15,9 @@
             <li>
               <a href="<?php echo base_url('/admin/customer') ?>" class="text-warning">User Management</a>
             </li>
+			<li>
+              <a href="<?php echo base_url('/admin/appointment') ?>" class="text-warning">Appointments</a>
+            </li>
           </ul>
         </div>
         <!-- /#sidebar-wrapper -->
