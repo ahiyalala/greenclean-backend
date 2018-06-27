@@ -86,7 +86,7 @@
                     </div>
                     <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
                         <div class="iphone-mockup">
-                            <img src="img/broom.jpg" class="device">
+                            <img src="front/img/broom.jpg" class="device">
 
                         </div>
                     </div>
@@ -231,8 +231,8 @@
                 </div>
             </div>
         </footer>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="front/js/jquery.min.js"></script>
+        <script src="front/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function () {
                 // Add scrollspy to <body>
