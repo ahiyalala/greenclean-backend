@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css_admin/Pretty-Footer.css">
     <link rel="stylesheet" href="css_admin/Registration-Form-with-Photo.css">
     <link rel="stylesheet" href="css_admin/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
 
 <body>
@@ -81,7 +82,7 @@
                         <p>Mauris egestas tellus non ex condimentum, ac ullamcorper sapien dictum. Nam consequat neque quis
                             sapien viverra convallis. In non tempus lorem. </p>
                         <button class="btn btn-light btn-lg action-button"
-                            type="button">Learn More</button>
+                            type="button"  >Learn More</button>
                     </div>
                     <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
                         <div class="iphone-mockup">
@@ -117,7 +118,7 @@
                     <div class="form-group">
                         <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
                     </div>
-                    <a href="#" class="already">You already have an account? Login here.</a>
+                    <a href="#" class="already" data-toggle="modal" data-target="#myModal">You already have an account? Login here.</a>
                 </form>
             </div>
         </div>
@@ -136,7 +137,7 @@
                             Aliquam varius finibus est.</p>
                     </div>
                     <div class="col-sm-6 col-md-4 item">
-                        <i class="fa fa-clock-o icon"></i>
+                        <i class="fa fa-clock icon"></i>
                         <h3 class="name">Always available</h3>
                         <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida.
                             Aliquam varius finibus est.</p>
@@ -178,15 +179,15 @@
                     </h3>
                     <p class="links">
                         <a href="#">Home</a>
-                        <strong> � </strong>
+                        <strong> | </strong>
                         <a href="#">Blog</a>
-                        <strong> � </strong>
+                        <strong> | </strong>
                         <a href="#">Pricing</a>
-                        <strong> � </strong>
+                        <strong> | </strong>
                         <a href="#">About</a>
-                        <strong> � </strong>
+                        <strong> | </strong>
                         <a href="#">Faq</a>
-                        <strong> � </strong>
+                        <strong> | </strong>
                         <a href="#">Contact</a>
                     </p>
                     <p class="company-name">Green Clean � 2015 </p>
@@ -215,16 +216,16 @@
                         vehicula sit amet. </p>
                     <div class="social-links social-icons">
                         <a href="#">
-                            <i class="fa fa-facebook"></i>
+                            <i class="fab fa-facebook"></i>
                         </a>
                         <a href="#">
-                            <i class="fa fa-twitter"></i>
+                            <i class="fab fa-twitter"></i>
                         </a>
                         <a href="#">
-                            <i class="fa fa-linkedin"></i>
+                            <i class="fab fa-linkedin"></i>
                         </a>
                         <a href="#">
-                            <i class="fa fa-github"></i>
+                            <i class="fab fa-github"></i>
                         </a>
                     </div>
                 </div>

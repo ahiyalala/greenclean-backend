@@ -10,7 +10,7 @@
             <h5 class="card-title display-4">Booking Complete!</h5>
             <p class="display-5 card-text"> Success! We got you an appointment.</p>
             <div class="text-center mt-5 mx-auto">
-            <div class="col-sm-3 mx-auto"><img src="http://via.placeholder.com/200x200" class="rounded-circle img-fluid mt-2" /></div>
+            <div class="col-sm-3 mx-auto"><img src="img/gab.jpg" class="rounded-circle img-fluid mt-2" /></div>
                   
                   <a href="#"><h5 class="h5 my-3"> Francis Gabriel T. Gella II </h3> </a>
                   <span class="fa fa-star checked"></span>

@@ -11,7 +11,7 @@
             <h5 class="card-title display-4">Employee Profile</h5>
         
             <div class="text-center mt-5 mx-auto">
-            <div class="col-sm-3 mx-auto"><img src="http://via.placeholder.com/200x200" class="rounded-circle img-fluid mt-2" /></div>
+                  <img src="img/gab.jpg" class="rounded-circle col-sm-3 img-fluid mt-2 " />
                   <a href="#"><h5 class="h5 my-3"> Francis Gabriel T. Gella II </h3> </a>
                   
                   <div class="dropdown-divider mb-2"></div>

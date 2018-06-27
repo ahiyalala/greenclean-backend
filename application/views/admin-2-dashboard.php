@@ -7,7 +7,7 @@
         <div id="page-content-wrapper ">
           <div class="container-fluid bg-secondary">
             <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
-            <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+            <main class="col-sm-9 offset-sm-2 col-md-10 offset-md-1 pt-3">
               <h1 class="text-center pb-4 display-4">Dashboard</h1>
              
 			  <div class="alert alert-success alert-dismissible fade show">
@@ -27,11 +27,11 @@
 			  </div>
 			  <?php //if($admin['is_super']): ?>
 			  <h2 class="pb-2">Administrators</h2>
-              <div class="table-responsive">
-                <table class="table table-striped">
+        
+        
+                <table class="table table-striped table-bordered table-hover" id="myTable" >
                   <thead>
                     <tr>
-                      <!--<td> </td>-->
                       <th>No.</th>
                       <th>Header</th>
                       <th>Header</th>
@@ -41,85 +41,55 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <!--<td>
-                        <p class="float-right">
-                          <input class="form-check-input" name="a1" type="radio" placeholder="option1">
-                        </p>
-                      </td>-->
+                     
                       <td>1</td>
                       <td>Lorem</td>
                       <td>ipsum</td>
                       <td>dolor</td>
-                      <td>sit</td>
+                      <td>
+                        <div class="btn-group w-100 btn-block" role="group">
+                        <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#deleteAdminModal"><i class="fas fa-trash-alt"></i> Delete</button>
+                        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#updateAdminModal"><i class="fas fa-edit"></i> Update</button>
+                        </div>
+                      </td>
                     </tr>
                     <tr>
-                      <!--<td>
-                        <p class="float-right">
-                          <input class="form-check-input" name="a1" type="radio" placeholder="option2">
-                        </p>
-                      </td>-->
+                    
                       <td>2</td>
                       <td>amet</td>
                       <td>consectetur</td>
                       <td>adipiscing</td>
-                      <td>elit</td>
+                      <td>
+                        <div class="btn-group w-100 btn-block" role="group">
+                        <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#deleteAdminModal"><i class="fas fa-trash-alt"></i> Delete</button>
+                        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#updateAdminModal"><i class="fas fa-edit"></i> Update</button>
+                        </div>
+                      </td>
                     </tr>
                     <tr>
-                      <!--<td>
-                        <p class="float-right">
-                          <input class="form-check-input" name="a1" type="radio" placeholder="option3">
-                        </p>
-                      </td>-->
+                    
                       <td>3</td>
                       <td>Integer</td>
                       <td>nec</td>
                       <td>odio</td>
-                      <td>Praesent</td>
+                      <td>
+                        <div class="btn-group w-100 btn-block" role="group">
+                        <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#deleteAdminModal"><i class="fas fa-trash-alt"></i> Delete</button>
+                        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#updateAdminModal"><i class="fas fa-edit"></i> Update</button>
+                        </div>
+                      </td>
                     </tr>
-                    <tr>
-                      <!--<td>
-                        <p class="float-right">
-                          <input class="form-check-input" name="a1" type="radio" placeholder="option4">
-                        </p>
-                      </td>-->
-                      <td>4</td>
-                      <td>libero</td>
-                      <td>Sed</td>
-                      <td>cursus</td>
-                      <td>ante</td>
-                    </tr>
+                
 
 
                   </tbody>
                 </table>
+            
                 <div class="d-flex justify-content-center clearfix">
-                  <button class="btn btn-outline-primary mx-1" data-toggle="modal" data-target="#addAdminModal">Add</button>
-                  <button class="btn btn-outline-success mx-1" data-toggle="modal" data-target="#updateAdminModal">Update</button>
-                  <button class="btn btn-outline-danger mx-1" data-toggle="modal" data-target="#deleteAdminModal">Delete</button>
+                  <button class="btn btn-outline-primary mx-1 btn-lg" data-toggle="modal" data-target="#addAdminModal"><i class="fas fa-plus"></i> Add</button>
+
                 </div>
-				<ul class="pagination pt-2 d-flex justify-content-center mt-4">
-                  <li class="page-item">
-                    <a class="page-link text-muted" href="#">Previous</a>
-                  </li>
-                  <li class="page-item active">
-                    <a class="page-link text-inverse" href="#">1</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link text-inverse" href="#">2</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link text-inverse" href="#">3</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link text-inverse" href="#">4</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link text-inverse" href="#">5</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link text-muted" href="#">Next</a>
-                  </li>
-                </ul>
+				
 				<?php //endif ?>
                 <!-- MODAL ADD-->
                 <div class="modal" id="addAdminModal">
@@ -216,21 +186,21 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="myModalLabel">Update an Administrator</h5>
-                        <button class="close" data-dismiss="modal">&times;</button>
+                        <button class="close" data-dismiss="modal">×</button>
                       </div>
                       <div class="modal-body">
 					  
 						<div class="dropdown d-flex justify-content-center">
 								<select style="width:80%">
 								  <option placeholder="1">Select an Administrator</option>
-								  <option placeholder="1" selected>John Doe</option>
+								  <option placeholder="1" selected="">John Doe</option>
 								  <option placeholder="2">Admin 1</option>
 								  <option placeholder="3">Admin 2</option>
 								  <option placeholder="4">Admin 3</option>
 								</select>
 						</div>
 					
-					<hr/>
+					<hr>
                         <div class="form-group row">
                         <label for="example-text-input" class="col-2 col-form-label">First Name:</label>
                       <div class="col-10 mb-2">
@@ -311,39 +281,14 @@
                 </div>
 				<!-- /MODAL UPDATE END -->
 				
-				<!-- MODAL DELETE-->
-                <div class="modal" id="deleteAdminModal">
-                  <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="myModalLabel">Delete an Administrator</h5>
-                        <button class="close" data-dismiss="modal">&times;</button>
-                      </div>
-                      <div class="modal-body">
-					  
-						<div class="d-flex justify-content-center">
-								<select style="width:80%">
-								  <option placeholder="1">Select an Administrator</option>
-								  <option placeholder="1" selected>John Doe</option>
-								  <option placeholder="2">Admin 1</option>
-								  <option placeholder="3">Admin 2</option>
-								  <option placeholder="4">Admin 3</option>
-								</select>
-						</div>
-                      <div class="my-3 d-flex justify-content-center">
-                        <button class="btn btn-danger" data-toggle="modal" data-target="#confirmAdmin">Delete</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-				</div>
-				<div class="modal" id="confirmAdmin" tabindex="-1" role="dialog">
+
+				<div class="modal" id="deleteAdminModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title">Delete Confirmation</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">×</span>
                       </button>
                     </div>
                     <div class="modal-body">
@@ -361,12 +306,11 @@
           </div>
 				<!-- /MODAL DELETE END -->
 				
-              </div>
-            </main>
+              </main></div>
+            
           </div>
         </div>
         <!-- /#page-content-wrapper -->
-		
 <?php $this->view("includes/admin_footer.php"); ?>
 
  

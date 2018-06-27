@@ -8,7 +8,7 @@
         <div class="container-fluid bg-secondary">
 
           <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
-          <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+          <main class="col-sm-9 offset-sm-2 col-md-10 offset-md-1 pt-3">
             <h1 class="text-center display-4">Employee Management</h1>
             <div class="dropdown-divider"></div>
 			<div class="alert alert-success alert-dismissible fade show">
@@ -33,23 +33,24 @@
             }
             ?></h2>
 
-            <div class="table-responsive">
-              <table class="table table-striped">
+            <div class="table-responsive-md">
+              <table class="table table-striped table-bordered table-hover table-sm" id="myTable">
                 <thead>
                   <tr>
-                    <td> </td>
+                  
                     <th>No.</th>
                     <th>Full Name</th>
                     <th>Gender</th>
                     <th>Date Registered</th>
                     <th>Customer's Rating</th>
+                    <th> </th>
                   </tr>
                 </thead>
                 <tbody>
                   <!-- stuffff -->
                 <?php foreach($housekeepers as $housekeeper): ?>
                   <tr>
-					<td> </td>
+				
                     <td><?php echo $housekeeper->housekeeper_id ?></td>
                     <td>
                       <a href="<?php echo base_url("/admin/employee/".$housekeeper->housekeeper_id) ?>"> <?php echo $housekeeper->last_name.", ".$housekeeper->first_name; ?> </a>
@@ -57,21 +58,29 @@
                     <td><?php echo $housekeeper->gender ?></td>
                     <td>Date registered not yet available</td>
                     <th> Rating not yet available </th>
+                    <th>
+                    <div class="btn-group w-100 btn-block" role="group">
+                        <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#confirmEmployee"><i class="fas fa-trash-alt"></i> Delete</button>
+                        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#updateEmployee"><i class="fas fa-edit"></i> Update</button>
+                    </div>
+                    </th>
                   </tr>
                 <?php endforeach; ?>
                   <!-- stuffff -->
                 </tbody>
               </table>
             </div>
-            <div class="d-flex justify-content-center clearfix pt-5">
-              <button class="btn btn-outline-primary mx-1" data-toggle="modal" data-target="#addEmployee">Add New Employee</button>
+            
+            <hr class="py-2">
+            <div class="d-flex justify-content-center clearfix pt-3">
+              <button class="btn btn-outline-primary mx-1 btn-lg" data-toggle="modal" data-target="#addEmployee"> <i class="fas fa-plus"></i> Add New Employee</button>
             </div>
 
 
             <h2 class="display-5 pt-5 pb-3">Employees Schedule</h2>
 
             <div class="table-responsive">
-              <table class="table table-striped">
+              <table class="table table-striped" id="myTable2">
                 <thead>
                   <tr>
                     <th>No.</th>
@@ -79,6 +88,7 @@
                     <th>Client Name</th>
                     <th>Date of Service</th>
                     <th>Time of Service</th>
+                    <th> </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -93,39 +103,15 @@
                     <td><?php echo $housekeeper_schedule->c_first_name." ".$housekeeper_schedule->c_last_name ?></td>
                     <td><?php echo $housekeeper_schedule->date ?></td>
                     <td><?php echo $housekeeper_schedule->start_time." - ".$housekeeper_schedule->end_time ?></td>
+                    <td> <button type="button" class="btn btn-info " data-toggle="modal" data-target="#assignEmployee"><i class="fas fa-edit"></i> Re-assign Employee</button></td>
                   </tr>
                 <?php endforeach; ?>
                 </tbody>
               </table>
             </div>
-            <div class="d-flex justify-content-center clearfix pt-5">
-              <button class="btn btn-outline-primary mx-1" data-toggle="modal" data-target="#assignEmployee">Re-assign Employee</button>
-            </div>
+          
 
-            <ul class="pagination pt-2 d-flex justify-content-center mt-4">
-              <li class="page-item">
-                <a class="page-link text-muted" href="#">Previous</a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link text-inverse" href="#">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link text-inverse" href="#">2</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link text-inverse" href="#">3</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link text-inverse" href="#">4</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link text-inverse" href="#">5</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link text-muted" href="#">Next</a>
-              </li>
-            </ul>
-
+           
 
           </main>
 
@@ -271,38 +257,68 @@
       </div>
     </div>
 <!-- /MODAL ADD EMPLOYEE-->
-
-<!-- MODAL REASSIGN EMPLOYEE-->
-    <div class="modal" id="assignEmployee">
+<!-- MODAL UPDATE EMPLOYEE-->
+<div class="modal" id="updateEmployee">
       <div class="modal-dialog modal-lg">
         <div class="modal-content ">
           <div class="modal-header">
-            <h5 class="modal-title" id="myModalLabel">Reassign an Employee</h5>
+            <h5 class="modal-title" id="myModalLabel">Update an Employee</h5>
             <button class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-			<div class="dropdown d-flex justify-content-center mt-2 mb-3">
-				<select style="width:80%">
-					<option placeholder="1">Re-assign an Employee</option>
-					<option placeholder="1" selected>Sample Employee</option>
-					<option placeholder="2">Employee 1</option>
-					<option placeholder="3">Employee 2</option>
-					<option placeholder="4">Employee 3</option>
-				</select>
-			</div>
-			
-			To employee
-			<div class="modal-body">
-			<div class="dropdown d-flex justify-content-center mt-2 mb-3">
-				<select style="width:80%">
-					<option placeholder="1">Re-assign an Employee</option>
-					<option placeholder="1" selected>Joe Doe</option>
-					<option placeholder="2">Employee 1</option>
-					<option placeholder="3">Employee 2</option>
-					<option placeholder="4">Employee 3</option>
-				</select>
-			</div>
-			
+         
+            <div class="form-group row">
+            <label for="example-text-input" class="col-2 col-form-label">First Name:</label>
+              <div class="col-10 mb-2">
+                <input class="form-control" type="text" name="first_name" placeholder="John" id="example-text-input">
+              </div>
+              <label for="example-text-input" class="col-2 col-form-label">Middle Name:</label>
+              <div class="col-10 mb-2">
+                <input class="form-control" type="text" name="middle_name" placeholder="Vincent" id="example-text-input">
+              </div>
+              <label for="example-text-input" class="col-2 col-form-label">Last Name:</label>
+              <div class="col-10">
+                <input class="form-control" type="text" name="last_name" placeholder="Doe" id="example-text-input">
+              </div>
+            </div>
+
+            <div class="form-group row">
+
+              <label for="example-search-input" class="col-2 col-form-label">Birthday:</label>
+              <div class="col-4">
+                <input class="form-control" type="date" name="birth_date" placeholder="How do I shoot web" id="example-search-input">
+              </div>
+
+
+              <label for="example-text-input" class="col-1 col-form-label">Gender:</label>
+              <div class="col-5 mt-2">
+                <label class="custom-control custom-radio">
+                  <input id="radio1" name="gender" type="radio" value="Male" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Male</span>
+                </label>
+                <label class="custom-control custom-radio">
+                  <input id="radio2" name="gender" type="radio" value="Female" class="custom-control-input">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Female</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="example-search-input" class="col-2 col-form-label">Contact number:</label>
+              <div class="col-10">
+                <input class="form-control" type="tel" name="contact_number" placeholder="9361234567" id="example-search-input">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="example-email-input" class="col-2 col-form-label">E-mail Address:</label>
+              <div class="col-10">
+                <input class="form-control" type="email" name="email" placeholder="bootstrap@example.com" id="example-email-input">
+              </div>
+            </div>
+
             <div class="form-group row">
               <label for="example-search-input" class="col-2 col-form-label">Work Schedule</label>
               <div class="col-10">
@@ -362,6 +378,66 @@
               </div>
             </div>
 
+
+
+            <div class="form-group row">
+              <label for="example-search-input" class="col-2 col-form-label">Upload Photo:</label>
+              <div class="col-10">
+                <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-outline-success">Update</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+<!-- /MODAL UPDATE EMPLOYEE-->
+<!-- MODAL DELETE END -->
+<div class="modal" id="confirmEmployee" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Delete Confirmation</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Are you sure you want to delete this employee?	
+                      <div class="form-row">
+                        <div class="form-group my-3 col-sm-12 d-flex justify-content-center">
+                          <button type="submit" class="mx-2 btn btn-danger">Yes</button>
+						  <button type="submit" class="mx-2 btn btn-primary">No</button>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+          </div>
+				<!-- /MODAL DELETE END -->
+<!-- MODAL REASSIGN EMPLOYEE-->
+    <div class="modal" id="assignEmployee">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">Reassign an Employee</h5>
+            <button class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+			<div class="dropdown d-flex justify-content-center mt-2 mb-3">
+				<select style="width:80%">
+					<option placeholder="1">Re-assign an Employee</option>
+					<option placeholder="1" selected>Sample Employee</option>
+					<option placeholder="2">Employee 1</option>
+					<option placeholder="3">Employee 2</option>
+					<option placeholder="4">Employee 3</option>
+				</select>
+			</div>			
           </div>
           <div class="modal-footer d-flex justify-content-center">
             <button class="btn btn-outline-success">Re-assign</button>

@@ -10,7 +10,7 @@
                         <div class="container-fluid bg-secondary">
                               <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
                               <!-- START OF MAIN -->
-                              <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+                              <main class="col-sm-9 offset-sm-2 col-md-10 offset-md-1 pt-3">
                                     <h1 class="text-center display-4"><?php echo $housekeepers->first_name." ".$housekeepers->last_name; ?>'s Profile</h1>
                                     <div class="dropdown-divider"></div>
                                     <!-- START OF 1ST CARD -->
@@ -20,7 +20,7 @@
                                           <!-- START OF 1ST CARD BODY -->
                                           <div class="card-block bg-faded">
                                                 <div class="d-flex justify-content-center">
-                                                      <img src="https://via.placeholder.com/250x250" class="img-fluid rounded-circle" alt="APPLE" width="250" height="250">
+                                                      <img src="http://via.placeholder.com/250x250" class="img-fluid rounded-circle" alt="APPLE" width="250" height="250">
                                                 </div>
                                                 <div class="text-center mb-3">
                                                       <h3 class="h3"><?php echo $housekeepers->last_name.", ".$housekeepers->first_name; ?></h3>
@@ -45,7 +45,7 @@
                                                             </tr>
                                                       </tbody>
                                                 </table>
-
+	
                                           </div>
                                           <!-- END OF 1ST CARD BODY -->
                                           <div class="card-footer">
@@ -82,6 +82,18 @@
                                                 </table>
                                           </div>
                                     </div>
+
+
+
+
+
+                                    <div class="card mt-3 w-75 container">
+                                          <div class="card-header bg-success h3">Work Schedule</div>
+                                          <!-- START OF 3rd CARD BODY -->
+                                          <div class="card-block bg-faded">
+                                            <div id="calendar"></div>
+                                           </div> 
+                                    </div> 
 
 <!-- MODAL UPDATE EMPLOYEE-->
     <div class="modal" id="updateEmployee">

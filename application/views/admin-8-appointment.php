@@ -11,7 +11,7 @@
           <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
             <h1 class="text-center display-4">Appointments</h1>
             <div class="dropdown-divider"></div>
-
+			
             <h2 class="display-5 pt-5 pb-3">Completed Appointments</h2>
 
             <div class="table-responsive">
@@ -27,7 +27,15 @@
                   </tr>
                 </thead>
                 <tbody>
-                  
+                  <?php foreach($housekeeper_schedules as $housekeeper_schedule): ?>
+                  <tr>                    
+                    <td><?php echo $housekeeper_schedule->h_first_name." ".$housekeeper_schedule->h_last_name ?></td>
+                    <td><?php echo $housekeeper_schedule->c_first_name." ".$housekeeper_schedule->c_last_name ?></td>
+                    <td><?php echo $housekeeper_schedule->date ?></td>
+                    <td><?php echo $housekeeper_schedule->start_time." - ".$housekeeper_schedule->end_time ?></td>
+                    <td><?php echo $housekeeper_schedule->c_first_name." ".$housekeeper_schedule->c_last_name ?></td>
+				  </tr>
+                <?php endforeach; ?>
                 </tbody>
               </table>
             </div>

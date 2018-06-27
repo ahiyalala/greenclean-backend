@@ -1,5 +1,4 @@
 <?php
-
 class Admin extends CI_Controller {
     public function index(){
         $this->load->helper('form');
@@ -13,9 +12,8 @@ class Admin extends CI_Controller {
                 "is_super" => 0
             )
         );
-        $this->load->view('admin-3-service',$data);
+        $this->load->view('admin-6-client',$data);
     }
-
     public function management(){
         $this->load->helper('form');
         $services = $this->db->select('*')->from('services')->get()->result();
@@ -28,9 +26,8 @@ class Admin extends CI_Controller {
                 "is_super" => 0
             )
         );
-        $this->load->view('admin-2-dashboard',$data);
+        $this->load->view('admin-3-service',$data);
     }
-
     public function employee($id=null){
         $this->load->helper('form');
         $this->load->model('housekeeper');
@@ -52,23 +49,21 @@ class Admin extends CI_Controller {
                       left join housekeeper as h on h.housekeeper_id=hs.housekeeper_id
                       left join booking_request as b on b.schedule_id=hs.schedule_id
                       left join customer as c on c.customer_id=b.customer_id
-                      where hs.availability <> 0 and hs.date >= CURDATE() and hs.end_time >= CURTIME()';
+                      where hs.availability <> 0';
             $data['housekeeper_schedules'] = $this->db->query($query)->result();
             $data['housekeepers'] = $this->housekeeper->get_all();
             $view = 'admin-4-employee';
         }
-
         $this->load->view($view,$data);
     }
-
-  public function customer(){
-
-		$this->load->view('admin-6-client');
-
+	public function client(){
+        
+		$this->load->view('admin-6-client',$data);
+    
 	}
 	public function appointment(){
-
-		$this->load->view('admin-8-appointment');
-
+        
+		$this->load->view('admin-8-appointment',$data);
+    
 	}
 }

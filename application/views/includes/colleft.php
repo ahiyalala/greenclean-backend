@@ -1,7 +1,7 @@
 <div class="container">
             <div class="row bg-faded container">
               <div class="col-sm-2 text-center">
-                  <img src="https://via.placeholder.com/200x200" class="rounded-circle img-fluid mt-2 " />
+                  <img src="http://via.placeholder.com/200x200" class="rounded-circle img-fluid mt-2 " />
                   <h5 class="h5 mb-3"> Juan dela Cruz </h3>
                   <div class="dropdown-divider mb-2"></div>
                   <div class="nav flex-column nav-pills">
