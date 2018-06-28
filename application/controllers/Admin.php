@@ -56,7 +56,7 @@ class Admin extends CI_Controller {
         }
         $this->load->view($view,$data);
     }
-	public function client(){
+	public function customer(){
         
 		$this->load->view('admin-6-client',$data);
     
