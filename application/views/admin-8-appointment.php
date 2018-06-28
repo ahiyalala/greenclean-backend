@@ -28,7 +28,8 @@
                 </thead>
                 <tbody>
                   <?php foreach($housekeeper_schedules as $housekeeper_schedule): ?>
-                  <tr>                    
+                  <tr>
+                    <td></td>                    
                     <td><?php echo $housekeeper_schedule->h_first_name." ".$housekeeper_schedule->h_last_name ?></td>
                     <td><?php echo $housekeeper_schedule->c_first_name." ".$housekeeper_schedule->c_last_name ?></td>
                     <td><?php echo $housekeeper_schedule->date ?></td>

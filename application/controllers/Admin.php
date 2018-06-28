@@ -58,10 +58,18 @@ class Admin extends CI_Controller {
     }
 	public function customer(){
         
-		$this->load->view('admin-6-client',$data);
+		$this->load->view('admin-6-client');
     
 	}
 	public function appointment(){
+        $query = 'select h.first_name as h_first_name, h.last_name as h_last_name, c.first_name as c_first_name, c.last_name as c_last_name, hs.date, hs.start_time, hs.end_time
+        from housekeeper_schedule as hs
+        left join housekeeper as h on h.housekeeper_id=hs.housekeeper_id
+        left join booking_request as b on b.schedule_id=hs.schedule_id
+        left join customer as c on c.customer_id=b.customer_id
+        where hs.availability <> 0';
+        $data['housekeeper_schedules'] = $this->db->query($query)->result();
+        $data['housekeepers'] = $this->housekeeper->get_all();
         
 		$this->load->view('admin-8-appointment',$data);
     
