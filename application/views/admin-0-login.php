@@ -8,7 +8,7 @@
     <meta name="author" content="">
     
 
-    <title>Signin Template for Bootstrap</title>
+    <title>Welcome Admin!</title>
 
     <!-- Bootstrap core CSS -->
     <link href="front/css/bootstrap.min.css" rel="stylesheet">
