@@ -18,7 +18,7 @@
   <!-- Bootstrap core JavaScript -->
   <!--<script src="<?php echo base_url("assets/js/jquery.min.js");?>"></script>
   <script src="assets/js/jquery.min.js"></script>-->
-  <script src="front/js/jquery.min.js"></script>
+  <script src="<?php echo base_url('front/js/jquery.min.js'); ?>"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.js"></script>
@@ -28,10 +28,10 @@
     crossorigin="anonymous"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-  <script src="front/js/table.js"> </script>
+  <script src="<?php echo base_url('front/js/table.js'); ?>"> </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  <script src="front/js/calendar.js"> </script>
-  <script src="front/js/sidebar.js"> </script>
+  <script src="<?php echo base_url('front/js/calendar.js'); ?>"> </script>
+  <script src="<?php echo base_url('front/js/sidebar.js'); ?>"> </script>
 
   </body>
 
