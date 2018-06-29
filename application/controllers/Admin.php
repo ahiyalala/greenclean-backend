@@ -12,7 +12,7 @@ class Admin extends CI_Controller {
                 "is_super" => 0
             )
         );
-        $this->load->view('admin-2-dashboard',$data);
+        $this->load->view('admin-0-login',$data);
     }
     public function management(){
         $this->load->helper('form');
