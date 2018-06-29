@@ -11,7 +11,7 @@
           <main class="col-sm-9 offset-sm-2 col-md-10 offset-md-1 pt-3">
             <h1 class="text-center display-4">Administrator Management</h1>
             <div class="dropdown-divider"></div>
-			<div class="alert alert-success alert-dismissible fade show">
+		<!--	<div class="alert alert-success alert-dismissible fade show">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					</button>
 					Service <strong>created</strong>!
@@ -25,7 +25,7 @@
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					</button>
 					Service <strong>deleted</strong>!
-			  </div>
+			  </div> -->
             <h2 class="display-5 pt-5 pb-3">Available Packages</h2>
 		
             <!-- ACCORDION -->

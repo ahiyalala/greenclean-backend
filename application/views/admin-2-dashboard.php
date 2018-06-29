@@ -10,7 +10,7 @@
             <main class="col-sm-9 offset-sm-2 col-md-10 offset-md-1 pt-3">
               <h1 class="text-center pb-4 display-4">Dashboard</h1>
              
-			  <div class="alert alert-success alert-dismissible fade show">
+			  <!--<div class="alert alert-success alert-dismissible fade show">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					</button>
 					Administrator <strong>created</strong>!
@@ -24,7 +24,7 @@
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					</button>
 					Administrator <strong>deleted</strong>!
-			  </div>
+			  </div> -->
 			  <?php //if($admin['is_super']): ?>
 			  <h2 class="pb-2">Administrators</h2>
         
