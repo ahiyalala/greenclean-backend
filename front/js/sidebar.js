@@ -1,3 +1,8 @@
+$("#menu-toggle").click(function (e) {
+  e.preventDefault();
+  $("#wrapper").toggleClass("toggled");
+});
+
 let side ="close"; 
 jQuery('#menu-toggle').bind('click mouseover', function (e) {
   
