@@ -1,3 +1,8 @@
 phpmyadmin/**
+<<<<<<< HEAD
 application/cache/**
 application/logs/**
+=======
+application/logs/**
+application/cache/**
+>>>>>>> 7c50a32b1abab8cc0314e3926f6f63a5540903ba
