@@ -43,7 +43,7 @@
                         <a class="btn btn-light action-button" role="button" href="#section1">Sign Up</a>
                     </div>
                     <!-- MODAL ADD-->
-                    <div class="modal" id="myModal">
+                    <div class="modal fade" id="myModal">
                         <div class="modal-dialog modal-md">
                             <div class="modal-content ">
                                 <div class="modal-header">
@@ -66,7 +66,7 @@
 
                                     <div class="modal-footer d-flex justify-content-center">
                                         <label class="form-check-label text-dark" for="exampleCheck1">
-                                            <a href="gc_adm-1-dashboard.html"> Forgot Account?</a>
+                                            <a href="#myModalReset" class="login"  data-toggle="modal" data-dismiss="modal" > Forgot Account?</a>
                                         </label>
                                         <button href="" class="btn btn-outline-success">Submit</button>
                                     </div>
@@ -74,6 +74,33 @@
                             </div>
                         </div>
                     </div>
+
+            <!-- MODAL Reset Password -->
+                    <div class="modal fade" id="myModalReset"  tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-md">
+                            <div class="modal-content ">
+                                <div class="modal-header">
+                                    <h5 class="h3 text-dark d-flex justify-content-center" id="myModalLabel">Reset Password</h5>
+                                    <button class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group row">
+                                        <label for="example-text-input" class="col-2 col-form-label text-dark font-weight-bold">Email:</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer d-flex justify-content-center">  
+                                        <button href="" class="btn btn-outline-success">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+             
+            
+                    
+                
             </nav>
             <div class="container hero">
                 <div class="row">

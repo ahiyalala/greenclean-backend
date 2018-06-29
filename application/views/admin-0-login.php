@@ -45,15 +45,45 @@
       <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      
+      
       <div class="checkbox mb-3">
+      
         <label>
           <input type="checkbox" value="remember-me"> Remember me
         </label>
+        <a href="#" class=" ml-5" data-toggle="modal" data-target="#myModal">Forget account?</a>
       </div>
+      
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2018-Present</p>
+      <p class="mt-5 mb-3 ">&copy; 2018-Present</p>
     </form>
   </body>
+
+  <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-md">
+                            <div class="modal-content ">
+                                <div class="modal-header">
+                                    <h5 class="h3 text-dark d-flex justify-content-center" id="myModalLabel">Reset Password</h5>
+                                    <button class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group row">
+                                        <label for="example-text-input" class="col-2 col-form-label text-dark font-weight-bold">Email:</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="modal-footer d-flex justify-content-center">
+                                       
+                                        <button href="" class="btn btn-outline-success">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
   
     <!-- Bootstrap core JavaScript -->
 
