@@ -190,15 +190,7 @@
                       </div>
                       <div class="modal-body">
 					  
-						<div class="dropdown d-flex justify-content-center">
-								<select style="width:80%">
-								  <option placeholder="1">Select an Administrator</option>
-								  <option placeholder="1" selected="">John Doe</option>
-								  <option placeholder="2">Admin 1</option>
-								  <option placeholder="3">Admin 2</option>
-								  <option placeholder="4">Admin 3</option>
-								</select>
-						</div>
+				
 					
 					<hr>
                         <div class="form-group row">
