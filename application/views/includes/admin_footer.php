@@ -32,7 +32,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="<?php echo base_url('front/js/calendar.js'); ?>"> </script>
   <script src="<?php echo base_url('front/js/sidebar.js'); ?>"> </script>
-
+  <script src="<?php echo base_url('front/js/jquery.min.js');?>"></script>
   </body>
 
 

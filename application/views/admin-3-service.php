@@ -61,7 +61,7 @@
 		
 		</div>
 		<!-- MODAL ADD SERVICE-->
-		<div class="modal" id="addService" tabindex="-1" role="dialog">
+		<div class="modal fade" id="addService" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -72,21 +72,21 @@
                     </div>
                     <div class="modal-body">
                       <?php echo form_open('services/add'); ?>
-                      <div class="form-row">
-                        <div class="form-group col-sm-12">
+                      <div class="container">
+                      
+                        <div class="form-group">
                           <input type="text" class="form-control" id="service_type" name="service_type" required placeholder="Service name" />
                         </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                      
+                      <div class="row pb-3">
+                        <div class=" col-6">
                           <input type="number" class="form-control" id="service_price" name="service_price" required placeholder="Price" />
                         </div>
-                        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-6" >
                           <input type="number" class="form-control" id="service_duration" name="service_duration" required placeholder="Duration" />
                         </div>
                       </div>
-                      <div class="form-row">
-                        <div class="form-group col-sm-12">
+                        <div class="form-group">
                           <textarea class="form-control" id="service_description" name="service_description" placeholder="Description" required ></textarea>
                         </div>
                       </div>
@@ -103,7 +103,7 @@
 		  <!-- /MODAL ADD SERVICE-->
 		  
 		  <!-- MODAL UPDATE SERVICE-->
-		<div class="modal" id="updateService" tabindex="-1" role="dialog">
+		<div class="modal fade" id="updateService" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -114,7 +114,7 @@
                     </div>
                     <div class="modal-body">
                       <div class="dropdown d-flex justify-content-center">
-								<select style="width:80%">
+								<select class="custom-select w-100" >
 								  <option placeholder="1">Select Service</option>
 								  <option placeholder="1" selected>Service Sample</option>
 								  <option placeholder="2">Service 1</option>
@@ -123,24 +123,24 @@
 								</select>
 						</div>
 						<hr/>
-                      <div class="form-row">
-                        <div class="form-group col-sm-12">
-                          <input type="text" class="form-control" id="service_type" name="service_type" required placeholder="Service Sample" />
-                        </div>
+            <div class="container">
+                      
+                      <div class="form-group">
+                        <input type="text" class="form-control" id="service_type" name="service_type" required placeholder="Service name" />
                       </div>
-                      <div class="form-row">
-                        <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                          <input type="number" class="form-control" id="service_price" name="service_price" required placeholder="100000"/>
-                        </div>
-                        <div class="form-group col-sm-12 col-md-6 col-lg-6">
-                          <input type="number" class="form-control" id="service_duration" name="service_duration" required placeholder="100000"/>
-                        </div>
+                    
+                    <div class="row pb-3">
+                      <div class=" col-6">
+                        <input type="number" class="form-control" id="service_price" name="service_price" required placeholder="Price" />
                       </div>
-                      <div class="form-row">
-                        <div class="form-group col-sm-12">
-                          <textarea class="form-control" id="service_description" name="service_description" placeholder="hahahuhu" required ></textarea>
-                        </div>
+                      <div class="col-6" >
+                        <input type="number" class="form-control" id="service_duration" name="service_duration" required placeholder="Duration" />
                       </div>
+                    </div>
+                      <div class="form-group">
+                        <textarea class="form-control" id="service_description" name="service_description" placeholder="Description" required ></textarea>
+                      </div>
+                    </div>
                       <div class="form-row">
                         <div class="form-group col-sm-12 d-flex justify-content-center">
                           <button type="submit" class="btn btn-primary">Update</button>
@@ -154,8 +154,8 @@
 		  <!-- /MODAL UPDATE SERVICE-->
 		  
 		  <!-- MODAL DELETE SERVICE-->
-		<div class="modal" id="deleteService" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-lg">
+		<div class="modal fade" id="deleteService" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-xs">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title">Delete Service</h5>
@@ -165,7 +165,7 @@
                     </div>
                     <div class="modal-body">
                       <div class="dropdown d-flex justify-content-center">
-								<select style="width:80%">
+								<select class="custom-select" style="width:80%">
 								  <option placeholder="1">Select Service</option>
 								  <option placeholder="1" selected>Service Sample</option>
 								  <option placeholder="2">Service 1</option>
@@ -185,7 +185,7 @@
                 </div>
           </div>
 		  
-		  <div class="modal" id="confirmService" tabindex="-1" role="dialog">
+		  <div class="modal fade" id="confirmService" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">

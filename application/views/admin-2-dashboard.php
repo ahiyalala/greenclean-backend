@@ -28,7 +28,7 @@
 			  <?php //if($admin['is_super']): ?>
 			  <h2 class="pb-2">Administrators</h2>
         
-        
+        <div class="table-responsive-md">
                 <table class="table table-striped table-bordered table-hover" id="myTable" >
                   <thead>
                     <tr>
@@ -84,7 +84,7 @@
 
                   </tbody>
                 </table>
-            
+              </div>
                 <div class="d-flex justify-content-center clearfix">
                   <button class="btn btn-outline-primary mx-1 btn-lg" data-toggle="modal" data-target="#addAdminModal"><i class="fas fa-plus"></i> Add</button>
 
@@ -92,7 +92,7 @@
 				
 				<?php //endif ?>
                 <!-- MODAL ADD-->
-                <div class="modal" id="addAdminModal">
+                <div class="modal fade" id="addAdminModal">
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -181,7 +181,7 @@
 				<!-- /MODAL ADD END -->
 				
 				<!-- MODAL UPDATE-->
-                <div class="modal" id="updateAdminModal">
+                <div class="modal fade" id="updateAdminModal">
                   <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -274,7 +274,7 @@
 				<!-- /MODAL UPDATE END -->
 				
 
-				<div class="modal" id="deleteAdminModal" tabindex="-1" role="dialog">
+				<div class="modal fade" id="deleteAdminModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
