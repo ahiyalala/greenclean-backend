@@ -1,7 +1,7 @@
        <br>
         <div>
           <footer class="footer">
-            <div class="container-fluid text-center text-light bg-success ">
+            <div class="container-fluid text-center text-light footer-last">
               <p class="font-weight-bold m-2 p-2">
                 <span>(c) Green Clean Copyrights 2018 Developed by CodeBehind Inc.</span>
               </p>

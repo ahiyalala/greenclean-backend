@@ -8,7 +8,7 @@
         <div class="container-fluid bg-secondary">
 
           <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
-          <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+          <main class="col-sm-9 offset-sm-2 col-md-10 offset-md-1 pt-3">
             <h1 class="text-center display-4">Appointments</h1>
             <div class="dropdown-divider"></div>
 			

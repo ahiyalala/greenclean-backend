@@ -28,7 +28,7 @@
                                                       <tbody>
                                                             <tr>
                                                                   <th scope="row">Address: </th>
-                                                                  <td>Blk. 23 Lot. 12 Colorado St. Phase 2 Ampid San Mateo, Rizal</td>
+                                                                  <td>Blk 21 National Street Greenland City Japan</td>
                                                             </tr>
                                                             <tr>
                                                                   <th scope="row">Birthday: </th>
