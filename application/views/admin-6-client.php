@@ -15,15 +15,15 @@
             <h2 class="display-5 pt-5 pb-3">Clients</h2>
 
             <div class="table-responsive">
-              <table class="table table-striped table-hover table-bordered" id="myTable">
+              <table class="table table-striped table-hover table-bordered text-center" id="myTable">
                 <thead>
                   <tr>
                     
-                    <th>No.</th>
-                    <th>Full Name</th>
-                    <th>Gender</th>
-                    <th>Date Registered</th>
-                    <th>Services Rendered</th>
+                    <th class="text-center">No.</th>
+                    <th class="text-center">Full Name</th>
+                    <th class="text-center">Gender</th>
+                    <th class="text-center">Date Registered</th>
+                    <th class="text-center">Services Rendered</th>
                     <th> </th>
                   </tr>
                 </thead>
@@ -39,8 +39,8 @@
                     <td>  3 </td>
                     <td>
                         <div class="btn-group w-100 btn-block" role="group">
-                        <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#confirmAdmin"><i class="fas fa-trash-alt"></i> Delete</button>
-                        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#updateAdminModal"><i class="fas fa-edit"></i> Update</button>
+                        <button type="button" class="btn btn-danger btn-block " data-toggle="modal" data-target="#confirmAdmin"><i class="fas fa-trash-alt"></i> Delete</button>
+                        <!-- <button type="button" class="btn btn-success " data-toggle="modal" data-target="#updateAdminModal"><i class="fas fa-edit"></i> Update</button> -->
                         </div>
                       </td>
                   </tr>
@@ -55,8 +55,8 @@
                     <td> 2 </td>
                     <td>
                         <div class="btn-group w-100 btn-block" role="group">
-                        <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#confirmAdmin"><i class="fas fa-trash-alt"></i> Delete</button>
-                        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#updateAdminModal"><i class="fas fa-edit"></i> Update</button>
+                        <button type="button" class="btn btn-danger btn-block " data-toggle="modal" data-target="#confirmAdmin"><i class="fas fa-trash-alt"></i> Delete</button>
+                        <!-- <button type="button" class="btn btn-success " data-toggle="modal" data-target="#updateAdminModal"><i class="fas fa-edit"></i> Update</button> -->
                         </div>
                       </td>
                   </tr>
@@ -71,8 +71,8 @@
                     <td> 0 </td>
                     <td>
                         <div class="btn-group w-100 btn-block" role="group">
-                        <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#confirmAdmin"><i class="fas fa-trash-alt"></i> Delete</button>
-                        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#updateAdminModal"><i class="fas fa-edit"></i> Update</button>
+                        <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#confirmAdmin"><i class="fas fa-trash-alt"></i> Delete</button>
+                      
                     </div>
                       </td>                    
                   </tr>
