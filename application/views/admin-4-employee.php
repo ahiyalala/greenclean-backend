@@ -33,7 +33,7 @@
             }
             ?></h2>
 
-            <div class="table-responsive-md">
+            <div class="table-responsive">
               <table class="table table-striped table-bordered table-hover table-sm" id="myTable">
                 <thead>
                   <tr>
@@ -119,7 +119,7 @@
         </div>
 	<!-- /#wrapper -->
     <!-- MODAL ADD EMPLOYEE-->
-    <div class="modal" id="addEmployee">
+    <div class="modal fade" id="addEmployee">
       <div class="modal-dialog modal-lg">
         <div class="modal-content ">
           <div class="modal-header">
@@ -258,7 +258,7 @@
     </div>
 <!-- /MODAL ADD EMPLOYEE-->
 <!-- MODAL UPDATE EMPLOYEE-->
-<div class="modal" id="updateEmployee">
+<div class="modal fade" id="updateEmployee">
       <div class="modal-dialog modal-lg">
         <div class="modal-content ">
           <div class="modal-header">
@@ -397,7 +397,7 @@
     </div>
 <!-- /MODAL UPDATE EMPLOYEE-->
 <!-- MODAL DELETE END -->
-<div class="modal" id="confirmEmployee" tabindex="-1" role="dialog">
+<div class="modal fade" id="confirmEmployee" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -421,8 +421,8 @@
           </div>
 				<!-- /MODAL DELETE END -->
 <!-- MODAL REASSIGN EMPLOYEE-->
-    <div class="modal" id="assignEmployee">
-      <div class="modal-dialog modal-lg">
+    <div class="modal fade" id="assignEmployee">
+      <div class="modal-dialog modal-xs">
         <div class="modal-content ">
           <div class="modal-header">
             <h5 class="modal-title" id="myModalLabel">Reassign an Employee</h5>

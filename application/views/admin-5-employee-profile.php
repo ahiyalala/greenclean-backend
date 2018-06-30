@@ -96,7 +96,7 @@
                                     </div> 
 
 <!-- MODAL UPDATE EMPLOYEE-->
-    <div class="modal" id="updateEmployee">
+    <div class="modal fade" id="updateEmployee">
       <div class="modal-dialog modal-lg">
         <div class="modal-content ">
           <div class="modal-header">
@@ -235,8 +235,8 @@
     </div>
 <!-- /MODAL UPDATE EMPLOYEE-->
 <!-- MODAL DELETE EMPLOYEE-->
-    <div class="modal" id="deleteEmployee">
-      <div class="modal-dialog modal-lg">
+    <div class="modal fade" id="deleteEmployee">
+      <div class="modal-dialog modal-xs">
         <div class="modal-content ">
           <div class="modal-header">
             <h5 class="modal-title" id="myModalLabel">Delete an Employee</h5>
