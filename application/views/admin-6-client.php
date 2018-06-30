@@ -79,9 +79,14 @@
                 </tbody>
               </table>
             </div>
+    
+
+
+
+
         <!-- Modal Delete -->
-        <div class="modal" id="confirmAdmin" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-lg">
+        <div class="modal fade" id="confirmAdmin" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title">Delete Confirmation</h5>
@@ -94,7 +99,7 @@
                       <div class="form-row">
                         <div class="form-group my-3 col-sm-12 d-flex justify-content-center">
                           <button type="submit" class="mx-2 btn btn-danger">Yes</button>
-						  <button type="submit" class="mx-2 btn btn-primary">No</button>
+						  <button type="submit" class="mx-2 btn btn-primary" data-dismiss="modal">No</button>
                         </div>
                       </div>
                       
@@ -196,8 +201,37 @@
               </table>
             </div>
             <!-- Refund Modal -->
-            <div class="modal" id="confirmRefund" tabindex="-1" role="dialog">
+                <!-- Modal Reason -->
+        <div class="modal fade" id="confirmRefund" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Delete Confirmation</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                    <div class="form-group">
+                      <label for="comment">Reasons for refund:</label>
+                      <textarea class="form-control" rows="5" id="comment"></textarea>
+                    </div>	
+                      <div class="form-row">
+                        <div class="form-group my-3 col-sm-12 d-flex justify-content-center">
+                          <button type="submit" data-dismiss="modal"  data-toggle="modal" data-target="#confirmRefund2" class="mx-2 btn btn-danger">Submit</button>
+						              <button type="submit"  data-dismiss="modal" class="mx-2 btn btn-primary">Cancel</button>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+          </div>
+
+
+
+            <div class="modal fade" id="confirmRefund2" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title">Refund Confirmation</h5>
@@ -210,7 +244,7 @@
                       <div class="form-row">
                         <div class="form-group my-3 col-sm-12 d-flex justify-content-center">
                           <button type="submit" class="mx-2 btn btn-danger">Yes</button>
-						  <button type="submit" class="mx-2 btn btn-primary">No</button>
+						  <button type="submit" class="mx-2 btn btn-primary" data-dismiss="modal">No</button>
                         </div>
                       </div>
                       
