@@ -15,7 +15,7 @@
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
   <!-- Custom styles for this template -->
-   <link href="<?php   echo base_url('css/simple-sidebar.css'); ?>" rel="stylesheet"> 
+   <link href="<?php   echo base_url('front/css/simple-sidebar.css'); ?>" rel="stylesheet"> 
 
   <!--Calendar -->
 
