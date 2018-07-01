@@ -30,10 +30,11 @@
 // }, 4000);
 
  let side ="close"; 
+
 $(window).scroll(function(e){
       if ($(document).scrollTop() > 0 && side == "open"){
         
-        side ="close"
+        return side ="close"
 
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
@@ -44,10 +45,10 @@ $(window).scroll(function(e){
 
 $("#menu-toggle").click(function (e) {
   if (side == "close"){
-           return side = "open";
-           }else{
-            return side = "close"; 
-           }
+      return side = "open";
+  }else{
+      return side = "close"; 
+  }
   e.preventDefault();
   $("#wrapper").toggleClass("toggled");
 });
