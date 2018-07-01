@@ -36,7 +36,7 @@
 $(window).scroll(function(e){
       if ($(document).scrollTop() > 0 && side == "open"){
         console.log("Close: " + number++);
-        return side ="close"
+        return side ="close";
        
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
