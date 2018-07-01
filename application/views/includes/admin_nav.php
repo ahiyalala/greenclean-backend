@@ -6,7 +6,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-          <img src="http://via.placeholder.com/120x50" class="img-responsive" alt="Cinque Terre">
+          Green Clean
         </a>
         <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
           <ul class="navbar-nav">
