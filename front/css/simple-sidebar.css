@@ -3,7 +3,7 @@
  * Copyright 2013-2017 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
  */
-/* bro *//*
+/* bro */
 body {
   overflow-x: hidden;
 }
@@ -52,7 +52,7 @@ body {
 
 
 /* Sidebar Styles */
-/*
+
 .sidebar-nav {
   position: absolute;
   top: 0;
@@ -119,4 +119,4 @@ body {
     position: relative;
     margin-right: 0; 
   }
-} */
+} 
