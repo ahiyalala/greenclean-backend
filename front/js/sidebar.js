@@ -29,15 +29,12 @@
 //     });
 // }, 4000);
 
- let side ="close";
- let number=0; 
- console.log("Close: " + number++);
-
+ let side ="close"; 
 $(window).scroll(function(e){
       if ($(document).scrollTop() > 0 && side == "open"){
-        console.log("Close: " + number++);
-        return side ="close";
-       
+        
+        side ="close"
+
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
       
@@ -45,14 +42,10 @@ $(window).scroll(function(e){
 });
 
 
+
 $("#menu-toggle").click(function (e) {
-  if (side == "close"){
-      return side = "open";
-      console.log("Open: " + ++number);
-  }else{
-      return side = "close"; 
-      console.log("Close: " + ++number);
-  }
+  let side ="open"; 
+  console.log("open");
   e.preventDefault();
   $("#wrapper").toggleClass("toggled");
 });
