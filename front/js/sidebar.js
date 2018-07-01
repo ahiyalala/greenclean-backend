@@ -1,10 +1,10 @@
-// $("#menu-toggle").click(function (e) {
-//   e.preventDefault();
-//   $("#wrapper").toggleClass("toggled");
-// });
+ $("#menu-toggle").click(function (e) {
+   e.preventDefault();
+   $("#wrapper").toggleClass("toggled");
+ });
 
 let side ="close"; 
-// jQuery('#menu-toggle').bind('click mouseover', function (e) {
+ jQuery('#menu-toggle').bind('click mouseover', function (e) {
   
   e.preventDefault();
       $("#wrapper").toggleClass("toggled");
@@ -28,3 +28,13 @@ window.setTimeout(function() {
         $(this).remove(); 
     });
 }, 4000);
+
+// $("#menu-toggle").click(function (e) {
+//   e.preventDefault();
+//   $("#wrapper").toggleClass("toggled");
+// });
+// window.setTimeout(function() {
+// $(".alert").fadeTo(500, 0).slideUp(500, function(){
+//     $(this).remove(); 
+// });
+// }, 4000);
