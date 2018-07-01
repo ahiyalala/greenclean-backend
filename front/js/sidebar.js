@@ -28,18 +28,26 @@
 //         $(this).remove(); 
 //     });
 // }, 4000);
+
+ let side ="close"; 
 $(window).scroll(function(e){
-      // if ($(document).scrollTop() > 0 && side == "open"){
-      //   side ="close"
+      if ($(document).scrollTop() > 0 && side == "open"){
+        
+        side ="close"
+
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
       
-      // }
+       }
 });
 
 
-
 $("#menu-toggle").click(function (e) {
+  if (side == "close"){
+           return side = "open";
+           }else{
+            return side = "close"; 
+           }
   e.preventDefault();
   $("#wrapper").toggleClass("toggled");
 });
@@ -48,3 +56,5 @@ $(".alert").fadeTo(500, 0).slideUp(500, function(){
     $(this).remove(); 
 });
 }, 4000);
+
+
