@@ -13,7 +13,7 @@ let side ="close";
       }else{
         return side = "close"; 
       }
-// });
+ });
 
 $(window).scroll(function(e){
       if ($(document).scrollTop() > 0 && side == "open"){
