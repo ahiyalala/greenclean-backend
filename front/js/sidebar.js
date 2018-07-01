@@ -30,9 +30,11 @@
 // }, 4000);
 
  let side ="close"; 
+ let number = 0;
+ 
 $(window).scroll(function(e){
       if ($(document).scrollTop() > 0 && side == "open"){
-        
+        console.log(side + ": " +number);
         side ="close"
 
       e.preventDefault();
@@ -45,7 +47,7 @@ $(window).scroll(function(e){
 
 $("#menu-toggle").click(function (e) {
   let side ="open"; 
-  console.log("open");
+  console.log(side + ": " +number);
   e.preventDefault();
   $("#wrapper").toggleClass("toggled");
 });
