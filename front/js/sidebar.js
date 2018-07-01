@@ -1,50 +1,12 @@
-// $("#menu-toggle").click(function (e) {
-//   e.preventDefault();
-//   $("#wrapper").toggleClass("toggled");
-// });
-
-// let side ="close"; 
-// jQuery('#menu-toggle').bind('click mouseover', function (e) {
-  
-//   e.preventDefault();
-//       $("#wrapper").toggleClass("toggled");
-//       if (side == "close"){
-//         return side = "open";
-//       }else{
-//         return side = "close"; 
-//       }
-// });
-
-// $(window).scroll(function(e){
-//       if ($(document).scrollTop() > 0 && side == "open"){
-//         side ="close"
-//       e.preventDefault();
-//       $("#wrapper").toggleClass("toggled");
-      
-//       }
-// });
-// window.setTimeout(function() {
-//     $(".alert").fadeTo(500, 0).slideUp(500, function(){
-//         $(this).remove(); 
-//     });
-// }, 4000);
-
- let side ="close"; 
- let number = 0;
- console.log(side + ": " + ++number);
+let side ="close"; 
 
 $(window).scroll(function(e){
       if ($(document).scrollTop() > 0 && side == "open"){
-        console.log(side + ": " + ++number);
         side ="close"
-
       e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-      
+      $("#wrapper").toggleClass("toggled");   
        }
 });
-
-
 
 $("#menu-toggle").click(function (e) {
    if (side == "close"){
@@ -52,9 +14,6 @@ $("#menu-toggle").click(function (e) {
    }else{
      side ="close";
    }
-
-   
-   console.log(side + ": " + ++number);
   e.preventDefault();
   $("#wrapper").toggleClass("toggled");
 });
