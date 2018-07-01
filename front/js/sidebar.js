@@ -28,6 +28,16 @@
 //         $(this).remove(); 
 //     });
 // }, 4000);
+$(window).scroll(function(e){
+      // if ($(document).scrollTop() > 0 && side == "open"){
+      //   side ="close"
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+      
+      // }
+});
+
+
 
 $("#menu-toggle").click(function (e) {
   e.preventDefault();
