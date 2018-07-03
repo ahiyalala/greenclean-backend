@@ -30,7 +30,11 @@
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" href="#section2">Features</a>
+                                <a class="nav-link">Home</a>
+                                <a class="nav-link active" href="#section2">About Us</a>
+                                <a class="nav-link">FAQ</a>
+                                <a class="nav-link">Services</a>
+                                <a class="nav-link">Contact Us</a>
                             </li>
 
                         </ul>
