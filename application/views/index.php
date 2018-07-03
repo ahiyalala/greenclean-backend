@@ -30,11 +30,11 @@
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav list-inline">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link list-inline-item">Home</a>
-                                <a class="nav-link list-inline-item active" href="#section2">About Us</a>
-                                <a class="nav-link list-inline-item">FAQ</a>
-                                <a class="nav-link list-inline-item">Services</a>
-                                <a class="nav-link list-inline-item">Contact Us</a>
+                            <li class="nav-item" role="presentation">   <a class="nav-link list-inline-item active">Home</a> </li>
+                            <li class="nav-item" role="presentation">   <a class="nav-link list-inline-item " href="#section2">About us</a></li>
+                            <li class="nav-item" role="presentation">  <a class="nav-link list-inline-item">FAQ</a></li>
+                            <li class="nav-item" role="presentation">  <a class="nav-link list-inline-item">Services</a></li>
+                            <li class="nav-item" role="presentation">  <a class="nav-link list-inline-item">Contact us / Opportunities </a></li>
                             </li>
 
                         </ul>
