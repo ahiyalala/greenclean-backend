@@ -28,13 +28,13 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav">
+                        <ul class="nav navbar-nav list-inline">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link">Home</a>
-                                <a class="nav-link active" href="#section2">About Us</a>
-                                <a class="nav-link">FAQ</a>
-                                <a class="nav-link">Services</a>
-                                <a class="nav-link">Contact Us</a>
+                                <a class="nav-link list-inline-item">Home</a>
+                                <a class="nav-link list-inline-item active" href="#section2">About Us</a>
+                                <a class="nav-link list-inline-item">FAQ</a>
+                                <a class="nav-link list-inline-item">Services</a>
+                                <a class="nav-link list-inline-item">Contact Us</a>
                             </li>
 
                         </ul>
