@@ -1,19 +1,88 @@
 <?php
 class Admin extends CI_Controller {
-    public function index(){
-        $this->load->helper('form');
-        $services = $this->db->select('*')->from('services')->get()->result();
-        $data = array(
-            'services'=>$services,
-            'admin' => array(
-                'first_name' => "Kuroneko",
-                'middle_name' => "Kuro",
-                'last_name' => "Kuroro",
-                "is_super" => 0
-            )
-        );
-        $this->load->view('admin-2-dashboard',$data);
+
+    private function get_super_count(){
+          return $this->db->select('*')->from('admin')
+                    ->where(array('is_super'=>1))->count_all_results();
     }
+
+    public function index(){
+      $this->load->helper('form');
+        $count = $this->get_super_count();
+      if($count == 0){
+        $this->load->view('admin-1-register');
+      }
+      else{
+        $has_data = $this->session->has_userdata('user');
+        if($has_data){
+          redirect('/admin/dashboard','refresh');
+        }
+        $this->load->view('admin-0-login');
+      }
+    }
+
+    public function login(){
+      $data = $this->input->post(NULL,TRUE);
+      $user = $this->db->select('*')
+                        ->from('admin')
+                        ->where(array('email_address'=>$data['email_address']))
+                        ->get()
+                        ->row_array();
+      $verified = ($user)? password_verify($data['password'],$user['password']): false;
+      if($verified){
+        $user['password'] = null;
+        $this->session->set_userdata('user', $user);
+      }
+
+      redirect('/admin','refresh');
+
+    }
+
+    public function dashboard(){
+      $has_data = $this->session->has_userdata('user');
+      if($has_data){
+        $services = $this->db->select('*')->from('services')->get()->result();
+        $user = $this->session->user;
+        $data = array(
+          'services'=>$services,
+          'admin'=>$user
+        );
+        if($user['is_super']){
+          $this->load->view('admin-2-dashboard',$data);
+        }
+        else{
+          $this->load->view('admin-3-service',$data);
+        }
+      }
+      else{
+        redirect('/admin','refresh');
+      }
+
+    }
+
+    public function register_admin(){
+      $data = $this->input->post(NULL,TRUE);
+      $count = $this->get_super_count();
+      $this->db->trans_begin();
+      $data['password'] = password_hash($data['password'],PASSWORD_BCRYPT);
+      if($count == 0){
+        $data['is_super'] = 1;
+        $this->db->insert('admin',$data);
+      }
+      else{
+        $this->db->insert('admin',$data);
+      }
+
+      if(!$this->db->trans_status()){
+        $this->db->trans_rollback();
+        $this->session->set_flashdata('message','Invalid registration');
+      }
+      else{
+        $this->db->trans_commit();
+      }
+      redirect('/admin','refresh');
+    }
+
     public function management(){
         $this->load->helper('form');
         $services = $this->db->select('*')->from('services')->get()->result();
@@ -28,6 +97,7 @@ class Admin extends CI_Controller {
         );
         $this->load->view('admin-3-service',$data);
     }
+
     public function employee($id=null){
         $this->load->helper('form');
         $this->load->model('housekeeper');
@@ -57,9 +127,9 @@ class Admin extends CI_Controller {
         $this->load->view($view,$data);
     }
 	public function customer(){
-        
+
 		$this->load->view('admin-6-client');
-    
+
 	}
 	public function appointment(){
         $this->load->helper('form');
@@ -74,6 +144,11 @@ class Admin extends CI_Controller {
         $data['housekeepers'] = $this->housekeeper->get_all();
 
 		$this->load->view('admin-8-appointment',$data);
-    
+
 	}
+
+  public function logout(){
+    $this->session->sess_destroy();
+    redirect('/admin','refresh');
+  }
 }
