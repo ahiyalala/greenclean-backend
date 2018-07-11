@@ -11,7 +11,7 @@
                               <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
                               <!-- START OF MAIN -->
                               <main class="col-sm-9 offset-sm-2 col-md-10 offset-md-1 pt-3">
-                                    <h1 class="text-center display-4"><?php echo $housekeepers->first_name." ".$housekeepers->last_name; ?>'s Profile</h1>
+                                    <h1 class="text-center display-4"><?php// echo $housekeepers->first_name." ".$housekeepers->last_name; ?>'s Profile</h1>
                                     <div class="dropdown-divider"></div>
                                     <!-- START OF 1ST CARD -->
 
@@ -23,17 +23,17 @@
                                                       <img src="front/img/baby.jpeg" class="img-fluid rounded-circle border-dark" alt="APPLE" width="250" height="250">
                                                 </div>
                                                 <div class="text-center mb-3">
-                                                      <h3 class="h3"><?php echo $housekeepers->last_name.", ".$housekeepers->first_name; ?></h3>
+                                                      <h3 class="h3"><?php// echo $housekeepers->last_name.", ".$housekeepers->first_name; ?></h3>
                                                 </div>
                                                 <table class="table bg-faded">
                                                       <tbody>
                                                             <tr>
                                                                   <th scope="row">Birthday: </th>
-                                                                  <td><?php echo $housekeepers->birth_date; ?></td>
+                                                                  <td><?php //echo $housekeepers->birth_date; ?></td>
                                                             </tr>
                                                             <tr>
                                                                   <th scope="row">Gender: </th>
-                                                                  <td><?php echo $housekeepers->gender; ?></td>
+                                                                  <td><?php //echo $housekeepers->gender; ?></td>
                                                             </tr>
                                                             <tr>
                                                                   <th scope="row">Work Registered: </th>
@@ -51,56 +51,20 @@
                                           <div class="card-footer">
                                                 <div class="d-flex justify-content-center clearfix pt-2">
                                                       <button class="btn btn-outline-success mx-1" data-toggle="modal" data-target="#updateEmployee">Update</button>
-                                                      <button class="btn btn-outline-danger mx-1" data-toggle="modal" data-target="#deleteEmployee">Delete</button>
+
                                                 </div>
                                           </div>
 
                                     </div>
                                     <!-- END OF 1ST CARD -->
-
-                                    <div class="card mt-3 w-75 container">
-                                          <div class="card-header bg-success h3">Work Infomation</div>
-                                          <!-- START OF 2ND CARD BODY -->
-                                          <div class="card-block bg-faded">
-                                                <table class="table bg-faded">
-                                                      <thead>
-                                                            <tr>
-                                                                  <th scope="col">#</th>
-                                                                  <th scope="col">Client Name</th>
-                                                                  <th scope="col">Date</th>
-                                                                  <th scope="col">Time</th>
-                                                            </tr>
-                                                      </thead>
-                                                      <tbody>
-                                                            <tr>
-                                                                  <th scope="row"> 1 </th>
-                                                                  <td>Kat Cruz</td>
-                                                                  <td>July 26, 2019</td>
-                                                                  <td>16:00 - 17:00</td>
-                                                            </tr>
-                                                      </tbody>
-                                                </table>
-                                          </div>
-                                    </div>
-
-
-
-
-
-                                    <div class="card mt-3 w-75 container">
-                                          <div class="card-header bg-success h3">Work Schedule</div>
-                                          <!-- START OF 3rd CARD BODY -->
-                                          <div class="card-block bg-faded">
-                                            <div id="calendar"></div>
-                                           </div> 
-                                    </div> 
+                                  
 
 <!-- MODAL UPDATE EMPLOYEE-->
     <div class="modal fade" id="updateEmployee">
       <div class="modal-dialog modal-lg">
         <div class="modal-content ">
           <div class="modal-header">
-            <h5 class="modal-title" id="myModalLabel">Update an Employee</h5>
+            <h5 class="modal-title" id="myModalLabel">Update your account</h5>
             <button class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
@@ -157,66 +121,6 @@
               </div>
             </div>
 
-            <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Work Schedule</label>
-              <div class="col-10">
-                <div class="row">
-                  <div class="col">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Monday" name="work_schedule[]" placeholder="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                        Monday
-                      </label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Tuesday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                        Tuesday
-                      </label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Wednesday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                        Wednesday
-                      </label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Thursday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                        Thursday
-                      </label>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Friday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                        Friday
-                      </label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Saturday"  value="" name="work_schedule[]" placeholder="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                        Saturday
-                      </label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Sunday" name="work_schedule[]" placeholder="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                        Sunday
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
 
             <div class="form-group row">
               <label for="example-search-input" class="col-2 col-form-label">Upload Photo:</label>
@@ -233,27 +137,9 @@
         </div>
       </div>
     </div>
-<!-- /MODAL UPDATE EMPLOYEE-->
-<!-- MODAL DELETE EMPLOYEE-->
-    <div class="modal fade" id="deleteEmployee">
-      <div class="modal-dialog modal-xs">
-        <div class="modal-content ">
-          <div class="modal-header">
-            <h5 class="modal-title" id="myModalLabel">Delete an Employee</h5>
-            <button class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <div class="modal-body">
-		  Are you sure you want to delete this employee?
-		  </div>
-          <div class="modal-footer d-flex justify-content-center">
-            <button class="btn btn-danger">Delete</button>
-			<button class="btn btn-primary">Cancel</button>
-          </div>
-          
-        </div>
-      </div>
-</div> 
-		  <!-- /MODAL DELETE EMPLOYEE-->
+
+
+		  
                               </main>
                               <!-- END OF MAIN -->
 

@@ -12,7 +12,7 @@
           <ul class="navbar-nav">
             <li class="nav-item m-2 dropdown">
               <a class="nav-link dropdown-toggle  dropleft" href="#" data-toggle="dropdown">
-                <img src="http://via.placeholder.com/30x30"" class="img-responsive rounded-circle" alt="APPLE" width="30" height="30">
+                <img src="front/img/baby.jpeg"  class="img-responsive rounded-circle border-dark" alt="APPLE" width="35" height="30">
               </a>
               <div class="dropdown-menu  dropdown-menu-right">
                 <a href="#" class="dropdown-item font-weight-bold">John Doe</a>
