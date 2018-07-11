@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
     <link rel="stylesheet" href="css_admin/Features-Blue.css">
+    <link rel="stylesheet" href="css_admin/Project-Clean.css">
     <link rel="stylesheet" href="css_admin/Header-Blue.css">
     <link rel="stylesheet" href="css_admin/Pretty-Footer.css">
     <link rel="stylesheet" href="css_admin/Registration-Form-with-Photo.css">
@@ -33,8 +34,8 @@
                             <li class="nav-item" role="presentation">  <a class="nav-link list-inline-item active">Home</a> </li>
                             <li class="nav-item" role="presentation">  <a class="nav-link list-inline-item " href="#section2">About us</a></li>
                             <li class="nav-item" role="presentation">  <a class="nav-link list-inline-item">Faq</a></li>
-                            <li class="nav-item" role="presentation">  <a class="nav-link list-inline-item">Services</a></li>
-                            <li class="nav-item" role="presentation">  <a class="nav-link list-inline-item">Contact us / Opportunities </a></li>
+                            <li class="nav-item" role="presentation">  <a class="nav-link list-inline-item" href="#section3">Services</a></li>
+                            <li class="nav-item" role="presentation">  <a class="nav-link list-inline-item" data-toggle="modal" data-target="#myModalContact">Contact us / Opportunities </a></li>
                             </li>
 
                         </ul>
@@ -101,7 +102,39 @@
                             </div>
                         </div>
                     </div>
-             
+             <!-- MODAL Contact Us -->
+             <div class="modal fade" id="myModalContact"  tabindex="-1" role="dialog">
+             <div class="modal-dialog modal-md">
+                            <div class="modal-content ">
+                                <div class="modal-header">
+                                    <h5 class="h3 text-dark d-flex justify-content-center" id="myModalLabel">Contact us now!</h5>
+                                    <button class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group row">
+                                        <label for="example-text-input" class="col-2 col-form-label text-dark font-weight-bold">Email:</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                    <label for="example-text-input" class="col-2 col-form-label text-dark font-weight-bold">Message:</label>
+                                    <div class="col-10">
+                                    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                                    </div>
+                                    </div>
+
+
+
+
+                                    <div class="modal-footer d-flex justify-content-center">  
+                                        <button href="" class="btn btn-outline-success">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
             
                     
                 
@@ -113,7 +146,7 @@
                         <p>Mauris egestas tellus non ex condimentum, ac ullamcorper sapien dictum. Nam consequat neque quis
                             sapien viverra convallis. In non tempus lorem. </p>
                         <button class="btn btn-light btn-lg action-button"
-                            type="button"  >Learn More</button>
+                            type="button">Learn More</button>
                     </div>
                     <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
                         <div class="iphone-mockup">
@@ -199,6 +232,40 @@
                 </div>
             </div>
         </div>
+        <div class="projects-clean my-5" id="section3">
+            <div class="container text-center my-5">
+                <div class="intro">
+                    <h2 class="text-center mb-3">Services</h2>
+                    <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae.</p>
+                </div>
+                <div class="row projects">
+                    <div class="col-sm-6 col-lg-4 item"><img src="front/img/desk.jpg" class="img-fluid" />
+                        <h3 class="name">Service Name</h3>
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 item"><img src="front/img/building.jpg" class="img-fluid" />
+                        <h3 class="name">Service Name</h3>
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 item"><img src="front/img/loft.jpg" class="img-fluid" />
+                        <h3 class="name">Service Name</h3>
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 item"><img src="front/img/minibus.jpeg" class="img-fluid" />
+                        <h3 class="name">ServiceName</h3>
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 item"><img src="front/img/minibus.jpeg" class="img-fluid" />
+                        <h3 class="name">ServiceName</h3>
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 item"><img class="img-fluid" src="front/img/minibus.jpeg" />
+                        <h3 class="name">Service Name</h3>
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, interdum justo suscipit id.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <footer>
             <div class="row">
                 <div class="col-sm-6 col-md-4 footer-navigation">
@@ -210,7 +277,7 @@
                     <p class="links">
                         <a href="#">Home</a>
                         <strong> | </strong>
-                        <a href="#">About</a>
+                        <a href="#section2">About</a>
                         <strong> | </strong>
                         <a href="#">Faq</a>
                         <strong> | </strong>
@@ -257,9 +324,12 @@
                 </div>
             </div>
         </footer>
+       
         <script src="front/js/jquery.min.js"></script>
         <script src="front/js/bootstrap.min.js"></script>
         <script src="front/js/scrollspy.js"></script>
+
+      
 
 
 </body>
