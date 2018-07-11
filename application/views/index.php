@@ -30,9 +30,9 @@
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav list-inline">
                             <li class="nav-item" role="presentation">
-                            <li class="nav-item" role="presentation">   <a class="nav-link list-inline-item active">Home</a> </li>
-                            <li class="nav-item" role="presentation">   <a class="nav-link list-inline-item " href="#section2">About us</a></li>
-                            <li class="nav-item" role="presentation">  <a class="nav-link list-inline-item">FAQ</a></li>
+                            <li class="nav-item" role="presentation">  <a class="nav-link list-inline-item active">Home</a> </li>
+                            <li class="nav-item" role="presentation">  <a class="nav-link list-inline-item " href="#section2">About us</a></li>
+                            <li class="nav-item" role="presentation">  <a class="nav-link list-inline-item">Faq</a></li>
                             <li class="nav-item" role="presentation">  <a class="nav-link list-inline-item">Services</a></li>
                             <li class="nav-item" role="presentation">  <a class="nav-link list-inline-item">Contact us / Opportunities </a></li>
                             </li>
@@ -117,8 +117,7 @@
                     </div>
                     <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
                         <div class="iphone-mockup">
-                            <img src="front/img/broom.jpg" class="device">
-
+                            <img src="front/img/hand.PNG" class="device w-100 h-250">
                         </div>
                     </div>
                 </div>
@@ -210,10 +209,6 @@
                     </h3>
                     <p class="links">
                         <a href="#">Home</a>
-                        <strong> | </strong>
-                        <a href="#">Blog</a>
-                        <strong> | </strong>
-                        <a href="#">Pricing</a>
                         <strong> | </strong>
                         <a href="#">About</a>
                         <strong> | </strong>
