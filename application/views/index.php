@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Green Clean!</title>
+    <title>Welcome to GreenKlean!</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="fonts/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">
@@ -23,7 +23,7 @@
         <div class="header-blue">
             <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
                 <div class="container">
-                    <a class="navbar-brand" href="#">Green Clean</a>
+                    <a class="navbar-brand" href="#">GreenKlean</a>
                     <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="navbar-toggler-icon"></span>
@@ -39,13 +39,13 @@
                             </li>
 
                         </ul>
-                        <form class="form-inline mr-auto" target="_self">
+                        <!-- <form class="form-inline mr-auto" target="_self">
 
                         </form>
                         <span class="navbar-text">
                             <a href="#" class="login" data-toggle="modal" data-target="#myModal">Log In</a>
                         </span>
-                        <a class="btn btn-light action-button" role="button" href="#section1">Sign Up</a>
+                        <a class="btn btn-light action-button" role="button" href="#section1">Sign Up</a>  -->
                     </div>
                     <!-- MODAL ADD-->
                     <div class="modal fade" id="myModal">
@@ -150,7 +150,7 @@
                                             <div class="card-header" id="headingOne">
                                             <h5 class="mb-0">
                                                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                What is Green Clean?
+                                                What is GreenKlean?
                                                 </button>
                                             </h5>
                                             </div>
@@ -249,7 +249,7 @@
         <div class="features-blue" id="section2">
             <div class="container">
                 <div class="intro">
-                    <h2 class="text-center">Features</h2>
+                    <h2 class="text-center">Why GreenKlean?</h2>
                     <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut
                         laoreet vitae. </p>
                 </div>
@@ -296,7 +296,7 @@
         <div class="projects-clean my-5" id="section3">
             <div class="container text-center my-5">
                 <div class="intro">
-                    <h2 class="text-center mb-3">Services</h2>
+                    <h2 class="text-center mb-3">Why GreenKlean?</h2>
                     <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae.</p>
                 </div>
                 <div class="row projects">
@@ -344,7 +344,7 @@
                         <strong> | </strong>
                         <a href="#">Contact</a>
                     </p>
-                    <p class="company-name">Green Clean © 2015 </p>
+                    <p class="company-name">GreenKlean © 2015 </p>
                 </div>
                 <div class="col-sm-6 col-md-4 footer-contacts">
                     <div>
