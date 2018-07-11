@@ -296,7 +296,7 @@
         <div class="projects-clean my-5" id="section3">
             <div class="container text-center my-5">
                 <div class="intro">
-                    <h2 class="text-center mb-3">Why GreenKlean?</h2>
+                    <h2 class="text-center mb-3">Services</h2>
                     <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae.</p>
                 </div>
                 <div class="row projects">
