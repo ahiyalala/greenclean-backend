@@ -1,7 +1,7 @@
-<?php $this->view("includes/admin_header.php"); 
+<?php $this->view("includes/admin_header.php");
       $this->view("includes/admin_nav.php");
       $this->view("includes/admin_sidebar.php");
-	  
+
 ?>
 
                   <!-- Page Content -->
@@ -36,16 +36,27 @@
                                                                   <td><?php echo $housekeepers->gender; ?></td>
                                                             </tr>
                                                             <tr>
-                                                                  <th scope="row">Work Registered: </th>
-                                                                  <td>Monday - Friday</td>
-                                                            </tr>
-                                                            <tr>
-                                                                  <th scope="row">OFF Days: </th>
-                                                                  <td>Saturday, Sunday</td>
+                                                                  <th scope="row">Work Schedule: </th>
+                                                                  <td>
+                                                                    <?php
+                                                                        $schedule = json_decode($housekeepers->schedule_dates);
+                                                                        $dates = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+                                                                        foreach($dates as $date){
+                                                                          $sub = substr($date,0,1);
+                                                                          if(in_array($date,$schedule)){
+                                                                            echo "<strong>$sub</strong>";
+                                                                          }
+                                                                          else{
+                                                                            echo "<span>$sub</span>";
+                                                                          }
+                                                                          echo " ";
+                                                                        }
+                                                                    ?>
+                                                                  </td>
                                                             </tr>
                                                       </tbody>
                                                 </table>
-	
+
                                           </div>
                                           <!-- END OF 1ST CARD BODY -->
                                           <div class="card-footer">
@@ -59,25 +70,25 @@
                                     <!-- END OF 1ST CARD -->
 
                                     <div class="card mt-3 w-75 container">
-                                          <div class="card-header bg-success h3">Work Infomation</div>
+                                          <div class="card-header bg-success h3">Pending Appointments</div>
                                           <!-- START OF 2ND CARD BODY -->
                                           <div class="card-block bg-faded">
                                                 <table class="table bg-faded">
                                                       <thead>
                                                             <tr>
-                                                                  <th scope="col">#</th>
                                                                   <th scope="col">Client Name</th>
                                                                   <th scope="col">Date</th>
                                                                   <th scope="col">Time</th>
                                                             </tr>
                                                       </thead>
                                                       <tbody>
+                                                          <?php foreach($appointments as $appointment): ?>
                                                             <tr>
-                                                                  <th scope="row"> 1 </th>
-                                                                  <td>Kat Cruz</td>
-                                                                  <td>July 26, 2019</td>
-                                                                  <td>16:00 - 17:00</td>
+                                                                  <td><?php echo $appointment->c_first_name.' '.$appointment->c_last_name; ?></td>
+                                                                  <td><?php echo date('M d Y', strtotime($appointment->date)); ?></td>
+                                                                  <td><?php echo $appointment->start_time.' ~ '.$appointment->end_time; ?></td>
                                                             </tr>
+                                                          <?php endforeach; ?>
                                                       </tbody>
                                                 </table>
                                           </div>
@@ -92,8 +103,8 @@
                                           <!-- START OF 3rd CARD BODY -->
                                           <div class="card-block bg-faded">
                                             <div id="calendar"></div>
-                                           </div> 
-                                    </div> 
+                                           </div>
+                                    </div>
 
 <!-- MODAL UPDATE EMPLOYEE-->
     <div class="modal fade" id="updateEmployee">
@@ -104,7 +115,7 @@
             <button class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-         
+
             <div class="form-group row">
             <label for="example-text-input" class="col-2 col-form-label">First Name:</label>
               <div class="col-10 mb-2">
@@ -217,19 +228,19 @@
             </div>
 
 
-
+          <!--
             <div class="form-group row">
               <label for="example-search-input" class="col-2 col-form-label">Upload Photo:</label>
               <div class="col-10">
-                <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+                <input type="file" class="form-control-file" id="exampleFormControlFile1">
               </div>
             </div>
-
+-->
           </div>
           <div class="modal-footer d-flex justify-content-center">
             <button class="btn btn-outline-success">Update</button>
           </div>
-          
+
         </div>
       </div>
     </div>
@@ -246,20 +257,20 @@
 		  Are you sure you want to delete this employee?
 		  </div>
           <div class="modal-footer d-flex justify-content-center">
-            <button class="btn btn-danger">Delete</button>
+            <a class="btn btn-danger" href="<?php echo base_url('/employee/delete/'.$housekeepers->housekeeper_id) ?>">Delete</a>
 			<button class="btn btn-primary">Cancel</button>
           </div>
-          
+
         </div>
       </div>
-</div> 
+</div>
 		  <!-- /MODAL DELETE EMPLOYEE-->
                               </main>
                               <!-- END OF MAIN -->
 
                         </div>
                         <!-- End Full Section -->
-                    
+
                   <!-- END Page Content  -->
 
 <?php $this->view("includes/admin_footer.php"); ?>

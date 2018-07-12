@@ -9,6 +9,7 @@ class Housekeeper extends CI_Model{
     public $email_address;
     public $contact_number;
     public $gender;
+    public $schedule_dates;
 
     public function get_all(){
         return $this->db->select('*')
@@ -36,7 +37,8 @@ class Housekeeper extends CI_Model{
         $this->birth_date = $this->input->post('birth_date');
         $this->email_address = $this->input->post('email_address');
         $this->contact_number = $this->input->post('contact_number');
-
+        $schedule = $this->input->post('work_schedule');
+        $this->schedule_dates = json_encode($schedule);
         $this->gender = $this->input->post('gender');
 
         $this->db->trans_start();

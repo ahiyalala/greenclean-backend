@@ -12,11 +12,8 @@
             <li>
               <a href="<?php echo base_url('/admin/employee') ?>" class="text-warning ">Employee Management</a>
             </li>
-            <li>
-              <a href="<?php echo base_url('/admin/customer') ?>" class="text-warning">User Management</a>
-            </li>
 			<li>
-              <a href="<?php echo base_url('/admin/appointment') ?>" class="text-warning">Appointments</a>
+              <a href="<?php echo base_url('/admin/appointments') ?>" class="text-warning">Appointments</a>
             </li>
           </ul>
         </div>

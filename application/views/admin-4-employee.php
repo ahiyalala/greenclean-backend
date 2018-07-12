@@ -37,11 +37,11 @@
               <table class="table table-striped table-bordered table-hover table-sm" id="myTable">
                 <thead>
                   <tr>
-                  
+
                     <th>No.</th>
                     <th>Full Name</th>
                     <th>Gender</th>
-                    <th>Date Registered</th>
+                    <th>Contact Number</th>
                     <th>Customer's Rating</th>
                     <th> </th>
                   </tr>
@@ -50,13 +50,13 @@
                   <!-- stuffff -->
                 <?php foreach($housekeepers as $housekeeper): ?>
                   <tr>
-				
+
                     <td><?php echo $housekeeper->housekeeper_id ?></td>
                     <td>
                       <a href="<?php echo base_url("/admin/employee/".$housekeeper->housekeeper_id) ?>"> <?php echo $housekeeper->last_name.", ".$housekeeper->first_name; ?> </a>
                     </td>
                     <td><?php echo $housekeeper->gender ?></td>
-                    <td>Date registered not yet available</td>
+                    <td><?php echo '0'.$housekeeper->contact_number ?></td>
                     <th> Rating not yet available </th>
                     <th>
                     <div class="btn-group w-100 btn-block" role="group">
@@ -70,7 +70,7 @@
                 </tbody>
               </table>
             </div>
-            
+
             <hr class="py-2">
             <div class="d-flex justify-content-center clearfix pt-3">
               <button class="btn btn-outline-primary mx-1 btn-lg" data-toggle="modal" data-target="#addEmployee"> <i class="fas fa-plus"></i> Add New Employee</button>
@@ -109,9 +109,9 @@
                 </tbody>
               </table>
             </div>
-          
 
-           
+
+
 
           </main>
 
@@ -186,51 +186,51 @@
                 <div class="row">
                   <div class="col">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Monday" name="work_schedule[]" placeholder="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Monday" name="work_schedule[]" placeholder="" id="date_1">
+                      <label class="form-check-label" for="date_1">
                         Monday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Tuesday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Tuesday"  name="work_schedule[]" placeholder="" id="date_2">
+                      <label class="form-check-label" for="date_2">
                         Tuesday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Wednesday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Wednesday"  name="work_schedule[]" placeholder="" id="date_3">
+                      <label class="form-check-label" for="date_3">
                         Wednesday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Thursday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Thursday"  name="work_schedule[]" placeholder="" id="date_4">
+                      <label class="form-check-label" for="date_4">
                         Thursday
                       </label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Friday"  name="work_schedule[]" placeholder="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Friday"  name="work_schedule[]" placeholder="" id="date_5">
+                      <label class="form-check-label" for="date_5">
                         Friday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Saturday"  value="" name="work_schedule[]" placeholder="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Saturday"  value="" name="work_schedule[]" placeholder="" id="date_6">
+                      <label class="form-check-label" for="date_6">
                         Saturday
                       </label>
                     </div>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="Sunday" name="work_schedule[]" placeholder="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
+                      <input class="form-check-input" type="checkbox" value="Sunday" name="work_schedule[]" placeholder="" id="date_7">
+                      <label class="form-check-label" for="date_7">
                         Sunday
                       </label>
                     </div>
@@ -240,13 +240,13 @@
             </div>
 
 
-
+<!--
             <div class="form-group row">
               <label for="example-search-input" class="col-2 col-form-label">Upload Photo:</label>
               <div class="col-10">
                 <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
               </div>
-            </div>
+            </div>-->
 
           </div>
           <div class="modal-footer d-flex justify-content-center">
@@ -266,7 +266,7 @@
             <button class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-         
+
             <div class="form-group row">
             <label for="example-text-input" class="col-2 col-form-label">First Name:</label>
               <div class="col-10 mb-2">
@@ -391,7 +391,7 @@
           <div class="modal-footer d-flex justify-content-center">
             <button class="btn btn-outline-success">Update</button>
           </div>
-          
+
         </div>
       </div>
     </div>
@@ -407,14 +407,14 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      Are you sure you want to delete this employee?	
+                      Are you sure you want to delete this employee?
                       <div class="form-row">
                         <div class="form-group my-3 col-sm-12 d-flex justify-content-center">
                           <button type="submit" class="mx-2 btn btn-danger">Yes</button>
 						  <button type="submit" class="mx-2 btn btn-primary">No</button>
                         </div>
                       </div>
-                      
+
                     </div>
                   </div>
                 </div>
@@ -437,12 +437,12 @@
 					<option placeholder="3">Employee 2</option>
 					<option placeholder="4">Employee 3</option>
 				</select>
-			</div>			
+			</div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
             <button class="btn btn-outline-success">Re-assign</button>
           </div>
-          
+
         </div>
       </div>
     </div>

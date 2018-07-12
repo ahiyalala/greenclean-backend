@@ -32,6 +32,19 @@ class Employee extends CI_Controller{
             $this->session->set_flashdata('message','Something went wrong');
         }
 
-        redirect('admin/employee');
+        redirect('admin/employee','location');
+    }
+
+    public function delete($id){
+      $this->db->trans_begin(true);
+      $this->db->where(array('housekeeper_id'=>$id));
+      $this->db->delete('housekeeper');
+      if($this->db->trans_status()){
+        $this->db->trans_commit();
+      }
+      else{
+        $this->db->trans_rollback();
+      }
+      redirect('admin/employee','location');
     }
 }
