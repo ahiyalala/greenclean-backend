@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css_admin/Features-Blue.css">
     <link rel="stylesheet" href="css_admin/Project-Clean.css">
     <link rel="stylesheet" href="css_admin/Header-Blue.css">
+    <link rel="stylesheet" href="css_admin/Highlight-Phone.css">
     <link rel="stylesheet" href="css_admin/Pretty-Footer.css">
     <link rel="stylesheet" href="css_admin/Registration-Form-with-Photo.css">
     <link rel="stylesheet" href="css_admin/styles.css">
@@ -218,7 +219,7 @@
             </div>
             </div>
         </div>
-        <div class="register-photo" id="section1">
+        <!--<div class="register-photo" id="section1">
             <div class="form-container">
                 <div class="image-holder"></div>
                 <form method="post">
@@ -245,7 +246,24 @@
                     <a href="#" class="already" data-toggle="modal" data-target="#myModal">You already have an account? Login here.</a>
                 </form>
             </div>
+        </div> -->
+        <div class="highlight-phone">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-lg-7">
+                        <div class="intro">
+                            <h2>Highlight</h2>
+                            <p>Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. Aliqua sed justo ligula.</p><a class="btn btn-primary btn-success" style="border-radius:40px;" role="button" href="#">Action Button</a></div>
+                    </div>
+                    <div class="col-sm-4 col-lg-6 offset-lg-7">
+                        <div class="d-none d-md-block iphone-mockup"></div><img src="front/img/sponge.png" class="img-responsive" style="width:310px;height:262px;" /></div>
+                </div>
+            </div>
         </div>
+
+
+
+
         <div class="features-blue" id="section2">
             <div class="container">
                 <div class="intro">
