@@ -1,6 +1,16 @@
 <?php
 class Admin extends CI_Controller {
 
+
+    public function _validate_admin($bool=false){
+      $has_data = $this->session->has_userdata('user');
+
+      if(!$has_data && !$bool)
+        redirect('/admin','location');
+
+      return $has_data;
+    }
+
     private function _get_super_count(){
           return $this->db->select('*')->from('admin')
                     ->where(array('is_super'=>1))->count_all_results();
@@ -39,25 +49,21 @@ class Admin extends CI_Controller {
     }
 
     public function dashboard(){
-      $has_data = $this->session->has_userdata('user');
-      if($has_data){
-        $services = $this->db->select('*')->from('services')->get()->result();
-        $user = $this->session->user;
-        $data = array(
-          'services'=>$services,
-          'admin'=>$user
-        );
-        if($user['is_super']){
-          $this->load->view('admin-2-dashboard',$data);
-        }
-        else{
-          $this->load->view('admin-3-service',$data);
-        }
+      $this->_validate_admin();
+
+      redirect('/admin/management','location');
+      $services = $this->db->select('*')->from('services')->get()->result();
+      $user = $this->session->user;
+      $data = array(
+        'services'=>$services,
+        'admin'=>$user
+      );
+      if($user['is_super']){
+        $this->load->view('admin-2-dashboard',$data);
       }
       else{
-        redirect('/admin','location');
+        $this->load->view('admin-3-service',$data);
       }
-
     }
 
     public function register_admin(){
@@ -73,7 +79,7 @@ class Admin extends CI_Controller {
         $this->db->insert('admin',$data);
       }
 
-      if(!$this->db->trans_status()){
+      if(!$this->db->trans_status() || !$this->_validate_admin(true)){
         $this->db->trans_rollback();
         $this->session->set_flashdata('message','Invalid registration');
       }
@@ -84,23 +90,19 @@ class Admin extends CI_Controller {
     }
 
     public function management(){
+      $this->_validate_admin();
+
         $this->load->helper('form');
         $services = $this->db->select('*')->from('services')->get()->result();
         $data = array(
             'services'=>$services,
-            'admin' => array(
-                'first_name' => "Kuroneko",
-                'middle_name' => "Kuro",
-                'last_name' => "Kuroro",
-                "is_super" => 0
-            )
+            'admin' => $this->session->user
         );
         $this->load->view('admin-3-service',$data);
     }
 
     public function employee($id=null){
-        if(!$this->session->has_userdata('user'))
-          redirect('/admin','location');
+        $this->_validate_admin();
 
         $this->load->helper('form');
         $this->load->model('housekeeper');
@@ -139,24 +141,28 @@ class Admin extends CI_Controller {
 
 	}
 	public function appointments(){
+    $this->_validate_admin();
         $this->load->helper('form');
         $this->load->model('housekeeper');
 
 
-        $query = 'select h.first_name as h_first_name, h.last_name as h_last_name, c.first_name as c_first_name, c.last_name as c_last_name, hs.date, hs.start_time, hs.end_time
+        $query = 'select t.is_finished, b.service_type_key, h.first_name as h_first_name, h.last_name as h_last_name, c.first_name as c_first_name, c.last_name as c_last_name, hs.date, hs.start_time, hs.end_time
         from housekeeper_schedule as hs
         left join housekeeper as h on h.housekeeper_id=hs.housekeeper_id
         left join booking_request as b on b.schedule_id=hs.schedule_id
         left join customer as c on c.customer_id=b.customer_id
-        where hs.availability <> 0';
-        $data['housekeeper_schedules'] = $this->db->query($query)->result();
-        $data['housekeepers'] = $this->housekeeper->get_all();
-
+        left join payment_transaction as t on t.booking_request_id = b.booking_request_id
+        where hs.availability <> 0
+        order by hs.date desc, hs.start_time, hs.end_time';
+        $data['schedules'] = $this->db->query($query)->result();
+        $data['admin'] = $this->session->user;
 		$this->load->view('admin-6-client',$data);
 
 	}
 
   public function logout(){
+    $this->_validate_admin();
+
     $this->session->sess_destroy();
     redirect('/admin','location');
   }

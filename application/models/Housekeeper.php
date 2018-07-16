@@ -14,6 +14,7 @@ class Housekeeper extends CI_Model{
     public function get_all(){
         return $this->db->select('*')
                             ->from('housekeeper')
+                            ->where(array('relieved'=>0))
                             ->order_by('last_name')
                             ->get()->result();
     }

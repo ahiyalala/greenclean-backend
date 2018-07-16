@@ -6,7 +6,7 @@ $(document).ready(function() {
       center:'title',
       right:'month,agendaWeek,agendaDay'
      },
-     events: 'load.php',
+     events: window.location + '/appointments',
      selectable:true,
      selectHelper:true,
      select: function(start, end, allDay)
@@ -45,7 +45,7 @@ $(document).ready(function() {
        }
       })
      },
- 
+
      eventDrop:function(event)
      {
       var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
@@ -63,7 +63,7 @@ $(document).ready(function() {
        }
       });
      },
- 
+
      eventClick:function(event)
      {
       if(confirm("Are you sure you want to remove it?"))
@@ -81,7 +81,6 @@ $(document).ready(function() {
        })
       }
      },
- 
+
     });
    });
- 

@@ -70,7 +70,8 @@ class Appointments extends Api_Controller{
             $service_data = array(
                 'service_cleaning_id'=>$service_uid->id,
                 'transaction_id' => $transaction_uid->id,
-                'housekeeper_id' => $list_query->housekeeper_id
+                'housekeeper_id' => $list_query->housekeeper_id,
+                'drop_code'=>random_int(100000,999999)
             );
             $this->db->insert('service_cleaning',$service_data);
             $location = $this->db->select('*')->from('location')->where(array('location_id'=>$post_data['location_id'],'customer_id'=>$post_data['customer_id']))->get()->row();

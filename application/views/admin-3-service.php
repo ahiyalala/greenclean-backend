@@ -9,7 +9,7 @@
 
           <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
           <main class="col-sm-9 offset-sm-2 col-md-10 offset-md-1 pt-3">
-            <h1 class="text-center display-4">Administrator Management</h1>
+            <h1 class="text-center display-4">Services Management</h1>
             <div class="dropdown-divider"></div>
 		<!--	<div class="alert alert-success alert-dismissible fade show">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -27,7 +27,7 @@
 					Service <strong>deleted</strong>!
 			  </div> -->
             <h2 class="display-5 pt-5 pb-3">Available Packages</h2>
-		
+
             <!-- ACCORDION -->
             <?php foreach($services as $key=>$service): ?>
             <div id="accordion" role="tablist">
@@ -57,8 +57,8 @@
               <button class="btn btn-outline-danger mx-1" data-toggle="modal" data-target="#deleteService">Delete</button>
             </div>
           </main>
-		  
-		
+
+
 		</div>
 		<!-- MODAL ADD SERVICE-->
 		<div class="modal fade" id="addService" tabindex="-1" role="dialog">
@@ -73,11 +73,11 @@
                     <div class="modal-body">
                       <?php echo form_open('services/add'); ?>
                       <div class="container">
-                      
+
                         <div class="form-group">
                           <input type="text" class="form-control" id="service_type" name="service_type" required placeholder="Service name" />
                         </div>
-                      
+
                       <div class="row pb-3">
                         <div class=" col-6">
                           <input type="number" class="form-control" id="service_price" name="service_price" required placeholder="Price" />
@@ -101,7 +101,7 @@
                 </div>
           </div>
 		  <!-- /MODAL ADD SERVICE-->
-		  
+
 		  <!-- MODAL UPDATE SERVICE-->
 		<div class="modal fade" id="updateService" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg">
@@ -124,11 +124,11 @@
 						</div>
 						<hr/>
             <div class="container">
-                      
+
                       <div class="form-group">
                         <input type="text" class="form-control" id="service_type" name="service_type" required placeholder="Service name" />
                       </div>
-                    
+
                     <div class="row pb-3">
                       <div class=" col-6">
                         <input type="number" class="form-control" id="service_price" name="service_price" required placeholder="Price" />
@@ -146,13 +146,13 @@
                           <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                       </div>
-                      
+
                     </div>
                   </div>
                 </div>
           </div>
 		  <!-- /MODAL UPDATE SERVICE-->
-		  
+
 		  <!-- MODAL DELETE SERVICE-->
 		<div class="modal fade" id="deleteService" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-xs">
@@ -173,18 +173,18 @@
 								  <option placeholder="4">Service 3</option>
 								</select>
 						</div>
-						
+
                       <div class="form-row">
                         <div class="form-group my-3 col-sm-12 d-flex justify-content-center">
                           <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#confirmService">Delete</button>
                         </div>
                       </div>
-                      
+
                     </div>
                   </div>
                 </div>
           </div>
-		  
+
 		  <div class="modal fade" id="confirmService" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
@@ -195,20 +195,20 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      Are you sure you want to delete this service?	
+                      Are you sure you want to delete this service?
                       <div class="form-row">
                         <div class="form-group my-3 col-sm-12 d-flex justify-content-center">
                           <button type="submit" class="mx-2 btn btn-danger">Yes</button>
 						  <button type="submit" class="mx-2 btn btn-primary">No</button>
                         </div>
                       </div>
-                      
+
                     </div>
                   </div>
                 </div>
           </div>
 		  <!-- /MODAL DELETE SERVICE-->
-	
+
 	</div>
       <!-- /#page-content-wrapper -->
 

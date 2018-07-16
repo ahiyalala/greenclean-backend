@@ -53,6 +53,7 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['api/users/login'] = 'users/api_login';
+$route['admin/employee/(:num)/appointments']['get'] = 'adminapi/employee_appointments/$1';
 $route['api/([a-z]+)']['get'] = '$1/api_get/';
 $route['api/([a-z]+)/(:any)']['get'] = '$1/api_get/$2';
 $route['api/([a-z]+)']['post'] = '$1/api_set';

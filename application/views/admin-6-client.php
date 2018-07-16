@@ -116,9 +116,8 @@
               <table class="table table-striped table-bordered table-hover" id="myTable2">
                 <thead>
                   <tr>
-                    <th>No.</th>
                     <th>Client Name</th>
-                    <th>Employee Name</th>
+                    <th>Assigned Employee</th>
                     <th> Service Type </td>
                     <th>Date of Service</th>
                     <th>Status</th>
@@ -126,78 +125,26 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <?php foreach($schedules as $schedule): ?>
                   <tr>
-                    <td>1</td>
-                    <td>Kat Cruz</td>
-                    <td>John Doe</td>
-                    <td> Package A</td>
-                    <td>February 1, 2018</td>
-                    <td>Finished</td>
+
+                    <td><?php echo $schedule->c_first_name.' '.$schedule->c_last_name; ?></td>
+                    <td><?php echo $schedule->h_first_name.' '.$schedule->h_last_name; ?></td>
+                    <td><?php echo $schedule->service_type_key; ?></td>
+                    <td><?php echo date('M d Y',strtotime($schedule->date)); ?></td>
+                    <td><?php echo ($schedule->is_finished)? "Finished":"Pending" ?></td>
                     <td>
                     <div class="btn-group w-100 btn-block" role="group">
-                        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#updateAdminModal"><i class="fas fa-edit"></i> Update</button>
+                        <?php if(!$schedule->is_finished): ?>
+                        <button type="button" class="btn btn-info " data-toggle="modal" data-target="#assignEmployee"><i class="fas fa-edit"></i> Re-assign</button>
+                        <?php else: ?>
                         <button type="button" class="btn btn-info " data-toggle="modal" data-target="#confirmRefund"><i class="fas fa-exclamation"></i> Refund</button>
+                        <?php endif; ?>
                     </div>
                     </td>
 
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Pat Santos</td>
-                    <td>John Doe</td>
-                    <td> Package B</td>
-                    <td>February 1, 2018</td>
-                    <td>Finished</td>
-                    <td>
-                    <div class="btn-group w-100 btn-block" role="group">
-                        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#updateAdminModal"><i class="fas fa-edit"></i> Update</button>
-                        <button type="button" class="btn btn-info " data-toggle="modal" data-target="#confirmRefund"><i class="fas fa-exclamation"></i> Refund</button>
-                    </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Juan dela Cruz</td>
-                    <td>Mark Poe</td>
-                    <td> Package C</td>
-                    <td>February 3, 2018</td>
-                    <td>In-Progress</td>
-                    <td>
-                    <div class="btn-group w-100 btn-block" role="group">
-                        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#updateAdminModal"><i class="fas fa-edit"></i> Update</button>
-                        <button type="button" class="btn btn-info " data-toggle="modal" data-target="#confirmRefund"><i class="fas fa-exclamation"></i> Refund</button>
-                    </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>Kat Cruz</td>
-                    <td>John Doe</td>
-                    <td> Package A</td>
-                    <td>February 5, 2018</td>
-                    <td>Not Started</td>
-                    <td>
-                    <div class="btn-group w-100 btn-block" role="group">
-                        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#updateAdminModal"><i class="fas fa-edit"></i> Update</button>
-                        <button type="button" class="btn btn-info " data-toggle="modal" data-target="#confirmRefund"><i class="fas fa-exclamation"></i> Refund</button>
-                    </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>Kat Cruz</td>
-                    <td>Lisa Zoe</td>
-                    <td> Package B</td>
-                    <td>February 8, 2018</td>
-                    <td>Not Started</td>
-                    <td>
-                    <div class="btn-group w-100 btn-block" role="group">
-                        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#updateAdminModal"><i class="fas fa-edit"></i> Update</button>
-                        <button type="button" class="btn btn-info " data-toggle="modal" data-target="#confirmRefund"><i class="fas fa-exclamation"></i> Refund</button>
-                    </div>
-                    </td>
-                  </tr>
-
+                <?php endforeach; ?>
                 </tbody>
               </table>
             </div>

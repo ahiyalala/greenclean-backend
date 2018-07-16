@@ -10,8 +10,7 @@ if ( ! function_exists('sms_helper'))
                 "clientCorrelator"=>$appointment['service_cleaning_id'],
                 "senderAddress"=>GLOBE_SHORT_CODE,
                 "outboundSMSTextMessage"=> array(
-                    "message"=>"[GreenKlean Automated Message]"
-                    ."\n\n[Notice] You have an appointment!\nService type: "
+                    "message"=>"[Notice] You have an appointment!\nService type: "
                     .$appointment['service']['service_type_key']
                     ."\nCustomer: ".$customer->last_name.", ".$customer->first_name
                     ."\nDate: ".$appointment['date']
@@ -42,5 +41,5 @@ if ( ! function_exists('sms_helper'))
         else{
             return false;
         }
-    }   
+    }
 }

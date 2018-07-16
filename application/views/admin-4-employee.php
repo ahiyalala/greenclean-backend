@@ -42,7 +42,7 @@
                     <th>Full Name</th>
                     <th>Gender</th>
                     <th>Contact Number</th>
-                    <th>Customer's Rating</th>
+                    <th>Rating</th>
                     <th> </th>
                   </tr>
                 </thead>
@@ -57,11 +57,11 @@
                     </td>
                     <td><?php echo $housekeeper->gender ?></td>
                     <td><?php echo '0'.$housekeeper->contact_number ?></td>
-                    <th> Rating not yet available </th>
+                    <th><?php echo ($housekeeper->rating > 0)? $housekeeper->rating:"Rating not yet available"; ?> </th>
                     <th>
                     <div class="btn-group w-100 btn-block" role="group">
-                        <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#confirmEmployee"><i class="fas fa-trash-alt"></i> Delete</button>
-                        <button type="button" class="btn btn-success " data-toggle="modal" data-target="#updateEmployee"><i class="fas fa-edit"></i> Update</button>
+                        <button type="button" class="btn btn-danger employee-delete" data-employee-id="<?php echo $housekeeper->housekeeper_id; ?>" data-toggle="modal" data-target="#confirmEmployee"><i class="fas fa-trash-alt"></i> Delete</button>
+                        <button type="button" class="btn btn-success employee-update" data-employee-id="<?php echo $housekeeper->housekeeper_id; ?>" data-toggle="modal" data-target="#updateEmployee"><i class="fas fa-edit"></i> Update</button>
                     </div>
                     </th>
                   </tr>
@@ -83,7 +83,6 @@
               <table class="table table-striped" id="myTable2">
                 <thead>
                   <tr>
-                    <th>No.</th>
                     <th>Employee Name</th>
                     <th>Client Name</th>
                     <th>Date of Service</th>
@@ -94,11 +93,6 @@
                 <tbody>
                   <?php foreach($housekeeper_schedules as $housekeeper_schedule): ?>
                   <tr>
-                    <td>
-                      <p class="float-right">
-                        <input class="form-check-input" name="a1" type="radio" placeholder="option1">
-                      </p>
-                    </td>
                     <td><?php echo $housekeeper_schedule->h_first_name." ".$housekeeper_schedule->h_last_name ?></td>
                     <td><?php echo $housekeeper_schedule->c_first_name." ".$housekeeper_schedule->c_last_name ?></td>
                     <td><?php echo $housekeeper_schedule->date ?></td>
@@ -410,8 +404,8 @@
                       Are you sure you want to delete this employee?
                       <div class="form-row">
                         <div class="form-group my-3 col-sm-12 d-flex justify-content-center">
-                          <button type="submit" class="mx-2 btn btn-danger">Yes</button>
-						  <button type="submit" class="mx-2 btn btn-primary">No</button>
+                          <a id="employee-delete" class="mx-2 btn btn-danger">Yes</a>
+						  <button type="button" data-dismiss="modal" aria-label="Close" class="mx-2 btn btn-primary">No</button>
                         </div>
                       </div>
 
@@ -429,15 +423,15 @@
             <button class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-			<div class="dropdown d-flex justify-content-center mt-2 mb-3">
-				<select style="width:80%">
-					<option placeholder="1">Re-assign an Employee</option>
-					<option placeholder="1" selected>Sample Employee</option>
-					<option placeholder="2">Employee 1</option>
-					<option placeholder="3">Employee 2</option>
-					<option placeholder="4">Employee 3</option>
-				</select>
-			</div>
+      			<div class="dropdown d-flex justify-content-center mt-2 mb-3">
+      				<select style="width:80%">
+      					<option placeholder="1">Re-assign an Employee</option>
+      					<option placeholder="1" selected>Sample Employee</option>
+      					<option placeholder="2">Employee 1</option>
+      					<option placeholder="3">Employee 2</option>
+      					<option placeholder="4">Employee 3</option>
+      				</select>
+      			</div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
             <button class="btn btn-outline-success">Re-assign</button>
