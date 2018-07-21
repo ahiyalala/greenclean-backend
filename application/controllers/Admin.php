@@ -1,15 +1,12 @@
 <?php
 class Admin extends CI_Controller {
 
-
-    public function _validate_admin($bool=false){
-      $has_data = $this->session->has_userdata('user');
-
-      if(!$has_data && !$bool)
-        redirect('/admin','location');
-
-      return $has_data;
-    }
+      public function __construct()
+      {
+              parent::__construct();
+              // Your own constructor code
+              $this->load->helper('admin_verify_helper');
+      }
 
     private function _get_super_count(){
           return $this->db->select('*')->from('admin')
@@ -49,7 +46,9 @@ class Admin extends CI_Controller {
     }
 
     public function dashboard(){
-      $this->_validate_admin();
+
+      admin_verify();
+
 
       redirect('/admin/management','location');
       $services = $this->db->select('*')->from('services')->get()->result();
@@ -79,7 +78,7 @@ class Admin extends CI_Controller {
         $this->db->insert('admin',$data);
       }
 
-      if(!$this->db->trans_status() || !$this->_validate_admin(true)){
+      if(!$this->db->trans_status() || !admin_verify(true)){
         $this->db->trans_rollback();
         $this->session->set_flashdata('message','Invalid registration');
       }
@@ -90,10 +89,10 @@ class Admin extends CI_Controller {
     }
 
     public function management(){
-      $this->_validate_admin();
+      admin_verify();
 
         $this->load->helper('form');
-        $services = $this->db->select('*')->from('services')->get()->result();
+        $services = $this->db->select('*')->from('services')->where(array('deleted'=>0))->get()->result();
         $data = array(
             'services'=>$services,
             'admin' => $this->session->user
@@ -102,7 +101,7 @@ class Admin extends CI_Controller {
     }
 
     public function employee($id=null){
-        $this->_validate_admin();
+        admin_verify();
 
         $this->load->helper('form');
         $this->load->model('housekeeper');
@@ -135,13 +134,10 @@ class Admin extends CI_Controller {
         }
         $this->load->view($view,$data);
     }
-	private function _customer(){
 
-		$this->load->view('admin-6-client');
 
-	}
 	public function appointments(){
-    $this->_validate_admin();
+    admin_verify();
         $this->load->helper('form');
         $this->load->model('housekeeper');
 
@@ -161,7 +157,7 @@ class Admin extends CI_Controller {
 	}
 
   public function logout(){
-    $this->_validate_admin();
+    admin_verify();
 
     $this->session->sess_destroy();
     redirect('/admin','location');

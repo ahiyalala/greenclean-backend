@@ -11,6 +11,23 @@
           <main class="col-sm-9 offset-sm-2 col-md-10 offset-md-1 pt-3">
             <h1 class="text-center display-4">Services Management</h1>
             <div class="dropdown-divider"></div>
+            <?php
+            $status = $this->session->flashdata('status');
+            if($status): ?>
+              <?php
+                if($status['is_successful']){
+                  $message_type = 'alert-success';
+                }
+                else{
+                  $message_type = 'alert-danger';
+                }
+              ?>
+              <div class="alert <?php echo $message_type ?> alert-dismissible fade show">
+          					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          					</button>
+          					<?php echo $status['message']; ?>!
+          		</div>
+            <?php endif; ?>
 		<!--	<div class="alert alert-success alert-dismissible fade show">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					</button>
@@ -71,7 +88,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <?php echo form_open('services/add'); ?>
+                      <?php echo form_open_multipart('services/add'); ?>
                       <div class="container">
 
                         <div class="form-group">
@@ -83,11 +100,14 @@
                           <input type="number" class="form-control" id="service_price" name="service_price" required placeholder="Price" />
                         </div>
                         <div class="col-6" >
-                          <input type="number" class="form-control" id="service_duration" name="service_duration" required placeholder="Duration" />
+                          <input type="number" class="form-control" step="0.01" id="service_duration" name="service_duration" required placeholder="Duration" />
                         </div>
                       </div>
                         <div class="form-group">
                           <textarea class="form-control" id="service_description" name="service_description" placeholder="Description" required ></textarea>
+                        </div>
+                        <div class="form-group">
+                          <input class="form-control" id="service_image" name="service_image" type="file" accept="image/*" required />
                         </div>
                       </div>
                       <div class="form-row">
@@ -114,31 +134,31 @@
                     </div>
                     <div class="modal-body">
                       <div class="dropdown d-flex justify-content-center">
-								<select class="custom-select w-100" >
-								  <option placeholder="1">Select Service</option>
-								  <option placeholder="1" selected>Service Sample</option>
-								  <option placeholder="2">Service 1</option>
-								  <option placeholder="3">Service 2</option>
-								  <option placeholder="4">Service 3</option>
+								<select id="service-updater" class="custom-select w-100" >
+								  <option value="" selected disabled>Select Service</option>
+                  <?php foreach($services as $key=>$service): ?>
+                    <option value="<?php echo $service->service_type_key; ?>"><?php echo $service->service_type_key; ?></option>
+                  <?php endforeach; ?>
 								</select>
 						</div>
 						<hr/>
-            <div class="container">
+            <?php echo form_open('services/update'); ?>
+                    <div class="container">
 
                       <div class="form-group">
-                        <input type="text" class="form-control" id="service_type" name="service_type" required placeholder="Service name" />
+                        <input type="text" class="form-control d-none" id="service-type" name="service_type_key" readonly required placeholder="Service name" />
                       </div>
 
                     <div class="row pb-3">
                       <div class=" col-6">
-                        <input type="number" class="form-control" id="service_price" name="service_price" required placeholder="Price" />
+                        <input type="number" class="form-control" id="service-price" name="service_price" required placeholder="Price" />
                       </div>
                       <div class="col-6" >
-                        <input type="number" class="form-control" id="service_duration" name="service_duration" required placeholder="Duration" />
+                        <input type="number" class="form-control" id="service-duration" name="service_duration" step="0.01" required placeholder="Duration" />
                       </div>
                     </div>
                       <div class="form-group">
-                        <textarea class="form-control" id="service_description" name="service_description" placeholder="Description" required ></textarea>
+                        <textarea class="form-control" id="service-description" name="service_description" placeholder="Description" required ></textarea>
                       </div>
                     </div>
                       <div class="form-row">
@@ -146,7 +166,7 @@
                           <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                       </div>
-
+          <?php echo form_close(); ?>
                     </div>
                   </div>
                 </div>
@@ -164,22 +184,22 @@
                       </button>
                     </div>
                     <div class="modal-body">
+                      <?php echo form_open('services/delete',array('id'=>'deleteForm')); ?>
                       <div class="dropdown d-flex justify-content-center">
-								<select class="custom-select" style="width:80%">
-								  <option placeholder="1">Select Service</option>
-								  <option placeholder="1" selected>Service Sample</option>
-								  <option placeholder="2">Service 1</option>
-								  <option placeholder="3">Service 2</option>
-								  <option placeholder="4">Service 3</option>
-								</select>
-						</div>
+          								<select name="service_type_key" class="custom-select" style="width:80%">
+          								  <option selected disabled>Select Service</option>
+                            <?php foreach($services as $key=>$service): ?>
+                              <option value="<?php echo $service->service_type_key; ?>"><?php echo $service->service_type_key; ?></option>
+                            <?php endforeach; ?>
+          								</select>
+          						</div>
 
                       <div class="form-row">
                         <div class="form-group my-3 col-sm-12 d-flex justify-content-center">
-                          <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#confirmService">Delete</button>
+                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmService">Delete</button>
                         </div>
                       </div>
-
+                      <?php echo form_close(); ?>
                     </div>
                   </div>
                 </div>
@@ -198,8 +218,8 @@
                       Are you sure you want to delete this service?
                       <div class="form-row">
                         <div class="form-group my-3 col-sm-12 d-flex justify-content-center">
-                          <button type="submit" class="mx-2 btn btn-danger">Yes</button>
-						  <button type="submit" class="mx-2 btn btn-primary">No</button>
+                          <button id="delete-yes" type="button" class="mx-2 btn btn-danger">Yes</button>
+						  <button type="button" class="mx-2 btn btn-primary">No</button>
                         </div>
                       </div>
 

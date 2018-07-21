@@ -2,13 +2,11 @@
 include 'Api_Controller.php';
 class Employee extends CI_Controller{
 
-  public function _validate_admin($bool=false){
-    $has_data = $this->session->has_userdata('user');
-
-    if(!$has_data && !$bool)
-      redirect('/admin','location');
-
-    return $has_data;
+  public function __construct()
+  {
+          parent::__construct();
+          // Your own constructor code
+          $this->load->helper('admin_verify_helper');
   }
 
     public function add(){
@@ -50,7 +48,7 @@ class Employee extends CI_Controller{
       $this->db->set(array('relieved'=>1));
       $this->db->where(array('housekeeper_id'=>$id));
       $this->db->update('housekeeper');
-      if($this->db->trans_status() || $this->_validate_admin(true)){
+      if($this->db->trans_status() || admin_verify(true)){
         $this->db->trans_commit();
       }
       else{
