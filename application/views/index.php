@@ -205,9 +205,11 @@
             <div class="container hero">
                 <div class="row">
                     <div class="col-12 col-lg-6 col-xl-5 offset-xl-1">
-                        <h1>The revolution is here.</h1>
-                        <p>Mauris egestas tellus non ex condimentum, ac ullamcorper sapien dictum. Nam consequat neque quis
-                            sapien viverra convallis. In non tempus lorem. </p>
+                        <h1>Welcome to GreenKlean!</h1>
+                        <p>Greenklean is a convenient way to keep your home clean. Our housekeepers provide trustworthy professional cleaning services at a great value using our own functional, safe and 
+                            non harmful cleaning solutions. </p>
+
+                        <p>We treat your home like it is ours.</p>
                         <button class="btn btn-light btn-lg action-button"
                             type="button">Learn More</button>
                     </div>
@@ -253,7 +255,7 @@
                 <div class="row">
                     <div class="col-md-8 col-lg-7">
                         <div class="intro">
-                            <h2>Highlight</h2>
+                            <h2>Book your cleaning now!</h2>
                             <p>Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. Aliqua sed justo ligula.</p><a class="btn btn-primary btn-success" style="border-radius:40px;" role="button" href="#">Action Button</a></div>
                     </div>
                     <div class="col-sm-4 col-lg-6 offset-lg-7">
@@ -378,7 +380,7 @@
                     <div>
                         <i class="fa fa-envelope footer-contacts-icon"></i>
                         <p>
-                            <a href="#" target="_blank">support@company.com</a>
+                            <a href="#" target="_blank">greenklean.ph@gmail.com</a>
                         </p>
                     </div>
                 </div>

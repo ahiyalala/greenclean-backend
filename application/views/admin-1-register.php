@@ -32,15 +32,15 @@
       <!-- END -->
        <img class="mb-4 rounded-circle" src="http://via.placeholder.com/72x72" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Registration</h1>
-      <label for="inputFirstName" class="sr-only">First Name</label>
+      <label for="inputFirstName" class="sr-only">First Name <p class="text-danger">*</p></label>
       <input type="text" name="first_Name" id="firstName" class="form-control" placeholder="First Name" required autofocus>
-      <label for="inputMiddleName" class="sr-only">Middle Name</label>
+      <label for="inputMiddleName" class="sr-only my-2">Middle Name <p class="text-danger">*</p></label>
       <input type="text" name="middle_Name" id="middleName" class="form-control" placeholder="Middle Name" required autofocus>
-      <label for="inputFirstName" class="sr-only">Last Name</label>
+      <label for="inputFirstName" class="sr-only">Last Name <p class="text-danger">*</p></label>
       <input type="text" name="last_Name" id="lastName" class="form-control" placeholder="Last Name" required autofocus>   
-      <label for="inputEmail" class="sr-only">Email address</label>
+      <label for="inputEmail" class="sr-only my-2">Email address <p class="text-danger">*</p></label>
       <input type="email" name="email_address" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-      <label for="inputPassword" class="sr-only">Password</label>
+      <label for="inputPassword" class="sr-only">Password <p class="text-danger">*</p></label>
       <input type="password" name="password" id="inputPassword" class="form-control mb-3" placeholder="Password" required>
 
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
