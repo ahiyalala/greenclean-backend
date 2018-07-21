@@ -32,7 +32,7 @@
       <!-- END -->
        <img class="mb-4 rounded-circle" src="http://via.placeholder.com/72x72" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Registration</h1>
-      <label for="inputFirstName" class="sr-only">First Name <p class="text-danger">*</p></label>
+      <label for="inputFirstName" class="sr-only">FirsName <p class="text-danger">*</p></label>
       <input type="text" name="first_Name" id="firstName" class="form-control" placeholder="First Name" required autofocus>
       <label for="inputMiddleName" class="sr-only my-2">Middle Name <p class="text-danger">*</p></label>
       <input type="text" name="middle_Name" id="middleName" class="form-control" placeholder="Middle Name" required autofocus>
