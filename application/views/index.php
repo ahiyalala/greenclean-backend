@@ -191,6 +191,54 @@
                                             </div>
                                             </div>
                                         </div>
+                                        <div class="card">
+                                            <div class="card-header" id="headingThree">
+                                            <h5 class="mb-0">
+                                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                Types of Cleaning: Express Clean and Deep Clean
+                                                </button>
+                                            </h5>
+                                            </div>
+                                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                            <div class="card-body text-dark">
+                                       <p>     <strong> Express Clean </strong> - Basic, fast and spot cleaning of a few key areas for 1.5 hours with 1 cleaner. </p>
+<p>
+1. Bathroom Fix toiletries Scrubbing and spot cleaning of toilet bowl, sink and show
+er 
+2. Bedroom Fix or change bed covers and pillows Wipe cabinets, furniture, appliances Clean floors 
+(vacuum and mop) 
+3. Dining Wipe dining set and cupboards Clean floors (vacuum and mop) 
+4. Kitchen Wipe countertops, kitchen appliances (fridge, oven, micr
+owave) and sink Clean floors 
+(vacuum and mop) 
+5. Living Room Wipe furniture, appliances and shelves Clean floors, sofa and windows (vacuum and 
+mop) 
+6. Others Throw trash Room spray 
+</p>
+<p><strong> Deep Clean </strong> - Deep and thorough cleaning of most areas for 3 hours with 1 or
+2 cleaners. </p>
+<p>
+1. Bathroom Fix toiletries Scrubbing and deep cleaning of toilet bowl, sink and shower 
+2. Bedroom Fix or change bed covers and pillows Wipe cabinets, furniture, appliances Clean floors 
+(vacuum and mop) 
+3. Dining Wipe dining set and cupboards 
+Clean floors (vacuum and mop) 
+4. Kitchen Wipe countertops and kitchen appliances (fridge, oven, microwave)
+Clean floors (vacuum and 
+mop) 
+Scrub sink 
+5. Living Room Wipe furniture, appliances and shelves Clean floors, sofa and windows (vacuum and 
+mop) 
+6. Ot
+hers Throw trash Room spray and dehumidifier</p>
+
+
+
+
+
+                                            </div>
+                                            </div>
+                                        </div>
                                         </div>
 <!-- MODALFAQ-->
                                 </div>
