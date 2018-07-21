@@ -203,34 +203,26 @@
                                             <div class="card-body text-dark">
                                        <p>     <strong> Express Clean </strong> - Basic, fast and spot cleaning of a few key areas for 1.5 hours with 1 cleaner. </p>
 <p>
-1. Bathroom Fix toiletries Scrubbing and spot cleaning of toilet bowl, sink and show
-er 
+1. Bathroom Fix toiletries Scrubbing and spot cleaning of toilet bowl, sink and shower <br>
 2. Bedroom Fix or change bed covers and pillows Wipe cabinets, furniture, appliances Clean floors 
-(vacuum and mop) 
-3. Dining Wipe dining set and cupboards Clean floors (vacuum and mop) 
-4. Kitchen Wipe countertops, kitchen appliances (fridge, oven, micr
-owave) and sink Clean floors 
-(vacuum and mop) 
+(vacuum and mop) <br>
+3. Dining Wipe dining set and cupboards Clean floors (vacuum and mop) <br>
+4. Kitchen Wipe countertops, kitchen appliances (fridge, oven, microwave) and sink Clean floors 
+(vacuum and mop)  <br>
 5. Living Room Wipe furniture, appliances and shelves Clean floors, sofa and windows (vacuum and 
-mop) 
+mop) <br> 
 6. Others Throw trash Room spray 
 </p>
 <p><strong> Deep Clean </strong> - Deep and thorough cleaning of most areas for 3 hours with 1 or
 2 cleaners. </p>
 <p>
-1. Bathroom Fix toiletries Scrubbing and deep cleaning of toilet bowl, sink and shower 
+1. Bathroom Fix toiletries Scrubbing and deep cleaning of toilet bowl, sink and shower <br>
 2. Bedroom Fix or change bed covers and pillows Wipe cabinets, furniture, appliances Clean floors 
-(vacuum and mop) 
-3. Dining Wipe dining set and cupboards 
-Clean floors (vacuum and mop) 
-4. Kitchen Wipe countertops and kitchen appliances (fridge, oven, microwave)
-Clean floors (vacuum and 
-mop) 
-Scrub sink 
-5. Living Room Wipe furniture, appliances and shelves Clean floors, sofa and windows (vacuum and 
-mop) 
-6. Ot
-hers Throw trash Room spray and dehumidifier</p>
+(vacuum and mop) <br>
+3. Dining Wipe dining set and cupboards Clean floors (vacuum and mop) <br>
+4. Kitchen Wipe countertops and kitchen appliances (fridge, oven, microwave) Clean floors (vacuum and mop) Scrub sink <br>
+5. Living Room Wipe furniture, appliances and shelves Clean floors, sofa and windows (vacuum and mop) <br>
+6. Others Throw trash Room spray and dehumidifier</p>
 
 
 
