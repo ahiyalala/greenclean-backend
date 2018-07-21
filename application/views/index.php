@@ -41,13 +41,13 @@
                             </li>
 
                         </ul>
-                        <!-- <form class="form-inline mr-auto" target="_self">
+                         <form class="form-inline mr-auto" target="_self">
 
                         </form>
                         <span class="navbar-text">
                             <a href="#" class="login" data-toggle="modal" data-target="#myModal">Log In</a>
                         </span>
-                        <a class="btn btn-light action-button" role="button" href="#section1">Sign Up</a>  -->
+                        <a class="btn btn-light action-button" role="button" href="#section1">Sign Up</a> 
                     </div>
                     <!-- MODAL ADD-->
                     <div class="modal fade" id="myModal">
