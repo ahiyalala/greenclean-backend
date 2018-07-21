@@ -194,12 +194,12 @@
                                         <div class="card">
                                             <div class="card-header" id="headingThree">
                                             <h5 class="mb-0">
-                                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
                                                 Types of Cleaning: Express Clean and Deep Clean
                                                 </button>
                                             </h5>
                                             </div>
-                                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                            <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                                             <div class="card-body text-dark">
                                        <p>     <strong> Express Clean </strong> - Basic, fast and spot cleaning of a few key areas for 1.5 hours with 1 cleaner. </p>
 <p>
