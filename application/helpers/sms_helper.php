@@ -10,13 +10,14 @@ if ( ! function_exists('sms_helper'))
                 "clientCorrelator"=>$appointment['service_cleaning_id'],
                 "senderAddress"=>GLOBE_SHORT_CODE,
                 "outboundSMSTextMessage"=> array(
-                    "message"=>"[Notice] You have an appointment!\nService type: "
-                    .$appointment['service']['service_type_key']
+                    "message"=>"[Notice] You have an appointment!"
+                    ."\nService type: ".$appointment['service']['service_type_key']
                     ."\nCustomer: ".$customer->last_name.", ".$customer->first_name
                     ."\nDate: ".$appointment['date']
                     ."\nTime: ".$appointment['start_time']."~".$appointment['end_time']
                     ."\nPrice: ".$appointment['service']['service_price']
                     ."\nLocation: ".$appointment['location']['street_address']." ".$appointment['location']['barangay'].", ".$appointment['location']['city_address']
+                    ."\n\nAssignment code: ".$appointment['drop_code']
                 ),
                 "address"=>$appointment['housekeeper']['contact_number']
             )

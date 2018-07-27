@@ -71,6 +71,7 @@ class Users extends CI_Controller{
             'email_address' => $user['email_address'],
             'password' => $user['password'],
             'contact_number' => $user['contact_number'],
+            'gender'=>$user['gender'],
             'user_token'=> bin2hex(openssl_random_pseudo_bytes(64))
         );
 

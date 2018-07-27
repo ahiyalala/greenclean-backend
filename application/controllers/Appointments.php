@@ -88,7 +88,8 @@ class Appointments extends Api_Controller{
                 'end_time'=>$schedule->end_time,
                 'is_paid'=>false,
                 'is_finished'=>false,
-                'payment_type'=>$booking_data->payment_type
+                'payment_type'=>$booking_data->payment_type,
+                'drop_code'=>$service_data['drop_code']
             );
             $didSendMessage = send_appointment_details_to_employee($appointment_data,$customer);
             if ($this->db->trans_status() && $didSendMessage){
