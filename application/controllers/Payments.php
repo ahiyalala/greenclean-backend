@@ -26,7 +26,7 @@ class Payments extends Api_Controller{
 
         if($httpResponse != 200){
             log_message('error','httpResponse: '.$httpResponse);
-            return $this->output->set_status_header(500);
+            return $this->output->set_status_header($httpResponse);
         }
 
         $cards = json_decode($result,true);
