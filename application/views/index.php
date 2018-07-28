@@ -339,7 +339,7 @@
                             <p>Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque
                                 ut laoreet vitae. Aliqua sed justo ligula.</p>
                             <a class="btn btn-primary btn-success mb-sm-5" style="border-radius:40px;"
-                                role="button" href="#">Action Button</a>
+                                role="button" href="#">Book now!</a>
                         </div>
                     </div>
                     <div class="col-sm-4 col-lg-6 offset-lg-7">
