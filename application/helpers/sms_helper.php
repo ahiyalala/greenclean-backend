@@ -16,7 +16,7 @@ if ( ! function_exists('sms_helper'))
                     ."\nDate: ".$appointment['date']
                     ."\nTime: ".$appointment['start_time']."~".$appointment['end_time']
                     ."\nPrice: ".$appointment['service']['service_price']
-                    ."\nLocation: ".$appointment['location']['street_address']." ".$appointment['location']['barangay'].", ".$appointment['location']['city_address']
+                    ."\nLocation: ".$appointment['location']['location_street']." ".$appointment['location']['location_barangay'].", ".$appointment['location']['location_city']
                     ."\n\nAssignment code: ".$appointment['drop_code']
                 ),
                 "address"=>$appointment['housekeeper']['contact_number']
