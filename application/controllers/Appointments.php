@@ -125,7 +125,7 @@ class Appointments extends Api_Controller{
 
         return $this->output->set_status_header(404)
                             ->set_content_type('application/json', 'utf-8')
-                            ->set_output(json_encode($message));
+                            ->set_output(json_encode(array("message"=>"No housekeeper found")));
 
     }
 
