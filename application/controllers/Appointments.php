@@ -17,7 +17,7 @@ class Appointments extends Api_Controller{
                   LEFT JOIN housekeeper_schedule AS hs ON h.housekeeper_id = hs.housekeeper_id
                   WHERE hs.date = ? AND hs.start_time >= ? AND hs.start_time <= ?";
 
-        $schedule_query = $this->db->query($sql, array($date, $start_time, $start_time));
+        $schedule_query = $this->db->query($query, array($date, $start_time, $start_time));
 
         $day_offs_id = $this->db->query("SELECT housekeeper_id,schedule_dates FROM housekeeper");
 
