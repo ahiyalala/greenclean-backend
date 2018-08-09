@@ -30,7 +30,7 @@ class Appointments extends Api_Controller{
               $day_off = json_decode($row['schedule_dates']);
 
               if(in_array($day_of_week,$day_off)){
-                array_push($row['housekeeper_id']);
+                array_push($values, $row['housekeeper_id']);
               }
         }
 
