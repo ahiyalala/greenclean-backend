@@ -30,9 +30,9 @@ class Services extends CI_Controller{
 
     public function add(){
         admin_verify();
-        $this->load->model('servicesmodel');
+        $this->load->model('ServicesModel');
 
-        if($this->servicesmodel->add()){
+        if($this->ServicesModel->add()){
             $this->session->set_flashdata('status',true);
         }
         else{
@@ -66,9 +66,9 @@ class Services extends CI_Controller{
     public function delete(){
       admin_verify();
 
-      $this->load->model('servicesmodel');
+      $this->load->model('ServicesModel');
 
-      if($this->servicesmodel->delete()){
+      if($this->ServicesModel->delete()){
         $this->session->set_flashdata('status',array(
           'is_successful'=>true,
           'message'=>$this->input->post('service_type_key').": Delete successful"
