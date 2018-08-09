@@ -45,9 +45,9 @@ class Services extends CI_Controller{
     public function update(){
       admin_verify();
 
-      $this->load->model('servicesmodel');
+      $this->load->model('ServicesModel');
 
-      if($this->servicesmodel->update()){
+      if($this->ServicesModel->update()){
         $this->session->set_flashdata('status',array(
           'is_successful'=>true,
           'message'=>$this->input->post('service_type_key').": Update successful"
