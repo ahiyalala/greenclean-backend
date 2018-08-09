@@ -10,15 +10,28 @@ class Appointments extends Api_Controller{
         $this->load->helper('sms_helper');
 
         $date = $this->db->escape_str($post_data["date"]);
+        $day_of_week = date("l", strtotime($post_data["date"]));
         $format_time = date("H:i", strtotime($post_data["start_time"]));
         $start_time = $this->db->escape_str($format_time);
-        $sql = "SELECT housekeeper_id FROM housekeeper_schedule WHERE (date = '".$date."' AND start_time >= '".$start_time."' AND start_time <= '".$start_time."' ) OR (date = '".$date."' AND end_time >= '".$start_time."' AND end_time <= '".$start_time."' ) OR (date = '".$date."' AND availability='0')";
+        $query = "SELECT DISTINCT(h.housekeeper_id) FROM housekeeper as h
+                  LEFT JOIN housekeeper_schedule AS hs ON h.housekeeper_id = hs.housekeeper_id
+                  WHERE hs.date = ? AND hs.start_time >= ? AND hs.start_time <= ?";
 
-        $schedule_query = $this->db->query($sql);
+        $schedule_query = $this->db->query($sql, array($date, $start_time, $start_time));
+
+        $day_offs_id = $this->db->query("SELECT housekeeper_id,schedule_dates FROM housekeeper");
 
         $values = array();
         foreach($schedule_query->result_array() as $row ){
             array_push($values, $row['housekeeper_id']);
+        }
+
+        foreach($day_offs_id->result_array() as $row){
+              $day_off = json_decode($row['schedule_dates']);
+
+              if(in_array($day_of_week,$day_off)){
+                array_push($row['housekeeper_id']);
+              }
         }
 
         if(count($values)>0){
@@ -39,7 +52,7 @@ class Appointments extends Api_Controller{
 
         if(isset($list_query->housekeeper_id)){
             $time = new DateTime($format_time);
-            $time->modify('+3 hours');
+            $time->modify('+'.$post_data['duration'].' hours');
             $uuid = $this->db->select('UUID() as id')
                                 ->get()
                                 ->row();
@@ -93,7 +106,7 @@ class Appointments extends Api_Controller{
             );
             $didSendMessage = send_appointment_details_to_employee($appointment_data,$customer);
             if ($this->db->trans_status() && $didSendMessage){
-                $this->db->trans_commit();
+                $this->db->trans_rollback();
                 return $this->output->set_status_header(200)
                             ->set_content_type('application/json', 'utf-8')
                             ->set_output(json_encode($appointment_data));
