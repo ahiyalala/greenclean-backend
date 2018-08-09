@@ -52,7 +52,7 @@ class Appointments extends Api_Controller{
 
         if(isset($list_query->housekeeper_id)){
             $time = new DateTime($format_time);
-            $time->modify('+'.$post_data['duration'].' hours');
+            $time->modify('+'.$post_data['duration']*60.' minutes');
             $uuid = $this->db->select('UUID() as id')
                                 ->get()
                                 ->row();
