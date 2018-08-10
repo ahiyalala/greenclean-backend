@@ -6,6 +6,19 @@ class Appointments extends Api_Controller{
       if(!$this->isAuth)
         return $this->output->set_status_header($this->header);
 
+      /*Post Data
+        {
+          service_type_key: string,
+          location_id:int,
+          customer_id:int,
+          payment_type:string,
+          date: string,
+          start_time:string,
+          *number_of_housekeepers:int
+          *location_area:int
+        }
+      */
+
         $post_data = json_decode(file_get_contents('php://input'),true);
         $this->load->helper('sms_helper');
 
@@ -35,6 +48,7 @@ class Appointments extends Api_Controller{
         }
 
         if(count($values)>0){
+            $list_query_string = "SELECT * FROM housekeeper WHERE housekeeper_id NOT IN ? ORDER BY RAND() LIMIT ?";
             $list_query = $this->db->select('*')
                 ->from('housekeeper')
                 ->where_not_in('housekeeper_id',$values)
