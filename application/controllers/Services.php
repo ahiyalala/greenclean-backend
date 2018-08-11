@@ -11,7 +11,7 @@ class Services extends CI_Controller{
 
     public function api_get(){
 
-        $services = $this->db->query("SELECT service_type_key, service_description, service_price, service_duration, service_image FROM services WHERE deleted <> 0")->result();
+        $services = $this->db->query("SELECT service_type_key, service_description, service_price, service_duration, service_image FROM services WHERE deleted = 0")->result();
 
         $this->output->set_status_header(200)
             ->set_content_type('application/json', 'utf-8')
