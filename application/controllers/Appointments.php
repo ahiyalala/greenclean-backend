@@ -49,22 +49,17 @@ class Appointments extends Api_Controller{
 
         if(count($values)>0){
             $list_query_string = "SELECT * FROM housekeeper WHERE housekeeper_id NOT IN ? ORDER BY RAND() LIMIT ?";
-            $list_query = $this->db->select('*')
-                ->from('housekeeper')
-                ->where_not_in('housekeeper_id',$values)
-                ->order_by('RAND()')
-                ->get()
-                ->row();
+            $list_query = $this->db->query($list_query_string, array($values,$post_data['number_of_housekeepers']))->result();
         }
         else{
-            $list_query = $this->db->select('*')
-                                    ->from('housekeeper')
-                                    ->order_by('RAND()')
-                                    ->get()
-                                    ->row();
+            $list_query = $this->db->query("SELECT * FROM housekeeper ORDER BY RAND() LIMIT ?", array($post_data['number_of_housekeepers']))->result();
         }
 
-        if(isset($list_query->housekeeper_id)){
+        if(count($list_query) < $post_data['number_of_housekeepers']){
+          return $this->output->set_status_header(404)
+                              ->set_content_type('application/json', 'utf-8')
+                              ->set_output(json_encode(array("message"=>"No housekeeper found")));
+        }
             $time = new DateTime($format_time);
             $duration = $post_data['duration']*60;
             $time->modify('+'.$duration.' minutes');
@@ -73,36 +68,43 @@ class Appointments extends Api_Controller{
                                 ->row();
 
             $this->db->trans_begin();
-            $schedule_data = array(
-                'housekeeper_id'=>$list_query->housekeeper_id,
-                'date'=>$date,
-                'start_time'=>$format_time,
-                'end_time'=> $time->format('H:i'),
-                'availability'=>'1'
-            );
-            $this->db->insert('housekeeper_schedule',$schedule_data);
-            $schedule_id = $this->db->insert_id();
-            $booking_request = array(
-                'booking_request_id'=>$uuid->id,
-                'service_type_key' => $post_data['service_type_key'],
-                'location_id'=> $post_data['location_id'],
-                'customer_id'=>$post_data['customer_id'],
-                'payment_type'=>$post_data['payment_type'],
-                'schedule_id'=>$schedule_id
-            );
-            $this->db->insert('booking_request',$booking_request);
-            $booking_data = $this->db->select('*')->from('booking_request')->where(array('booking_request_id'=>$uuid->id))->get()->row();
-            $transaction_uid = $this->db->select('UUID() as id')->get()->row();
-            $service_uid = $this->db->select('UUID() as id')->get()->row();
-            $this->db->insert('payment_transaction',array('transaction_id'=>$transaction_uid->id,'booking_request_id'=>$booking_data->booking_request_id));
-            $service_data = array(
-                'service_cleaning_id'=>$service_uid->id,
-                'transaction_id' => $transaction_uid->id,
-                'housekeeper_id' => $list_query->housekeeper_id,
-                'drop_code'=>random_int(100000,999999)
-            );
-            $this->db->insert('service_cleaning',$service_data);
-            $location = $this->db->select('*')->from('location')->where(array('location_id'=>$post_data['location_id'],'customer_id'=>$post_data['customer_id']))->get()->row();
+            // transaction query list
+            $insert_booking_request = "INSERT INTO booking_request (booking_request_id, service_type_key, location_id, customer_id,payment_type) VALUES (?, ?, ?, ?, ?)";
+            $select_booking_request = "SELECT * FROM booking_request WHERE booking_request_id = ?";
+            $transaction_insert     = "INSERT INTO payment_transaction (transation_id, booking_request_id) VALUES (?, ?)";
+            $select_location        = "SELECT * FROM location WHERE location_id = ? AND customer_id = ?";
+            // query list end
+            foreach($list_query as $housekeeper){
+              $schedule_data = array(
+                  'housekeeper_id'=>$housekeeper->housekeeper_id,
+                  'date'=>$date,
+                  'start_time'=>$format_time,
+                  'end_time'=> $time->format('H:i'),
+                  'availability'=>'1'
+              );
+              $this->db->insert('housekeeper_schedule',$schedule_data);
+            }
+            $booking_request_id = $this->db->select('UUID() as id')->get()->row();
+            $this->db->query($insert_booking_request, array($booking_request_id, $post_data['service_type_key'], $post_data['location_id'], $post_data['customer_id'], $post_data['payment_type']));
+            $booking_data = $this->db->query($select_booking_request, array($booking_request_id))->get()->row();
+
+            $transaction_id = $this->db->select('UUID() as id')->get()->row();
+            $service_id = $this->db->select('UUID() as id')->get()->row();
+
+            $this->db->query($transaction_insert, array($transaction_uid->id, $booking_request_id));
+
+            foreach($list_query as $housekeeper){
+              $service_data = array(
+                  'service_cleaning_id'=>$service_uid->id,
+                  'transaction_id' => $transaction_uid->id,
+                  'housekeeper_id' => $list_query->housekeeper_id,
+                  'drop_code'=>random_int(100000,999999)
+              );
+              $this->db->insert('service_cleaning',$service_data);
+            }
+
+            $location = $this->db->query($select_location, array($post_data['location_id'], $post_data['customer_id']))->get()->row();
+            $service  = $this->db->query()
             $service = $this->db->select('*')->from('services')->where(array('service_type_key'=>$post_data['service_type_key']))->get()->row();
             $schedule = $this->db->select('*')->from('housekeeper_schedule')->where(array('schedule_id'=>$schedule_id))->get()->row();
             $customer = $this->db->select('*')->from('customer')->where($this->whereIs)->get()->row();
@@ -135,11 +137,8 @@ class Appointments extends Api_Controller{
                         ->set_content_type('application/json', 'utf-8')
                         ->set_output(json_encode($trans_error));
             }
-        }
 
-        return $this->output->set_status_header(404)
-                            ->set_content_type('application/json', 'utf-8')
-                            ->set_output(json_encode(array("message"=>"No housekeeper found")));
+
 
     }
 
