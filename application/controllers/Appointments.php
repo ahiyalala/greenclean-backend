@@ -52,11 +52,11 @@ class Appointments extends Api_Controller{
         }
 
         if(count($values)>0){
-            $list_query_string = "SELECT * FROM housekeeper WHERE housekeeper_id NOT IN ? ORDER BY RAND() LIMIT ?";
+            $list_query_string = "SELECT * FROM housekeeper WHERE housekeeper_id NOT IN ? AND relieved = 0 ORDER BY RAND() LIMIT ?";
             $list_query = $this->db->query($list_query_string, array($values,$post_data['number_of_housekeepers']))->result();
         }
         else{
-            $list_query = $this->db->query("SELECT * FROM housekeeper ORDER BY RAND() LIMIT ?", array($post_data['number_of_housekeepers']))->result();
+            $list_query = $this->db->query("SELECT * FROM housekeeper WHERE relieved = 0 ORDER BY RAND() LIMIT ?", array($post_data['number_of_housekeepers']))->result();
         }
 
         if(count($list_query) < $post_data['number_of_housekeepers']){
@@ -86,7 +86,7 @@ class Appointments extends Api_Controller{
             if(strpos(strtoupper($post_data['service_type_key']), 'COMMERCIAL') !== false){
               $remainder_area = $post_data['location_area'] - 50;
               $pseudo_area = ceil($remainder_area / 10) * 10;
-              $remainder_price_per_area = $pseudo_area * 150;
+              $remainder_price_per_area = $pseudo_area/10 * 150;
               $total_price = $service->service_price + $remainder_price_per_area;
             }
             else{
@@ -130,11 +130,23 @@ class Appointments extends Api_Controller{
             $schedule    = $this->db->select('*')->from('housekeeper_schedule')->where(array('booking_request_id'=>$booking_request_id))->get()->row();
             $customer    = $this->db->select('*')->from('customer')->where($this->whereIs)->get()->row();
             $transaction = $this->db->query("SELECT * FROM payment_transaction WHERE transaction_id = ?", array($transaction_id))->row();
+            $housekeepers = array();
+            foreach($list_query as $housekeeper){
+              array_push($housekeepers, array(
+                'housekeeper_id'=>$housekeeper->id,
+                'first_name'=>$housekeeper->first_name,
+                'middle_name'=>$housekeeper->middle_name,
+                'last_name'=>$housekeeper->last_name,
+                'contact_number'=>$housekeeper->contact_number,
+                'gender'=>$housekeeper->gender,
+                'rating'=>$housekeeper->rating
+              ));
+            }
             $appointment_data = array(
                 'service_cleaning_id'=>$service_id,
                 'service'=>$service,
                 'location'=>$location,
-                'housekeepers'=>$list_query,
+                'housekeepers'=>$housekeepers,
                 'date'=>$schedule->date,
                 'start_time'=>$schedule->start_time,
                 'end_time'=>$schedule->end_time,
