@@ -78,7 +78,7 @@ class Appointments extends Api_Controller{
             // transaction query list
             $insert_booking_request = "INSERT INTO booking_request (booking_request_id, service_type_key, location_id, customer_id,payment_type) VALUES (?, ?, ?, ?, ?)";
             $select_booking_request = "SELECT * FROM booking_request WHERE booking_request_id = ?";
-            $transaction_insert     = "INSERT INTO payment_transaction (transation_id, booking_request_id, total_price) VALUES (?, ?, ?)";
+            $transaction_insert     = "INSERT INTO payment_transaction (transaction_id, booking_request_id, total_price) VALUES (?, ?, ?)";
             $select_location        = "SELECT * FROM location WHERE location_id = ? AND customer_id = ?";
             // query list end
 
@@ -120,7 +120,7 @@ class Appointments extends Api_Controller{
               $service_data = array(
                   'service_cleaning_id'=>$service_id,
                   'transaction_id' => $transaction_id,
-                  'housekeeper_id' => $list_query->housekeeper_id,
+                  'housekeeper_id' => $housekeeper_id->housekeeper_id,
                   'drop_code'=>$drop_code
               );
               $this->db->insert('service_cleaning',$service_data);
@@ -144,8 +144,8 @@ class Appointments extends Api_Controller{
                 'payment_type'=>$booking_data->payment_type,
                 'drop_code'=>$service_data['drop_code']
             );
-            $didSendMessage = send_appointment_details_to_employee($appointment_data,$customer);
-            if ($this->db->trans_status() && $didSendMessage){
+            if ($this->db->trans_status()){
+                send_appointment_details_to_employee($appointment_data,$customer);
                 $this->db->trans_rollback();
                 return $this->output->set_status_header(200)
                             ->set_content_type('application/json', 'utf-8')
