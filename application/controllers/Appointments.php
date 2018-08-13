@@ -97,7 +97,7 @@ class Appointments extends Api_Controller{
 
             foreach($list_query as $housekeeper){
               $schedule_data = array(
-                  'booking_request_id' => $booking_request_id->id,
+                  'booking_request_id' => $booking_request_id,
                   'housekeeper_id'=>$housekeeper->housekeeper_id,
                   'date'=>$date,
                   'start_time'=>$format_time,
