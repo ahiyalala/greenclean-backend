@@ -82,7 +82,7 @@ class Appointments extends Api_Controller{
             $select_location        = "SELECT * FROM location WHERE location_id = ? AND customer_id = ?";
             // query list end
 
-            $booking_request_id = $this->db->select('UUID() as id')->get()->row();
+            $booking_request_id_query = $this->db->select('UUID() as id')->get()->row();
             if(strpos(strtoupper($post_data['service_type_key']), 'COMMERCIAL') !== false){
               $remainder_area = $post_data['location_area'] - 50;
               $pseudo_area = ceil($remainder_area / 10) * 10;
@@ -92,6 +92,7 @@ class Appointments extends Api_Controller{
             else{
               $total_price = $service->service_price * count($list_query);
             }
+            $booking_request_id = $booking_request_id_query->id;
             $this->db->query($insert_booking_request, array($booking_request_id->id, $post_data['service_type_key'], $post_data['location_id'], $post_data['customer_id'], $post_data['payment_type']));
 
             foreach($list_query as $housekeeper){
@@ -105,7 +106,7 @@ class Appointments extends Api_Controller{
               );
               $this->db->insert('housekeeper_schedule',$schedule_data);
             }
-            $booking_data = $this->db->query($select_booking_request, $booking_request_id->id)->get()->row();
+            $booking_data = $this->db->query($select_booking_request, array($booking_request_id->id))->get()->row();
 
             $transaction_id = $this->db->select('UUID() as id')->get()->row();
             $service_id = $this->db->select('UUID() as id')->get()->row();
