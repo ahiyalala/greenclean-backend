@@ -93,7 +93,7 @@ class Appointments extends Api_Controller{
               $total_price = $service->service_price * count($list_query);
             }
             $booking_request_id = $booking_request_id_query->id;
-            $this->db->query($insert_booking_request, array($booking_request_id->id, $post_data['service_type_key'], $post_data['location_id'], $post_data['customer_id'], $post_data['payment_type']));
+            $this->db->query($insert_booking_request, array($booking_request_id, $post_data['service_type_key'], $post_data['location_id'], $post_data['customer_id'], $post_data['payment_type']));
 
             foreach($list_query as $housekeeper){
               $schedule_data = array(
@@ -106,18 +106,20 @@ class Appointments extends Api_Controller{
               );
               $this->db->insert('housekeeper_schedule',$schedule_data);
             }
-            $booking_data = $this->db->query($select_booking_request, array($booking_request_id->id))->get()->row();
+            $booking_data = $this->db->query($select_booking_request, array($booking_request_id))->get()->row();
 
-            $transaction_id = $this->db->select('UUID() as id')->get()->row();
-            $service_id = $this->db->select('UUID() as id')->get()->row();
+            $transaction_id_query = $this->db->select('UUID() as id')->get()->row();
+            $transaction_id = $transaction_id_query->id;
+            $service_id_query = $this->db->select('UUID() as id')->get()->row();
+            $service_id = $service_id_query->id;
 
-            $this->db->query($transaction_insert, array($transaction_uid->id, $booking_request_id, $total_price));
+            $this->db->query($transaction_insert, array($transaction_id, $booking_request_id, $total_price));
 
             $drop_code = random_int(100000,999999);
             foreach($list_query as $housekeeper){
               $service_data = array(
-                  'service_cleaning_id'=>$service_uid->id,
-                  'transaction_id' => $transaction_uid->id,
+                  'service_cleaning_id'=>$service_id,
+                  'transaction_id' => $transaction_id,
                   'housekeeper_id' => $list_query->housekeeper_id,
                   'drop_code'=>$drop_code
               );
@@ -125,11 +127,11 @@ class Appointments extends Api_Controller{
             }
 
             $location    = $this->db->query($select_location, array($post_data['location_id'], $post_data['customer_id']))->get()->row();
-            $schedule    = $this->db->select('*')->from('housekeeper_schedule')->where(array('booking_request_id'=>$booking_request_id->id))->get()->row();
+            $schedule    = $this->db->select('*')->from('housekeeper_schedule')->where(array('booking_request_id'=>$booking_request_id))->get()->row();
             $customer    = $this->db->select('*')->from('customer')->where($this->whereIs)->get()->row();
-            $transaction = $this->db->query("SELECT * FROM payment_transaction WHERE transaction_id = ?", array($transaction_id->id));
+            $transaction = $this->db->query("SELECT * FROM payment_transaction WHERE transaction_id = ?", array($transaction_id));
             $appointment_data = array(
-                'service_cleaning_id'=>$service_uid->id,
+                'service_cleaning_id'=>$service_id,
                 'service'=>$service,
                 'location'=>$location,
                 'housekeepers'=>$list_query,
