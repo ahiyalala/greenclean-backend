@@ -48,6 +48,7 @@ class Appointments extends Api_Controller{
         }
 
         if(strpos(strtoupper($post_data['service_type_key']), 'COMMERCIAL') !== false){
+          log_message('debug', ceil(($post_data['location_area'] - 1) / 100));
           $post_data['number_of_housekeepers'] = ceil(($post_data['location_area'] - 1) / 100);
         }
 
@@ -94,7 +95,6 @@ class Appointments extends Api_Controller{
             }
             $booking_request_id = $booking_request_id_query->id;
             $this->db->query($insert_booking_request, array($booking_request_id, $post_data['service_type_key'], $post_data['location_id'], $post_data['customer_id'], $post_data['payment_type']));
-            log_message('debug','Affected rows: '.$this->db->affected_rows());
             foreach($list_query as $housekeeper){
               $schedule_data = array(
                   'booking_request_id' => $booking_request_id,
