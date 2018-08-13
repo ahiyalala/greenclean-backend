@@ -76,7 +76,7 @@ class Appointments extends Api_Controller{
 
             $this->db->trans_begin();
             // transaction query list
-            $insert_booking_request = "INSERT INTO booking_request (booking_request_id, service_type_key, location_id, customer_id,payment_type, total_price) VALUES (?, ?, ?, ?, ?)";
+            $insert_booking_request = "INSERT INTO booking_request (booking_request_id, service_type_key, location_id, customer_id,payment_type, total_price) VALUES (?, ?, ?, ?, ?,?)";
             $select_booking_request = "SELECT * FROM booking_request WHERE booking_request_id = ?";
             $transaction_insert     = "INSERT INTO payment_transaction (transation_id, booking_request_id) VALUES (?, ?)";
             $select_location        = "SELECT * FROM location WHERE location_id = ? AND customer_id = ?";
