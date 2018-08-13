@@ -168,7 +168,7 @@ class Appointments extends Api_Controller{
                 $trans_error = array(
                     'message'=>'Failed to provide you a booking'
                 );
-                return $this->output->set_status_header(500)
+                return $this->output->set_status_header(401)
                         ->set_content_type('application/json', 'utf-8')
                         ->set_output(json_encode($trans_error));
             }
