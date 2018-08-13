@@ -106,7 +106,7 @@ class Appointments extends Api_Controller{
               );
               $this->db->insert('housekeeper_schedule',$schedule_data);
             }
-            $booking_data = $this->db->query($select_booking_request, array($booking_request_id))-result();
+            $booking_data = $this->db->query($select_booking_request, array($booking_request_id))->result();
 
             $transaction_id_query = $this->db->select('UUID() as id')->get()->row();
             $transaction_id = $transaction_id_query->id;
