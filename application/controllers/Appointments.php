@@ -64,8 +64,11 @@ class Appointments extends Api_Controller{
                               ->set_content_type('application/json', 'utf-8')
                               ->set_output(json_encode(array("message"=>"No housekeeper found")));
         }
+
+        $service = $this->db->select('*')->from('services')->where(array('service_type_key'=>$post_data['service_type_key']))->get()->row();
+
             $time = new DateTime($format_time);
-            $duration = $post_data['duration']*60;
+            $duration = $service->service_duration*60;
             $time->modify('+'.$duration.' minutes');
             $uuid = $this->db->select('UUID() as id')
                                 ->get()
@@ -121,7 +124,6 @@ class Appointments extends Api_Controller{
             }
 
             $location = $this->db->query($select_location, array($post_data['location_id'], $post_data['customer_id']))->get()->row();
-            $service = $this->db->select('*')->from('services')->where(array('service_type_key'=>$post_data['service_type_key']))->get()->row();
             $schedule = $this->db->select('*')->from('housekeeper_schedule')->where(array('booking_request_id'=>$booking_request_id->id))->get()->row();
             $customer = $this->db->select('*')->from('customer')->where($this->whereIs)->get()->row();
             $appointment_data = array(
