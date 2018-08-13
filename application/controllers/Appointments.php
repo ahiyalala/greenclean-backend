@@ -92,7 +92,7 @@ class Appointments extends Api_Controller{
             else{
               $total_price = $service->service_price * count($list_query);
             }
-            $this->db->query($insert_booking_request, array($booking_request_id->id, $post_data['service_type_key'], $post_data['location_id'], $post_data['customer_id'], $post_data['payment_type'], $total_price));
+            $this->db->query($insert_booking_request, array($booking_request_id->id, $post_data['service_type_key'], $post_data['location_id'], $post_data['customer_id'], $post_data['payment_type']));
 
             foreach($list_query as $housekeeper){
               $schedule_data = array(
