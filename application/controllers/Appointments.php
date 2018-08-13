@@ -47,6 +47,10 @@ class Appointments extends Api_Controller{
               }
         }
 
+        if(strpos(strtoupper($post_data['service_type_key']), 'COMMERCIAL') !== false){
+          $post_data['number_of_housekeepers'] = (($post_data['location_area'] - 1) / 100) + 1;
+        }
+
         if(count($values)>0){
             $list_query_string = "SELECT * FROM housekeeper WHERE housekeeper_id NOT IN ? ORDER BY RAND() LIMIT ?";
             $list_query = $this->db->query($list_query_string, array($values,$post_data['number_of_housekeepers']))->result();
@@ -69,13 +73,28 @@ class Appointments extends Api_Controller{
 
             $this->db->trans_begin();
             // transaction query list
-            $insert_booking_request = "INSERT INTO booking_request (booking_request_id, service_type_key, location_id, customer_id,payment_type) VALUES (?, ?, ?, ?, ?)";
+            $insert_booking_request = "INSERT INTO booking_request (booking_request_id, service_type_key, location_id, customer_id,payment_type, total_price) VALUES (?, ?, ?, ?, ?)";
             $select_booking_request = "SELECT * FROM booking_request WHERE booking_request_id = ?";
             $transaction_insert     = "INSERT INTO payment_transaction (transation_id, booking_request_id) VALUES (?, ?)";
             $select_location        = "SELECT * FROM location WHERE location_id = ? AND customer_id = ?";
             // query list end
+
+            $booking_request_id = $this->db->select('UUID() as id')->get()->row();
+            $service_data = $this->db->select('*')->from('services')->where(array('service_type_key'=>$post_data['service_type_key']));
+            if(strpos(strtoupper($post_data['service_type_key']), 'COMMERCIAL') !== false){
+              $remainder_area = $post_data['location_area'] - 50;
+              $pseudo_area = ceil($remainder_area / 10) * 10;
+              $remainder_price_per_area = $pseudo_area * 150;
+              $total_price = $service_data->service_price + $remainder_price_per_area;
+            }
+            else{
+              $total_price = $service_data->service_price * count($list_query);
+            }
+            $this->db->query($insert_booking_request, array($booking_request_id, $post_data['service_type_key'], $post_data['location_id'], $post_data['customer_id'], $post_data['payment_type'], $total_price));
+
             foreach($list_query as $housekeeper){
               $schedule_data = array(
+                  'booking_request_id' => $booking_request_id->id,
                   'housekeeper_id'=>$housekeeper->housekeeper_id,
                   'date'=>$date,
                   'start_time'=>$format_time,
@@ -84,8 +103,6 @@ class Appointments extends Api_Controller{
               );
               $this->db->insert('housekeeper_schedule',$schedule_data);
             }
-            $booking_request_id = $this->db->select('UUID() as id')->get()->row();
-            $this->db->query($insert_booking_request, array($booking_request_id, $post_data['service_type_key'], $post_data['location_id'], $post_data['customer_id'], $post_data['payment_type']));
             $booking_data = $this->db->query($select_booking_request, array($booking_request_id))->get()->row();
 
             $transaction_id = $this->db->select('UUID() as id')->get()->row();
@@ -104,20 +121,20 @@ class Appointments extends Api_Controller{
             }
 
             $location = $this->db->query($select_location, array($post_data['location_id'], $post_data['customer_id']))->get()->row();
-            $service  = $this->db->query()
             $service = $this->db->select('*')->from('services')->where(array('service_type_key'=>$post_data['service_type_key']))->get()->row();
-            $schedule = $this->db->select('*')->from('housekeeper_schedule')->where(array('schedule_id'=>$schedule_id))->get()->row();
+            $schedule = $this->db->select('*')->from('housekeeper_schedule')->where(array('booking_request_id'=>$booking_request_id->id))->get()->row();
             $customer = $this->db->select('*')->from('customer')->where($this->whereIs)->get()->row();
             $appointment_data = array(
                 'service_cleaning_id'=>$service_uid->id,
                 'service'=>$service,
                 'location'=>$location,
-                'housekeeper'=>$list_query,
+                'housekeepers'=>$list_query,
                 'date'=>$schedule->date,
                 'start_time'=>$schedule->start_time,
                 'end_time'=>$schedule->end_time,
                 'is_paid'=>false,
                 'is_finished'=>false,
+                'total_price'=>$booking_data->total_price,
                 'payment_type'=>$booking_data->payment_type,
                 'drop_code'=>$service_data['drop_code']
             );
@@ -182,7 +199,7 @@ class Appointments extends Api_Controller{
             'service_cleaning_id'=>$result->service_cleaning_id,
             'service'=>array("service_type_key"=>$result->service_type_key,"service_price"=>$result->service_price),
             'location'=>array("street_address"=>$result->street_address,"barangay"=>$result->barangay,"city_address"=>$result->city_address),
-            'housekeeper'=>array("housekeeper_id"=>$result->housekeeper_id, "first_name"=>$result->first_name, "middle_name"=>$result->middle_name, "last_name"=>$result->last_name, "rating"=>$result->rating),
+            'housekeepers'=>array("housekeeper_id"=>$result->housekeeper_id, "first_name"=>$result->first_name, "middle_name"=>$result->middle_name, "last_name"=>$result->last_name, "rating"=>$result->rating),
             'date'=>$result->date,
             'start_time'=>$result->start_time,
             'end_time'=>$result->end_time,
