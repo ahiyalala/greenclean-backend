@@ -133,7 +133,7 @@ class Appointments extends Api_Controller{
             $housekeepers = array();
             foreach($list_query as $housekeeper){
               array_push($housekeepers, array(
-                'housekeeper_id'=>$housekeeper->id,
+                'housekeeper_id'=>$housekeeper->housekeeper_id,
                 'first_name'=>$housekeeper->first_name,
                 'middle_name'=>$housekeeper->middle_name,
                 'last_name'=>$housekeeper->last_name,
@@ -157,7 +157,7 @@ class Appointments extends Api_Controller{
                 'drop_code'=>$drop_code
             );
             if ($this->db->trans_status()){
-                send_appointment_details_to_employee($appointment_data,$customer);
+                send_appointment_details_to_employee($appointment_data,$customer,$list_query);
                 $this->db->trans_rollback();
                 return $this->output->set_status_header(200)
                             ->set_content_type('application/json', 'utf-8')

@@ -2,10 +2,10 @@
 
 if ( ! function_exists('sms_helper'))
 {
-    function send_appointment_details_to_employee($appointment,$customer)
+    function send_appointment_details_to_employee($appointment,$customer,$housekeepers)
     {
         $appointment = json_decode(json_encode($appointment),true);
-        foreach($appointment['housekeepers'] as $housekeeper){
+        foreach($housekeepers as $housekeeper){
           $data = array(
               "outboundSMSMessageRequest"=> array(
                   "clientCorrelator"=>$appointment['service_cleaning_id'],
@@ -21,10 +21,10 @@ if ( ! function_exists('sms_helper'))
                       ."\nLocation: ".$appointment['location']['location_street']." ".$appointment['location']['location_barangay'].", ".$appointment['location']['location_city']
                       ."\n\nAssignment code: ".$appointment['drop_code']
                   ),
-                  "address"=>$housekeeper['contact_number']
+                  "address"=>$housekeeper->contact_number
               )
           );
-          $curl = curl_init('https://devapi.globelabs.com.ph/smsmessaging/v1/outbound/'.GLOBE_SHORT_CODE.'/requests?access_token='.$housekeeper['globe_access_token']);
+          $curl = curl_init('https://devapi.globelabs.com.ph/smsmessaging/v1/outbound/'.GLOBE_SHORT_CODE.'/requests?access_token='.$housekeeper->globe_access_token);
           curl_setopt($curl, CURLOPT_POST,1);
           curl_setopt($curl, CURLOPT_POSTFIELDS,json_encode($data));
           curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
