@@ -48,7 +48,7 @@ class Appointments extends Api_Controller{
         }
 
         if(strpos(strtoupper($post_data['service_type_key']), 'COMMERCIAL') !== false){
-          $post_data['number_of_housekeepers'] = (($post_data['location_area'] - 1) / 100) + 1;
+          $post_data['number_of_housekeepers'] = ceil(($post_data['location_area'] - 1) / 100);
         }
 
         if(count($values)>0){
