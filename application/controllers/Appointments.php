@@ -106,7 +106,7 @@ class Appointments extends Api_Controller{
               );
               $this->db->insert('housekeeper_schedule',$schedule_data);
             }
-            $booking_data = $this->db->query($select_booking_request, array($booking_request_id))->get()->row();
+            $booking_data = $this->db->query($select_booking_request, array($booking_request_id))-result();
 
             $transaction_id_query = $this->db->select('UUID() as id')->get()->row();
             $transaction_id = $transaction_id_query->id;
@@ -126,10 +126,10 @@ class Appointments extends Api_Controller{
               $this->db->insert('service_cleaning',$service_data);
             }
 
-            $location    = $this->db->query($select_location, array($post_data['location_id'], $post_data['customer_id']))->get()->row();
+            $location    = $this->db->query($select_location, array($post_data['location_id'], $post_data['customer_id']))->result();
             $schedule    = $this->db->select('*')->from('housekeeper_schedule')->where(array('booking_request_id'=>$booking_request_id))->get()->row();
             $customer    = $this->db->select('*')->from('customer')->where($this->whereIs)->get()->row();
-            $transaction = $this->db->query("SELECT * FROM payment_transaction WHERE transaction_id = ?", array($transaction_id));
+            $transaction = $this->db->query("SELECT * FROM payment_transaction WHERE transaction_id = ?", array($transaction_id))->result();
             $appointment_data = array(
                 'service_cleaning_id'=>$service_id,
                 'service'=>$service,
