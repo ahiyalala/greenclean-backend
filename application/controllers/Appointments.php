@@ -83,15 +83,14 @@ class Appointments extends Api_Controller{
             // query list end
 
             $booking_request_id = $this->db->select('UUID() as id')->get()->row();
-            $service_data = $this->db->select('*')->from('services')->where(array('service_type_key'=>$post_data['service_type_key']));
             if(strpos(strtoupper($post_data['service_type_key']), 'COMMERCIAL') !== false){
               $remainder_area = $post_data['location_area'] - 50;
               $pseudo_area = ceil($remainder_area / 10) * 10;
               $remainder_price_per_area = $pseudo_area * 150;
-              $total_price = $service_data->service_price + $remainder_price_per_area;
+              $total_price = $service->service_price + $remainder_price_per_area;
             }
             else{
-              $total_price = $service_data->service_price * count($list_query);
+              $total_price = $service->service_price * count($list_query);
             }
             $this->db->query($insert_booking_request, array($booking_request_id, $post_data['service_type_key'], $post_data['location_id'], $post_data['customer_id'], $post_data['payment_type'], $total_price));
 
@@ -113,12 +112,13 @@ class Appointments extends Api_Controller{
 
             $this->db->query($transaction_insert, array($transaction_uid->id, $booking_request_id));
 
+            $drop_code = random_int(100000,999999);
             foreach($list_query as $housekeeper){
               $service_data = array(
                   'service_cleaning_id'=>$service_uid->id,
                   'transaction_id' => $transaction_uid->id,
                   'housekeeper_id' => $list_query->housekeeper_id,
-                  'drop_code'=>random_int(100000,999999)
+                  'drop_code'=>$drop_code
               );
               $this->db->insert('service_cleaning',$service_data);
             }
