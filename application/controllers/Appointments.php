@@ -20,6 +20,21 @@ class Appointments extends Api_Controller{
       */
 
         $post_data = json_decode(file_get_contents('php://input'),true);
+        if(is_valid_request($post_data)){
+          return $this->output->set_status_header(401)
+                              ->set_content_type('application/json', 'utf-8')
+                              ->set_output(json_encode(array("message"=>"Bad request")));
+        }
+
+        if(strpos(strtoupper($post_data['service_type_key']), 'COMMERCIAL') !== false){
+          $post_data['number_of_housekeepers'] = ceil(($post_data['location_area'] - 1) / 100);
+        }
+        else if($post_data['number_of_housekeepers'] <= 0 || $post_data['number_of_housekeepers'] > 3){
+          return $this->output->set_status_header(401)
+                              ->set_content_type('application/json', 'utf-8')
+                              ->set_output(json_encode(array("message"=>"Bad request")));
+        }
+
         $this->load->helper('sms_helper');
 
         $date = $this->db->escape_str($post_data["date"]);
@@ -45,11 +60,6 @@ class Appointments extends Api_Controller{
               if(in_array($day_of_week,$day_off)){
                 array_push($values, $row['housekeeper_id']);
               }
-        }
-
-        if(strpos(strtoupper($post_data['service_type_key']), 'COMMERCIAL') !== false){
-          log_message('debug', ceil(($post_data['location_area'] - 1) / 100));
-          $post_data['number_of_housekeepers'] = ceil(($post_data['location_area'] - 1) / 100);
         }
 
         if(count($values)>0){
@@ -158,6 +168,7 @@ class Appointments extends Api_Controller{
             );
             if ($this->db->trans_status()){
                 send_appointment_details_to_employee($appointment_data,$customer,$list_query);
+                unset($appointment_data['drop_code']);
                 $this->db->trans_rollback();
                 return $this->output->set_status_header(200)
                             ->set_content_type('application/json', 'utf-8')
@@ -174,6 +185,18 @@ class Appointments extends Api_Controller{
             }
 
 
+
+    }
+
+    public function is_valid_request($data){
+      $is_valid_service = $this->db->select('COUNT(*)')->from('services')->where(array('service_type_key'=>$data['service_type_key']))->get()->row();
+      $is_valid_location = $this->db->select('COUNT(*)')->from('location')->where(array('location_id'=>$data['location_id'],'customer_id'=>$data['location_id']))->get()->row();
+      if($is_valid_service && $is_valid_location){
+        return true;
+      }
+      else{
+        return false;
+      }
 
     }
 
