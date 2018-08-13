@@ -76,9 +76,9 @@ class Appointments extends Api_Controller{
 
             $this->db->trans_begin();
             // transaction query list
-            $insert_booking_request = "INSERT INTO booking_request (booking_request_id, service_type_key, location_id, customer_id,payment_type, total_price) VALUES (?, ?, ?, ?, ?,?)";
+            $insert_booking_request = "INSERT INTO booking_request (booking_request_id, service_type_key, location_id, customer_id,payment_type) VALUES (?, ?, ?, ?, ?)";
             $select_booking_request = "SELECT * FROM booking_request WHERE booking_request_id = ?";
-            $transaction_insert     = "INSERT INTO payment_transaction (transation_id, booking_request_id) VALUES (?, ?)";
+            $transaction_insert     = "INSERT INTO payment_transaction (transation_id, booking_request_id, total_price) VALUES (?, ?, ?)";
             $select_location        = "SELECT * FROM location WHERE location_id = ? AND customer_id = ?";
             // query list end
 
@@ -110,7 +110,7 @@ class Appointments extends Api_Controller{
             $transaction_id = $this->db->select('UUID() as id')->get()->row();
             $service_id = $this->db->select('UUID() as id')->get()->row();
 
-            $this->db->query($transaction_insert, array($transaction_uid->id, $booking_request_id));
+            $this->db->query($transaction_insert, array($transaction_uid->id, $booking_request_id, $total_price));
 
             $drop_code = random_int(100000,999999);
             foreach($list_query as $housekeeper){
@@ -123,9 +123,10 @@ class Appointments extends Api_Controller{
               $this->db->insert('service_cleaning',$service_data);
             }
 
-            $location = $this->db->query($select_location, array($post_data['location_id'], $post_data['customer_id']))->get()->row();
-            $schedule = $this->db->select('*')->from('housekeeper_schedule')->where(array('booking_request_id'=>$booking_request_id->id))->get()->row();
-            $customer = $this->db->select('*')->from('customer')->where($this->whereIs)->get()->row();
+            $location    = $this->db->query($select_location, array($post_data['location_id'], $post_data['customer_id']))->get()->row();
+            $schedule    = $this->db->select('*')->from('housekeeper_schedule')->where(array('booking_request_id'=>$booking_request_id->id))->get()->row();
+            $customer    = $this->db->select('*')->from('customer')->where($this->whereIs)->get()->row();
+            $transaction = $this->db->query("SELECT * FROM payment_transaction WHERE transaction_id = ?", array($transaction_id->id));
             $appointment_data = array(
                 'service_cleaning_id'=>$service_uid->id,
                 'service'=>$service,
@@ -136,7 +137,7 @@ class Appointments extends Api_Controller{
                 'end_time'=>$schedule->end_time,
                 'is_paid'=>false,
                 'is_finished'=>false,
-                'total_price'=>$booking_data->total_price,
+                'total_price'=>$transaction->total_price,
                 'payment_type'=>$booking_data->payment_type,
                 'drop_code'=>$service_data['drop_code']
             );
