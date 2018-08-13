@@ -65,7 +65,7 @@ class Appointments extends Api_Controller{
                               ->set_output(json_encode(array("message"=>"No housekeeper found")));
         }
 
-        $service = $this->db->select('*')->from('services')->where(array('service_type_key'=>$post_data['service_type_key']))->get()->row();
+        $service = $this->db->select('service_type_key, service_description, service_duration, service_image')->from('services')->where(array('service_type_key'=>$post_data['service_type_key']))->get()->row();
 
             $time = new DateTime($format_time);
             $duration = $service->service_duration*60;
