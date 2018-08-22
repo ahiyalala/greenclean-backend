@@ -11,7 +11,7 @@ class Services extends CI_Controller{
 
     public function api_get(){
 
-        $services = $this->db->get_where('services',array('deleted'=>0))->result();
+        $services = $this->db->query("SELECT service_type_key, service_description, service_price, service_duration, service_image FROM services WHERE deleted = 0")->result();
 
         $this->output->set_status_header(200)
             ->set_content_type('application/json', 'utf-8')
@@ -30,9 +30,9 @@ class Services extends CI_Controller{
 
     public function add(){
         admin_verify();
-        $this->load->model('servicesmodel');
+        $this->load->model('ServicesModel');
 
-        if($this->servicesmodel->add()){
+        if($this->ServicesModel->add()){
             $this->session->set_flashdata('status',true);
         }
         else{
@@ -45,9 +45,9 @@ class Services extends CI_Controller{
     public function update(){
       admin_verify();
 
-      $this->load->model('servicesmodel');
+      $this->load->model('ServicesModel');
 
-      if($this->servicesmodel->update()){
+      if($this->ServicesModel->update()){
         $this->session->set_flashdata('status',array(
           'is_successful'=>true,
           'message'=>$this->input->post('service_type_key').": Update successful"
@@ -66,9 +66,9 @@ class Services extends CI_Controller{
     public function delete(){
       admin_verify();
 
-      $this->load->model('servicesmodel');
+      $this->load->model('ServicesModel');
 
-      if($this->servicesmodel->delete()){
+      if($this->ServicesModel->delete()){
         $this->session->set_flashdata('status',array(
           'is_successful'=>true,
           'message'=>$this->input->post('service_type_key').": Delete successful"
