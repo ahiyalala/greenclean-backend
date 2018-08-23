@@ -27,7 +27,8 @@
         <div class="header-blue">
             <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
                 <div class="container">
-                    <a class="navbar-brand" href="#">GreenKlean</a>
+                    <a class="navbar-brand" href="#">
+                        <img src="front/img/GKlean House Icon Y.png" style="width:25px; height:30px;"> GreenKlean</a>
                     <button class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="navbar-toggler-icon"></span>
@@ -39,16 +40,16 @@
                                     <a class="nav-link list-inline-item active">Home</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link list-inline-item " href="#section2">About us</a>
+                                    <a class="nav-link list-inline-item " href="">Booking</a>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link list-inline-item" data-toggle="modal" data-target="#myModalFAQ">Faq</a>
+                                    <a class="nav-link list-inline-item" data-toggle="modal" data-target="#myModalFAQ">FAQs</a>
                                 </li>
-                                <li class="nav-item" role="presentation">
+                                <!-- <li class="nav-item" role="presentation">
                                     <a class="nav-link list-inline-item" href="#section3">Services</a>
-                                </li>
+                                </li> -->
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link list-inline-item" data-toggle="modal" data-target="#myModalContact">Contact us / Opportunities </a>
+                                    <a class="nav-link list-inline-item" data-toggle="modal" data-target="#myModalContact">Contact us</a>
                                 </li>
                             </li>
 
@@ -61,7 +62,7 @@
                         </span>
                         <a class="btn btn-light action-button" role="button" href="#section1">Sign Up</a>
                     </div>
-                    
+
                     <!-- MODAL ADD-->
                     <div class="modal fade" id="myModal">
                         <div class="modal-dialog modal-md">
@@ -152,33 +153,28 @@
 
                     <!-- Modal FAQ -->
                     <div class="modal fade" id="myModalFAQ" tabindex="-1" role="dialog">
-                        <div class="modal-dialog modal-md">
+                        <div class="modal-dialog modal-lg">
                             <div class="modal-content ">
                                 <div class="modal-header">
                                     <h5 class="h3 text-dark d-flex justify-content-center" id="myModalLabel">Frequently Ask Question</h5>
                                     <button class="close" data-dismiss="modal">&times;</button>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body-faq">
                                     <div id="accordion">
                                         <div class="card">
                                             <div class="card-header" id="headingOne">
                                                 <h5 class="mb-0">
                                                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                        What is GreenKlean?
+                                                        1. Why choose Greenklean?
                                                     </button>
                                                 </h5>
                                             </div>
 
                                             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                                <div class="card-body text-dark">
-                                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                                                    non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                                    eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-                                                    single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                                    helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                                                    Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
-                                                    raw denim aesthetic synth nesciunt you probably haven't heard of them
-                                                    accusamus labore sustainable VHS.
+                                                <div class="card-body text-dark" style="text-align:justify">
+                                                    Greenklean is a convenient way to keep your home clean. Our housekeepers provide trustworthy professional cleaning services
+                                                    at a great value using our own functional, safe and non harmful cleaning
+                                                    solutions. We treat your home like it is ours.
                                                 </div>
                                             </div>
                                         </div>
@@ -186,91 +182,197 @@
                                             <div class="card-header" id="headingTwo">
                                                 <h5 class="mb-0">
                                                     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                        How can I avail your service?
+                                                        2. How do I know I can trust the people you send to my home?
                                                     </button>
                                                 </h5>
                                             </div>
                                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                                <div class="card-body text-dark">
-                                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                                                    non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                                    eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-                                                    single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                                    helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                                                    Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
-                                                    raw denim aesthetic synth nesciunt you probably haven't heard of them
-                                                    accusamus labore sustainable VHS.
+                                                <div class="card-body text-dark" style="text-align:justify">
+                                                    Each Greenklean housekeeper undergoes a rigorous screening process that includes a thorough background check. Greenklean
+                                                    housekeepers are all TESDA certified and are provided topnotch training
+                                                    to meet our demanding standards
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card">
-                                            <div class="card-header" id="headingThree">
-                                                <h5 class="mb-0">
-                                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                        Do you have a mobile app?
-                                                    </button>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                                <div class="card-body text-dark">
-                                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                                                    non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                                    eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
-                                                    single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-                                                    helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                                                    Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
-                                                    raw denim aesthetic synth nesciunt you probably haven't heard of them
-                                                    accusamus labore sustainable VHS.
-                                                </div>
-                                            </div>
-                                        </div>
+
                                         <div class="card">
                                             <div class="card-header" id="headingThree">
                                                 <h5 class="mb-0">
                                                     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-                                                        Types of Cleaning: Express Clean and Deep Clean
+                                                        3. What are the available types of cleaning?
                                                     </button>
                                                 </h5>
                                             </div>
                                             <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                                <div class="card-body text-dark">
+                                                <div class="card-body text-dark" style="text-align:justify">
+                                                    <p style="font-weight: bold;"> Express Cleaning - Basic, fast and spot cleaning of a few key areas for
+                                                        1.5 hours with 1 cleaner. </p>
+
                                                     <p>
-                                                        <strong> Express Clean </strong> - Basic, fast and spot cleaning of a few
-                                                        key areas for 1.5 hours with 1 cleaner. </p>
-                                                    <p>
-                                                        1. Bathroom Fix toiletries Scrubbing and spot cleaning of toilet bowl, sink and shower
-                                                        <br> 2. Bedroom Fix or change bed covers and pillows Wipe cabinets, furniture,
-                                                        appliances Clean floors (vacuum and mop)
-                                                        <br> 3. Dining Wipe dining set and cupboards Clean floors (vacuum and
-                                                        mop)
-                                                        <br> 4. Kitchen Wipe countertops, kitchen appliances (fridge, oven, microwave)
-                                                        and sink Clean floors (vacuum and mop)
-                                                        <br> 5. Living Room Wipe furniture, appliances and shelves Clean floors,
-                                                        sofa and windows (vacuum and mop)
-                                                        <br> 6. Others Throw trash Room spray
-                                                    </p>
-                                                    <p>
-                                                        <strong> Deep Clean </strong> - Deep and thorough cleaning of most areas for
-                                                        3 hours with 1 or 2 cleaners. </p>
-                                                    <p>
-                                                        1. Bathroom Fix toiletries Scrubbing and deep cleaning of toilet bowl, sink and shower
-                                                        <br> 2. Bedroom Fix or change bed covers and pillows Wipe cabinets, furniture,
-                                                        appliances Clean floors (vacuum and mop)
-                                                        <br> 3. Dining Wipe dining set and cupboards Clean floors (vacuum and
-                                                        mop)
-                                                        <br> 4. Kitchen Wipe countertops and kitchen appliances (fridge, oven,
-                                                        microwave) Clean floors (vacuum and mop) Scrub sink
-                                                        <br> 5. Living Room Wipe furniture, appliances and shelves Clean floors,
-                                                        sofa and windows (vacuum and mop)
-                                                        <br> 6. Others Throw trash Room spray and dehumidifier</p>
+                                                        <strong>Bathroom</strong>
+                                                        <br> Fix toiletries
+                                                        <br> Scrubbing and spot cleaning of toilet bowl, sink and shower
+                                                        <p>
+
+                                                            <p>
+                                                                <strong>Bedroom</strong>
+                                                                <br> Fix or change bed covers and pillows
+                                                                <br> Wipe cabinets, furniture, appliances
+                                                                <br> Clean floors (vacuum and mop)
+                                                            </p>
 
 
+                                                            <p>
+                                                                <strong>Dining</strong>
+                                                                <br> Wipe dining set and cupboards
+                                                                <br> Clean floors (vacuum and mop)
+                                                                <br>
+                                                            </p>
 
+                                                            <p>
+                                                                <strong>Kitchen</strong>
+                                                                <br> Wipe countertops, kitchen appliances (fridge, oven, microwave)
+                                                                and sink
+                                                                <br> Clean floors (vacuum and mop)
+                                                            </p>
 
+                                                            <p>
+                                                                <strong>Living Room</strong>
+                                                                <br> Wipe furniture, appliances and shelves
+                                                                <br> Clean floors, sofa and windows (vacuum and mop)
+                                                            </p>
 
+                                                            <p>
+                                                                <strong>Others</strong>
+                                                                <br> Throw trash
+                                                                <br> Room spray
+                                                            </p>
+
+                                                            <p style="font-weight: bold;">Deep Cleaning - Deep and thorough cleaning of most areas for
+                                                                3 hours with 1 cleaner. </p>
+                                                            <p>
+                                                                <strong>Bathroom</strong>
+                                                                <br> Fix toiletries
+                                                                <br> Scrubbing and deep cleaning of toilet bowl, sink and shower
+                                                                <p>
+
+                                                                    <p>
+                                                                        <strong>Bedroom</strong>
+                                                                        <br> Fix or change bed covers and pillows
+                                                                        <br> Wipe cabinets, furniture, appliances
+                                                                        <br> Clean floors (vacuum and mop)
+                                                                    </p>
+
+                                                                    <p>
+                                                                        <strong>Dining</strong>
+                                                                        <br> Wipe dining set and cupboards
+                                                                        <br> Clean floors (vacuum and mop)
+                                                                        <br>
+                                                                    </p>
+
+                                                                    <p>
+                                                                        <strong>Kitchen</strong>
+                                                                        <br> Wipe countertops, kitchen appliances (fridge, oven,
+                                                                        microwave) and sink
+                                                                        <br> Clean floors (vacuum and mop)
+                                                                        <br> Scrub sink
+                                                                    </p>
+
+                                                                    <p>
+                                                                        <strong>Living Room</strong>
+                                                                        <br> Wipe furniture, appliances and shelves
+                                                                        <br> Clean floors, sofa and windows (vacuum and mop)
+                                                                    </p>
+
+                                                                    <p>
+                                                                        <strong>Others</strong>
+                                                                        <br> Throw trash
+                                                                        <br> Room spray and dehumidifier
+                                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="card">
+                                            <div class="card-header" id="headingThree">
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                    4. Do you bring your own cleaning supplies and equipment?
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                                <div class="card-body text-dark" style="text-align:justify">
+                                                Yes. We bring our own functional, safe and non harmful cleaning solutions, rags, and vacuum. 
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-header" id="headingFive" >
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                                    5. I like the product you use. Where can I purchase it? 
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                                                <div class="card-body text-dark" style="text-align:justify">
+                                                Yes. You  can  purchase  it  directly  from  our  friendly  Greenklean  housekeeper. All  Greenklean  products  will 
+                                                soon be available for sale on our online platforms. 
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-header" id="headingSix" >
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                                    6. How do I pay for my cleaning?                   
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+                                                <div class="card-body text-dark" style="text-align:justify">
+                                                    You may pay by cash or upon booking online using credit card. 
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-header" id="headingSeven" >
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                                    7. How do I amend my booking?
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                            <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
+                                                <div class="card-body text-dark" style="text-align:justify">
+                                                Please provide details.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-header" id="heading8" >
+                                                <h5 class="mb-0">
+                                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                                                    8. How do I get started? 
+                                                    </button>
+                                                </h5>
+                                            </div>
+                                            <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordion">
+                                                <div class="card-body text-dark" style="text-align:justify">
+                                                Click here for instant booking confirmation <a href="http://greenklean.ph">http://greenklean.ph </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
                                     </div>
                                     <!-- MODALFAQ-->
                                 </div>
@@ -288,14 +390,14 @@
                         <h1>Welcome to GreenKlean!</h1>
                         <p>Greenklean is a convenient way to keep your home clean. Our housekeepers provide trustworthy professional
                             cleaning services at a great value using our own functional, safe and non harmful cleaning solutions.
-                            </p>
+                        </p>
 
-                        <p>We treat your home like it is ours.</p>
-                        <button class="btn btn-light btn-lg action-button" type="button">Learn More</button>
+                        <p style="font-style: italic;">We treat your home like it is ours. </p>
+                        <button class="btn btn-light btn-lg action-button" type="button">Book your cleaning now!</button>
                     </div>
                     <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
                         <div class="iphone-mockup">
-                            <img src="front/img/hand.PNG" class="device w-100 h-250">
+                            <img src="front/img/plant spray.jpg" style="width:400px;height:262px; border-radius:10px;">
                         </div>
                     </div>
                 </div>
@@ -338,8 +440,7 @@
                             <h2>Book your cleaning now!</h2>
                             <p>Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque
                                 ut laoreet vitae. Aliqua sed justo ligula.</p>
-                            <a class="btn btn-primary btn-success mb-sm-5" style="border-radius:40px;"
-                                role="button" href="#">Book now!</a>
+                            <a class="btn btn-primary btn-success mb-sm-5" style="border-radius:40px;" role="button" href="#">Book now!</a>
                         </div>
                     </div>
                     <div class="col-sm-4 col-lg-6 offset-lg-7">
@@ -457,10 +558,10 @@
                     </h3>
                     <p class="links">
                         <a href="#">Home</a>
+                        <!-- <strong> | </strong>
+                        <a href="#section2">About</a> -->
                         <strong> | </strong>
-                        <a href="#section2">About</a>
-                        <strong> | </strong>
-                        <a href="#">Faq</a>
+                        <a href="#">FAQs</a>
                         <strong> | </strong>
                         <a href="#">Contact</a>
                     </p>
@@ -495,12 +596,8 @@
                         <a href="#">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a href="#">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="#">
-                            <i class="fab fa-github"></i>
-                        </a>
+                     
+                       
                     </div>
                 </div>
             </div>
