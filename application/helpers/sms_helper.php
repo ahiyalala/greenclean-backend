@@ -44,4 +44,30 @@ if ( ! function_exists('sms_helper'))
         }
         return true;
     }
+
+    function send_general_message($contact_number, $access_token, $message){
+      $data = array(
+          "outboundSMSMessageRequest"=> array(
+              "senderAddress"=>GLOBE_SHORT_CODE,
+              "outboundSMSTextMessage"=> array(
+                  "message"=> $message
+              ),
+              "address"=>$contact_number
+          )
+      );
+
+      $curl = curl_init('https://devapi.globelabs.com.ph/smsmessaging/v1/outbound/'.GLOBE_SHORT_CODE.'/requests?access_token='.$acces_token);
+      curl_setopt($curl, CURLOPT_POST,1);
+      curl_setopt($curl, CURLOPT_POSTFIELDS,json_encode($data));
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+      curl_setopt($curl, CURLOPT_HTTPHEADER,array(
+          'Content-Type: application/json'
+      ));
+
+      $result = curl_exec($curl);
+      $httpResponse = curl_getinfo($curl,CURLINFO_HTTP_CODE);
+      $arr = json_decode($result,true);
+      curl_close($curl);
+    }
 }

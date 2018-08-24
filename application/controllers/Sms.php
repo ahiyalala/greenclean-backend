@@ -33,6 +33,7 @@ class Sms extends CI_Controller{
         }
         else{
             log_message('info',json_encode($data));
+
             return $this->output->set_status_header(200)
             ->set_content_type('application/json', 'utf-8')
             ->set_output(json_encode($data));
@@ -64,9 +65,16 @@ class Sms extends CI_Controller{
             return $this->output->set_status_header(400);
         }
         else{
+            $this->load->helper('sms_helper');
+            $message =  "Nakasubscribe ka na sa Housekeeper Notifier ng GreenKlean!\n\n".
+                        "Se-sendan ka namin ng text sakaling makatanggap ka ng appointment.\n\n".
+                        "Paalala:\n".
+                        "- Sa bawat appointment na iyong matatanggap ay may kaakibat na [Assignment Code] na gagamitin lamang pagkatapos ng iyong appointment.\n\n".
+                        "- Upang magamit ang [Assignment Code], i-text ang: END [Assignment Code]\n\n".
+                        "- Sa panahong magkaroon ng problema sa customer, mag-text o tumawag sa [[insert cellphone number here]]."
+            send_general_message($number,$token,$message);
             log_message('info',json_encode($data));
             return $this->output->set_status_header(200);
-
         }
     }
 
