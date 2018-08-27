@@ -7,6 +7,11 @@ class ServicesModel extends CI_Model{
     public $service_duration;
     public $service_image;
 
+    public function get($service_type_key){
+        $service = $this->db->query('SELECT * FROM service WHERE service_type_key = ?', $service_type_key)->row();
+        return $service;
+    }
+
     public function add(){
         $this->service_type_key = $this->input->post('service_type');
         $this->service_description = $this->input->post('service_description');

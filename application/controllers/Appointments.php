@@ -212,7 +212,7 @@ class Appointments extends Api_Controller{
             $query = $this->db->query('call select_specific_appointment(?,?)', array($customer->customer_id,$id));
             $result = $query->row();
             if(isset($result)){
-                $appointment = $this->curate_appointment_data($result);
+                $appointment = $this->_curate_appointment_data($result);
             }
             else{
                 return $this->output->set_status_header(404)
@@ -226,7 +226,7 @@ class Appointments extends Api_Controller{
             foreach($query as $result){
                 $housekeeper_list = $this->db->query('SELECT * FROM housekeeper_data WHERE service_cleaning_id = ?', array($result->service_cleaning_id))->result();
                 $housekeeper_schedule = $this->db->query('SELECT * FROM housekeeper_schedule_view WHERE service_cleaning_id = ?', array($result->service_cleaning_id))->row();
-                $appointment_data = $this->curate_appointment_data($result, $housekeeper_list, $housekeeper_schedule);
+                $appointment_data = $this->_curate_appointment_data($result, $housekeeper_list, $housekeeper_schedule);
                 array_push($appointment,$appointment_data);
             }
         }
@@ -237,10 +237,12 @@ class Appointments extends Api_Controller{
 
     }
 
-    private function curate_appointment_data($result, $housekeeper_list, $housekeeper_schedule){
+    private function _curate_appointment_data($result, $housekeeper_list, $housekeeper_schedule){
+        $this->load->model('ServiceModel');
+        $service = $this->ServiceModel->get($result->service_type_key);
         return array(
             'service_cleaning_id'=>$result->service_cleaning_id,
-            'service'=>$result->service_type_key,
+            'service'=>$service,
             'location'=>array("street_address"=>$result->location_street,"barangay"=>$result->location_barangay,"city_address"=>$result->location_city),
             'housekeepers'=>$housekeeper_list,
             'date'=>$housekeeper_schedule->date,
