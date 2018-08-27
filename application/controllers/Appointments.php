@@ -243,7 +243,7 @@ class Appointments extends Api_Controller{
         return array(
             'service_cleaning_id'=>$result->service_cleaning_id,
             'service'=>$service,
-            'location'=>array("street_address"=>$result->location_street,"barangay"=>$result->location_barangay,"city_address"=>$result->location_city),
+            'location'=>array("location_street"=>$result->location_street,"location_barangay"=>$result->location_barangay,"location_city"=>$result->location_city),
             'housekeepers'=>$housekeeper_list,
             'date'=>$housekeeper_schedule->date,
             'start_time'=>$housekeeper_schedule->start_time,
