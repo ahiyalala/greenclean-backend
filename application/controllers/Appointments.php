@@ -221,10 +221,11 @@ class Appointments extends Api_Controller{
             }
         }
         else{
-            $query = $this->db->query('call select_all_pending_appointments(?)',array($customer->customer_id))->result();
+            $query = $this->db->query('SELECT DISTINCT * FROM pending_appointments WHERE customer_id = ?',array($customer->customer_id))->result();
             $appointment = array();
             foreach($query as $result){
-                $appointment_data = $this->curate_appointment_data($result);
+                $housekeeper_list = $this->db->query('SELECT h.housekeeper_id, h.first_name, h.middle_name, h.last_name, h.rating, h.contact_number FROM service_cleaning as s INNER JOIN housekeeper as h ON h.housekeeper_id = s.housekeeper_id WHERE s.service_cleaning_id = ?', array($result->service_cleaning_id))->result();
+                $appointment_data = $this->curate_appointment_data($result, $housekeeper_list);
                 array_push($appointment,$appointment_data);
             }
         }
@@ -235,12 +236,12 @@ class Appointments extends Api_Controller{
 
     }
 
-    private function curate_appointment_data($result){
+    private function curate_appointment_data($result, $housekeeper_list){
         return array(
             'service_cleaning_id'=>$result->service_cleaning_id,
             'service'=>array("service_type_key"=>$result->service_type_key,"service_price"=>$result->service_price),
-            'location'=>array("street_address"=>$result->street_address,"barangay"=>$result->barangay,"city_address"=>$result->city_address),
-            'housekeepers'=>array("housekeeper_id"=>$result->housekeeper_id, "first_name"=>$result->first_name, "middle_name"=>$result->middle_name, "last_name"=>$result->last_name, "rating"=>$result->rating),
+            'location'=>array("street_address"=>$result->location_street,"barangay"=>$result->location_barangay,"city_address"=>$result->location_address),
+            'housekeepers'=>$housekeeper_list,
             'date'=>$result->date,
             'start_time'=>$result->start_time,
             'end_time'=>$result->end_time,
