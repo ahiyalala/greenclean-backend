@@ -238,8 +238,8 @@ class Appointments extends Api_Controller{
     }
 
     private function _curate_appointment_data($result, $housekeeper_list, $housekeeper_schedule){
-        $this->load->model('ServiceModel');
-        $service = $this->ServiceModel->get($result->service_type_key);
+        $this->load->model('ServicesModel');
+        $service = $this->ServicesModel->get($result->service_type_key);
         return array(
             'service_cleaning_id'=>$result->service_cleaning_id,
             'service'=>$service,
