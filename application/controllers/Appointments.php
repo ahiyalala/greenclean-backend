@@ -20,7 +20,7 @@ class Appointments extends Api_Controller{
       */
 
         $post_data = json_decode(file_get_contents('php://input'),true);
-        if($this->is_valid_request($post_data)){
+        if(!$this->is_valid_request($post_data)){
           return $this->output->set_status_header(401)
                               ->set_content_type('application/json', 'utf-8')
                               ->set_output(json_encode(array("message"=>"Bad request")));
