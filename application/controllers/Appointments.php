@@ -224,8 +224,9 @@ class Appointments extends Api_Controller{
             $query = $this->db->query('SELECT DISTINCT * FROM pending_appointments WHERE customer_id = ?',array($customer->customer_id))->result();
             $appointment = array();
             foreach($query as $result){
-                $housekeeper_list = $this->db->query('SELECT h.housekeeper_id, h.first_name, h.middle_name, h.last_name, h.rating, h.contact_number FROM service_cleaning as s INNER JOIN housekeeper as h ON h.housekeeper_id = s.housekeeper_id WHERE s.service_cleaning_id = ?', array($result->service_cleaning_id))->result();
-                $appointment_data = $this->curate_appointment_data($result, $housekeeper_list);
+                $housekeeper_list = $this->db->query('SELECT * FROM housekeeper_data WHERE service_cleaning_id = ?', array($result->service_cleaning_id))->result();
+                $housekeeper_schedule = $this->db->query('SELECT * FROM housekeeper_schedule_view WHERE service_cleaning_id = ?', array($result->service_cleaning_id))->result();
+                $appointment_data = $this->curate_appointment_data($result, $housekeeper_list, $housekeeper_schedule);
                 array_push($appointment,$appointment_data);
             }
         }
@@ -236,15 +237,14 @@ class Appointments extends Api_Controller{
 
     }
 
-    private function curate_appointment_data($result, $housekeeper_list){
+    private function curate_appointment_data($result, $housekeeper_list, $housekeeper_schedule){
         return array(
             'service_cleaning_id'=>$result->service_cleaning_id,
-            'service'=>array("service_type_key"=>$result->service_type_key,"service_price"=>$result->service_price),
             'location'=>array("street_address"=>$result->location_street,"barangay"=>$result->location_barangay,"city_address"=>$result->location_address),
             'housekeepers'=>$housekeeper_list,
-            'date'=>$result->date,
-            'start_time'=>$result->start_time,
-            'end_time'=>$result->end_time,
+            'date'=>$housekeeper_schedule->date,
+            'start_time'=>$housekeeper_schedule->start_time,
+            'end_time'=>$housekeeper_schedule->end_time,
             'is_paid'=>($result->is_paid)?true:false,
             'is_finished'=>($result->is_finished)?true:false,
             'payment_type'=>$result->payment_type,
