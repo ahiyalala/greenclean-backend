@@ -225,7 +225,7 @@ class Appointments extends Api_Controller{
             $appointment = array();
             foreach($query as $result){
                 $housekeeper_list = $this->db->query('SELECT * FROM housekeeper_data WHERE service_cleaning_id = ?', array($result->service_cleaning_id))->result();
-                $housekeeper_schedule = $this->db->query('SELECT * FROM housekeeper_schedule_view WHERE service_cleaning_id = ?', array($result->service_cleaning_id))->result();
+                $housekeeper_schedule = $this->db->query('SELECT * FROM housekeeper_schedule_view WHERE service_cleaning_id = ?', array($result->service_cleaning_id))->row();
                 $appointment_data = $this->curate_appointment_data($result, $housekeeper_list, $housekeeper_schedule);
                 array_push($appointment,$appointment_data);
             }
