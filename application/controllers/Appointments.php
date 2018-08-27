@@ -240,7 +240,7 @@ class Appointments extends Api_Controller{
     private function curate_appointment_data($result, $housekeeper_list, $housekeeper_schedule){
         return array(
             'service_cleaning_id'=>$result->service_cleaning_id,
-            'location'=>array("street_address"=>$result->location_street,"barangay"=>$result->location_barangay,"city_address"=>$result->location_address),
+            'location'=>array("street_address"=>$result->location_street,"barangay"=>$result->location_barangay,"city_address"=>$result->location_city),
             'housekeepers'=>$housekeeper_list,
             'date'=>$housekeeper_schedule->date,
             'start_time'=>$housekeeper_schedule->start_time,
