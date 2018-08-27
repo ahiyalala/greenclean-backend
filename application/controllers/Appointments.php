@@ -251,7 +251,8 @@ class Appointments extends Api_Controller{
             'is_paid'=>($result->is_paid)?true:false,
             'is_finished'=>($result->is_finished)?true:false,
             'payment_type'=>$result->payment_type,
-            'rating'=>($result->rating)?$result->rating:0
+            'rating'=>($result->rating)?$result->rating:0,
+            'total_price'=>$result->total_price
         );
     }
 }
