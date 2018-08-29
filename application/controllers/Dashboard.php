@@ -10,4 +10,9 @@ class Dashboard extends CI_Controller{
       public function profile(){
         $this->load->view('client-7-profile');
       }
+      public function book(){
+        $this->load->view('client-5-booking-complete');
+      }
+
+
 }
