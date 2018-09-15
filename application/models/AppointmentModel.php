@@ -4,7 +4,7 @@ class AppointmentModel extends CI_Model{
       $select_housekeeper_by_number = "SELECT * FROM housekeeper WHERE contact_number = ?";
       $verify_appointment_code      = "SELECT * FROM appointments WHERE drop_code = ? AND housekeeper_id = ?";
       $update_service_cleaning      = "UPDATE service_cleaning SET drop_code = NULL, dropped_by = ? WHERE transaction_id = ?";
-      $update_payment_transaction   = "UPDATE payment_transaction SET is_finished = ? WHERE transaction_id = ?"
+      $update_payment_transaction   = "UPDATE payment_transaction SET is_finished = ? WHERE transaction_id = ?";
       $select_housekeepers_in_appointment = "SELECT contact_number, globe_access_token FROM housekeeper WHERE housekeeper_id IN (SELECT housekeeper_id FROM service_cleaning WHERE transaction_id = ?)";
       $this->db->trans_begin();
       $housekeeper_trigger = $this->db->query($select_housekeeper_by_number, array($sender))->row();
