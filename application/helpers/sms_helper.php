@@ -56,7 +56,7 @@ if ( ! function_exists('sms_helper'))
           )
       );
 
-      $curl = curl_init('https://devapi.globelabs.com.ph/smsmessaging/v1/outbound/'.GLOBE_SHORT_CODE.'/requests?access_token='.$acces_token);
+      $curl = curl_init('https://devapi.globelabs.com.ph/smsmessaging/v1/outbound/'.GLOBE_SHORT_CODE.'/requests?access_token='.$access_token);
       curl_setopt($curl, CURLOPT_POST,1);
       curl_setopt($curl, CURLOPT_POSTFIELDS,json_encode($data));
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
