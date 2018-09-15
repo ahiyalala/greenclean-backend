@@ -105,6 +105,12 @@ class Sms extends CI_Controller{
       $messages = $data['inboundSMSMessageList']['inboundSMSMessage'];
       foreach ($messages as $message) {
         $command = explode(" ",$message["message"]);
+        switch($command[0]){
+          case "END":
+              $this->load->model('AppointmentModel');
+              $contact_number = str_replace('tel:','',$message['senderAddress']);
+              $status = $this->AppointmentModel->close_appointment($command[1],$contact_number);
+        }
         log_message("debug","command: ".$command[0]." target: ".$command[1]);
         log_message('debug',$message["senderAddress"]);
         log_message('debug',$message["dateTime"]);

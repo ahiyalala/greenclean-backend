@@ -27,6 +27,14 @@ class Housekeeper extends CI_Model{
                         ->row();
     }
 
+    public function get_housekeeper_by_contact_number($contact_number){
+      return $this->db->select('*')
+                      ->from('housekeeper')
+                      ->where(array('contact_number'=>$contact_number))
+                      ->get()
+                      ->row();
+    }
+
     public function add(){
         $this->first_name = $this->input->post('first_name');
 
