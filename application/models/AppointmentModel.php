@@ -18,7 +18,7 @@ class AppointmentModel extends CI_Model{
       $service_cleaning = $this->db->query($verify_appointment_code, array($drop_code, $housekeeper_trigger->housekeeper_id))->row();
       if(!$service_cleaning){
         $this->db->trans_rollback();
-        send_general_message($housekeeper_trigger->contact_number, $housekeeper_trigger->globe_access_token, "Invalid drop code:\nThere is no appointment with code ".$drop_code.' is assigned to you.');
+        send_general_message($housekeeper_trigger->contact_number, $housekeeper_trigger->globe_access_token, "Invalid drop code:\nThere is no appointment assigned to you with a code ".$drop_code);
         log_message('error', 'Invalid drop code for '.$housekeeper_trigger->first_name.' '.$housekeeper_trigger->last_name);
         return false;
       }
