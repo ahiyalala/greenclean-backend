@@ -25,9 +25,9 @@ class AppointmentModel extends CI_Model{
       $this->db->query($update_appointment, array($housekeeper->housekeeper_id, 1, $transaction_id));
       $housekeepers = $this->db->query($select_housekeepers_in_appointment, array($transaction_id));
       if($this->db->trans_status()){
-        $this->db->trans_commit();
+        $this->db->trans_rollback();
         $this->load->helper('sms_helper');
-        $message = '['.$transaction_id.']' $housekeeper_trigger->first_name.' '.$housekeeper_trigger->last_name.'['.$housekeeper_trigger->contact_number.'] has marked an appointment as CLOSED.';
+        $message = '['.$transaction_id.']'. $housekeeper_trigger->first_name.' '.$housekeeper_trigger->last_name.'['.$housekeeper_trigger->contact_number.'] has marked an appointment as CLOSED.';
         foreach($housekeepers AS $housekeeper){
           send_general_message($housekeeper->contact_number, $housekeeper->access_token, $message);
         }
