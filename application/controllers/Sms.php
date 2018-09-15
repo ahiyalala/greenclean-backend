@@ -110,10 +110,6 @@ class Sms extends CI_Controller{
               $contact_number = str_replace('tel:+63','',$message['senderAddress']);
               $status = $this->AppointmentModel->close_appointment($command[1],$contact_number);
         }
-        log_message("debug","command: ".$command[0]." target: ".$command[1]);
-        log_message('debug',$message["senderAddress"]);
-        log_message('debug',$message["dateTime"]);
-        log_message('debug',$message['messageId']);
       }
 
       return $this->output->set_status_header(200);
