@@ -29,7 +29,7 @@ class AppointmentModel extends CI_Model{
       $this->db->query($update_payment_transaction, array(1,$transaction_id));
       $housekeepers = $this->db->query($select_housekeepers_in_appointment, array($transaction_id))->result();
       if($this->db->trans_status()){
-        $this->db->trans_rollback();
+        $this->db->trans_commit();
         $message = $housekeeper_trigger->first_name.' '.$housekeeper_trigger->last_name.' ('.$housekeeper_trigger->contact_number.') has marked an appointment ('.$drop_code.') as FINISHED.';
         foreach($housekeepers as $housekeeper){
           send_general_message($housekeeper->contact_number, $housekeeper->globe_access_token, $message);
