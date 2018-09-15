@@ -1,6 +1,7 @@
 <?php
 class AppointmentModel extends CI_Model{
     public function close_appointment($drop_code, $sender){
+      $this->load->helper('sms_helper');
       $select_housekeeper_by_number = "SELECT * FROM housekeeper WHERE contact_number = ?";
       $verify_appointment_code      = "SELECT * FROM appointments WHERE drop_code = ? AND housekeeper_id = ? AND is_finished = 0";
       $update_service_cleaning      = "UPDATE service_cleaning SET drop_code = NULL, dropped_by = ? WHERE transaction_id = ?";
@@ -29,7 +30,6 @@ class AppointmentModel extends CI_Model{
       $housekeepers = $this->db->query($select_housekeepers_in_appointment, array($transaction_id))->result();
       if($this->db->trans_status()){
         $this->db->trans_rollback();
-        $this->load->helper('sms_helper');
         $message = $housekeeper_trigger->first_name.' '.$housekeeper_trigger->last_name.' ('.$housekeeper_trigger->contact_number.') has marked an appointment ('.$drop_code.') as FINISHED.';
         foreach($housekeepers as $housekeeper){
           send_general_message($housekeeper->contact_number, $housekeeper->globe_access_token, $message);
