@@ -104,7 +104,7 @@ class Sms extends CI_Controller{
       $messages = $data['inboundSMSMessageList']['inboundSMSMessage'];
       foreach ($messages as $message) {
         $command = explode(" ",$message["message"]);
-        switch($command[0]){
+        switch(strtoupper($command[0])){
           case "END":
               $this->load->model('AppointmentModel');
               $contact_number = str_replace('tel:+63','',$message['senderAddress']);
