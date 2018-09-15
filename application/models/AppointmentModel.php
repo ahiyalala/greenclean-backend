@@ -9,7 +9,7 @@ class AppointmentModel extends CI_Model{
       $housekeeper_trigger = $this->db->query($select_housekeeper_by_number, array($sender))->result();
       if(!$housekeeper_trigger){
         $this->db->trans_rollback();
-        log_message('error','No housekeeper with number '.$sender)
+        log_message('error','No housekeeper with number '.$sender);
         return false;
       }
       //Check if appointment with code X exists for housekeeper with number X
@@ -27,11 +27,11 @@ class AppointmentModel extends CI_Model{
       if($this->db->trans_status()){
         $this->db->trans_commit();
         $this->load->helper('sms_helper');
-        $message = '['.$transaction_id.']' $housekeeper_trigger->first_name.' '.$housekeeper_trigger->last_name.'['.$housekeeper_trigger->contact_number.'] has marked an appointment as CLOSED.'
+        $message = '['.$transaction_id.']' $housekeeper_trigger->first_name.' '.$housekeeper_trigger->last_name.'['.$housekeeper_trigger->contact_number.'] has marked an appointment as CLOSED.';
         foreach($housekeepers AS $housekeeper){
           send_general_message($housekeeper->contact_number, $housekeeper->access_token, $message);
         }
-        log_message('info',$message)
+        log_message('info',$message);
         return true;
       }
       else{
