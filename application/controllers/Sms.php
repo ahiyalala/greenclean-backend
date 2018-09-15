@@ -101,7 +101,6 @@ class Sms extends CI_Controller{
       */
 
       $data = json_decode(file_get_contents('php://input'),true);
-      log_message('debug',$data);
       $messages = $data['inboundSMSMessageList']['inboundSMSMessage'];
       foreach ($messages as $message) {
         $command = explode(" ",$message["message"]);
