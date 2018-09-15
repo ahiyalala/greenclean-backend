@@ -29,11 +29,11 @@ class AppointmentModel extends CI_Model{
       if($this->db->trans_status()){
         $this->db->trans_rollback();
         $this->load->helper('sms_helper');
-        $message = '['.$transaction_id.']'. $housekeeper_trigger->first_name.' '.$housekeeper_trigger->last_name.'['.$housekeeper_trigger->contact_number.'] has marked an appointment as CLOSED.';
+        $message = $housekeeper_trigger->first_name.' '.$housekeeper_trigger->last_name.'['.$housekeeper_trigger->contact_number.'] has marked an appointment ['.$drop_code.'] as FINISHED.';
         foreach($housekeepers as $housekeeper){
           send_general_message($housekeeper->contact_number, $housekeeper->globe_access_token, $message);
         }
-        log_message('info',$message);
+        log_message('info','Appointment ['.$transaction_id.'] has been marked FINISHED by '.$housekeeper_trigger->first_name.' '.$housekeeper_trigger->last_name);
         return true;
       }
       else{
