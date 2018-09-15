@@ -71,7 +71,7 @@ class Sms extends CI_Controller{
                         "Paalala:\n".
                         "- Sa bawat appointment na iyong matatanggap ay may kaakibat na [Assignment Code] na gagamitin lamang pagkatapos ng iyong appointment.\n\n".
                         "- Upang magamit ang [Assignment Code], i-text ang: END [Assignment Code]\n\n".
-                        "- Sa panahong magkaroon ng problema sa customer, mag-text o tumawag sa [[insert cellphone number here]]."
+                        "- Sa panahong magkaroon ng problema sa customer, mag-text o tumawag sa [[insert cellphone number here]].";
             send_general_message($number,$token,$message);
             log_message('info',json_encode($data));
             return $this->output->set_status_header(200);
