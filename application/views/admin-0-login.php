@@ -10,7 +10,7 @@
 
     <title>Welcome Admin!</title>
 
-    <!-- Bootstrap core CSS -->
+    <!-- Bootstrap core CSSS -->
     <link href="front/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
