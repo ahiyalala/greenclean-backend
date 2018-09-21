@@ -209,9 +209,9 @@ class Appointments extends Api_Controller{
                                         ->where($this->whereIs)->get()->row();
 
         if($id){
-            $query = $this->db->query('call select_specific_appointment(?,?)', array($customer->customer_id,$id));
+            $query = $this->db->query('SELECT DISTINCT * FROM pending_appointments WHERE customer_id = ? AND service_cleaning_id = ?', array($customer->customer_id,$id));
             $result = $query->row();
-            if(isset($result)){
+            if($result){
                 $appointment = $this->_curate_appointment_data($result);
             }
             else{
