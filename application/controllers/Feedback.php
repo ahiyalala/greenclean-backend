@@ -63,16 +63,29 @@ class Feedback extends Api_Controller{
                                       INNER JOIN payment_transaction as t ON s.transaction_id = t.transaction_id
                                       INNER JOIN booking_request as b ON t.booking_request_id = b.booking_request_id
                                       WHERE s.service_cleaning_id = ?";
-    $housekeeper_update_string = "UPDATE housekeeper
-                                  SET rating = ((? + rating)/2)
-                                  WHERE housekeeper_id IN ?";
 
-    $this->db->query($housekeeper_query_string, array($post_date["rating"],$housekeeper_ids));
-    $affected_housekeeper = $this->db->affected_rows()
+
+    foreach($housekeeper_ids as $housekeeper_id){
+      $rating = $this->db->("SELECT rating FROM housekeeper WHERE housekeeper_id =?",array($housekeeper_id));
+      if($rating > 0){
+        $housekeeper_update_string = "UPDATE housekeeper SET rating = ((? + rating)/2) WHERE housekeeper_id IN ?";
+      }
+      else{
+        $housekeeper_update_string = "UPDATE housekeeper SET rating = ? WHERE housekeeper_id IN ?";
+      }
+      $this->db->query($housekeeper_query_string, array($post_date["rating"],$housekeeper_ids));
+      if(!$this->db->affect_rows()){
+        $this->db->trans_rollback();
+        return $this->output->set_status_header(500);
+      }
+    }
     $this->db->query($service_cleaning_query, array($post_data["rating"],$post_data["comment"],$post_data['service_cleaning_id']));
     $affected_appointment = $this->db->affected_rows();
-    if($this->db->trans_status() && $affected_housekeeper && $affected_appointment){
-      $this->db->trans_commit();
+    if($this->db->trans_status() && $affected_appointment){
+      $check_update_query = "SELECT * FROM service_cleaning_id AS s FROM service_cleaning INNER JOIN payment_transaction AS p ON p.transaction_id = s.transaction_id INNER JOIN housekeeper AS h ON h.housekeeper_id = s.housekeeper_id WHERE service_cleaning_id = ?";
+      $check_update = $this->db->query($check_update_query, array($post_data['service_cleaning_id']));
+      log_message('debug',json_decode($check_update));
+      $this->db->trans_rollback();
       return $this->output->set_status_header(200);
     }
     else{
