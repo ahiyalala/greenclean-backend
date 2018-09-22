@@ -1,7 +1,7 @@
 <?php
 include 'Api_Controller.php';
 class Feedback extends Api_Controller{
-  public function send(){
+  public function api_set(){
     if(!$this->isAuth)
       return $this->output->set_status_header($this->header);
 
