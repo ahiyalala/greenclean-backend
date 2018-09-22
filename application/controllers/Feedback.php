@@ -66,8 +66,8 @@ class Feedback extends Api_Controller{
 
 
     foreach($housekeeper_ids as $housekeeper_id){
-      $rating = $this->db->("SELECT rating FROM housekeeper WHERE housekeeper_id =?",array($housekeeper_id));
-      if($rating > 0){
+      $rating = $this->db->query("SELECT rating FROM housekeeper WHERE housekeeper_id =?",array($housekeeper_id))->row();
+      if($rating->rating > 0){
         $housekeeper_update_string = "UPDATE housekeeper SET rating = ((? + rating)/2) WHERE housekeeper_id IN ?";
       }
       else{
