@@ -60,7 +60,7 @@ class Feedback extends Api_Controller{
     }
     $service_cleaning_query_string = "UPDATE booking_request AS b
                                       INNER JOIN payment_transaction AS p ON t.booking_request_id = b.booking_request_id
-                                      INNER JOIN service_cleaning AS t ON s.transaction_id = t.transaction_id
+                                      INNER JOIN service_cleaning AS s ON s.transaction_id = t.transaction_id
                                       SET b.rating = ?, b.comment = ?
                                       WHERE s.service_cleaning_id = ?";
 
