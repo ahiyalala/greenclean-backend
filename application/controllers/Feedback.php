@@ -56,7 +56,7 @@ class Feedback extends Api_Controller{
     $this->db->trans_begin();
     $housekeeper_ids = array();
     foreach($post_data['housekeeper'] as $housekeeper){
-      array_push($housekeeper_ids, $housekeeper); //push id from list of housekeepers
+      array_push($housekeeper_ids, $housekeeper['housekeeper_id']); //push id from list of housekeepers
     }
     $service_cleaning_query_string = "UPDATE service_cleaning as s
                                       SET b.rating = ?, b.comment = ?
