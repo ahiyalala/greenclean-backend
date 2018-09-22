@@ -58,9 +58,9 @@ class Feedback extends Api_Controller{
     foreach($post_data['housekeeper'] as $housekeeper){
       array_push($housekeeper_ids, $housekeeper['housekeeper_id']); //push id from list of housekeepers
     }
-    $service_cleaning_query_string = "UPDATE booking_request AS b
-                                      SET b.rating = ?, b.comment = ?
-                                      INNER JOIN payment_transaction AS b ON t.booking_request_id = b.booking_request_id
+    $service_cleaning_query_string = "UPDATE booking_request
+                                      SET rating = ?, comment = ?
+                                      INNER JOIN payment_transaction AS b ON t.booking_request_id = booking_request.booking_request_id
                                       INNER JOIN service_cleaning AS t ON s.transaction_id = t.transaction_id
                                       WHERE s.service_cleaning_id = ?";
 
