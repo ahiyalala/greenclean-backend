@@ -28,6 +28,43 @@ class Users extends CI_Controller{
         }
     }
 
+    public function api_patch(){
+      $auth = $this->input->get_request_header('Authentication');
+      $auth_arr = explode(" ",$auth);
+      $whereIs = array('email_address'=>$auth_arr[0],'user_token'=>$auth_arr[1]);
+
+      $query = $this->db->from('customer')
+                          ->where($whereIs);
+
+      $user = json_decode(file_get_contents('php://input'),true);
+
+      if($query->count_all_results() > 0){
+        $this->db->trans_begin();
+        $this->db->set('first_name',$user['first_name']);
+        $this->db->set('middle_name',$user['middle_name']);
+        $this->db->set('last_name',$user['last_name']);
+        $this->db->where($whereIs);
+        $this->db->update('customer');
+
+        if($this->db->trans_status()){
+          $this->db->trans_commit();
+          return $this->output->set_status_header(200);
+        }
+        else{
+          $this->db->trans_rollback();
+          return $this->output->set_status_header(500);
+        }
+      }
+      else{
+        $result = array(
+            "message" => "Unauthorized"
+        );
+        return $this->output->set_status_header(401)
+                     ->set_content_type('application/json', 'utf-8')
+                     ->set_output(json_encode($result));
+      }
+    }
+
     public function api_set(){
         $user = json_decode(file_get_contents('php://input'),true);
 
