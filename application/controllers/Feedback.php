@@ -73,7 +73,7 @@ class Feedback extends Api_Controller{
       else{
         $housekeeper_update_string = "UPDATE housekeeper SET rating = ? WHERE housekeeper_id IN ?";
       }
-      $this->db->query($housekeeper_query_string, array($post_date["rating"],$housekeeper_ids));
+      $this->db->query($housekeeper_update_string, array($post_data["rating"],$housekeeper_ids));
       if(!$this->db->affect_rows()){
         $this->db->trans_rollback();
         return $this->output->set_status_header(500);
