@@ -59,7 +59,7 @@ class Feedback extends Api_Controller{
       array_push($housekeeper_ids, $housekeeper['housekeeper_id']); //push id from list of housekeepers
     }
     $service_cleaning_query_string = "UPDATE booking_request AS b
-                                      INNER JOIN payment_transaction AS p ON t.booking_request_id = b.booking_request_id
+                                      INNER JOIN payment_transaction AS t ON t.booking_request_id = b.booking_request_id
                                       INNER JOIN service_cleaning AS s ON s.transaction_id = t.transaction_id
                                       SET b.rating = ?, b.comment = ?
                                       WHERE s.service_cleaning_id = ?";
