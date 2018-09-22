@@ -82,7 +82,7 @@ class Feedback extends Api_Controller{
     $this->db->query($service_cleaning_query_string, array($post_data["rating"],$post_data["comment"],$post_data['service_cleaning_id']));
     $affected_appointment = $this->db->affected_rows();
     if($this->db->trans_status() && $affected_appointment){
-      $check_update_query = "SELECT * FROM service_cleaning_id AS s FROM service_cleaning INNER JOIN payment_transaction AS p ON p.transaction_id = s.transaction_id INNER JOIN housekeeper AS h ON h.housekeeper_id = s.housekeeper_id WHERE service_cleaning_id = ?";
+      $check_update_query = "SELECT * FROM service_cleaning_id AS s INNER JOIN payment_transaction AS p ON p.transaction_id = s.transaction_id INNER JOIN housekeeper AS h ON h.housekeeper_id = s.housekeeper_id WHERE service_cleaning_id = ?";
       $check_update = $this->db->query($check_update_query, array($post_data['service_cleaning_id']));
       log_message('debug',json_decode($check_update));
       $this->db->trans_rollback();
