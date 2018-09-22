@@ -85,7 +85,7 @@ class Feedback extends Api_Controller{
       $check_update_query = "SELECT * FROM service_cleaning AS s INNER JOIN payment_transaction AS p ON p.transaction_id = s.transaction_id INNER JOIN housekeeper AS h ON h.housekeeper_id = s.housekeeper_id WHERE service_cleaning_id = ?";
       $check_update = $this->db->query($check_update_query, array($post_data['service_cleaning_id']));
       log_message('debug',json_encode($check_update->row()));
-      $this->db->trans_rollback();
+      $this->db->trans_commit();
       return $this->output->set_status_header(200);
     }
     else{
