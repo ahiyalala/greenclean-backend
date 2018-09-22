@@ -79,7 +79,7 @@ class Feedback extends Api_Controller{
         return $this->output->set_status_header(500);
       }
     }
-    $this->db->query($service_cleaning_query, array($post_data["rating"],$post_data["comment"],$post_data['service_cleaning_id']));
+    $this->db->query($service_cleaning_query_string, array($post_data["rating"],$post_data["comment"],$post_data['service_cleaning_id']));
     $affected_appointment = $this->db->affected_rows();
     if($this->db->trans_status() && $affected_appointment){
       $check_update_query = "SELECT * FROM service_cleaning_id AS s FROM service_cleaning INNER JOIN payment_transaction AS p ON p.transaction_id = s.transaction_id INNER JOIN housekeeper AS h ON h.housekeeper_id = s.housekeeper_id WHERE service_cleaning_id = ?";
