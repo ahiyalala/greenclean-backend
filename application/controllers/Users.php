@@ -79,7 +79,7 @@ class Users extends CI_Controller{
             )
         );
 
-        $email = $this->db->query("SELECT COUNT(*) AS exist FROM customer WHERE email_address = ?",array($user['email_address']));
+        $email = $this->db->query("SELECT COUNT(*) AS exist FROM customer WHERE email_address = ?",array($user['email_address']))->row();
 
         if($email->exists > 0){
           return $this->output->set_status_header(400);
