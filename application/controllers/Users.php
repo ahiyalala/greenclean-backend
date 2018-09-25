@@ -79,6 +79,12 @@ class Users extends CI_Controller{
             )
         );
 
+        $email = $this->db->query("SELECT COUNT(*) AS exist FROM customer WHERE email_address = ?",array($user['email_address']));
+
+        if($email->exists > 0){
+          return $this->output->set_status_header(400);
+        }
+
         $curl = curl_init(PAYMAYA_URL.'/customers/');
         curl_setopt($curl, CURLOPT_POST,1);
         curl_setopt($curl, CURLOPT_POSTFIELDS,json_encode($paymaya_data));
@@ -117,10 +123,8 @@ class Users extends CI_Controller{
                             ->set_content_type('application/json', 'utf-8');
         }
         else{
-            $q = $this->db->error();
-            $this->output->set_status_header(400)
-                            ->set_content_type('application/json', 'utf-8')
-                            ->set_output(json_encode($q));
+            $this->output->set_status_header(500)
+                            ->set_content_type('application/json', 'utf-8');
         }
     }
 
