@@ -169,7 +169,7 @@ class Appointments extends Api_Controller{
             if ($this->db->trans_status()){
                 send_appointment_details_to_employee($appointment_data,$customer,$list_query);
                 unset($appointment_data['drop_code']);
-                $this->db->trans_rollback();
+                $this->db->trans_commit();
                 return $this->output->set_status_header(200)
                             ->set_content_type('application/json', 'utf-8')
                             ->set_output(json_encode($appointment_data));
