@@ -83,6 +83,7 @@ class Admin extends CI_Controller {
         $this->session->set_flashdata('message','Invalid registration');
       }
       else{
+        log_message('debug','successful');
         $this->db->trans_commit();
       }
       redirect('/admin','location');
