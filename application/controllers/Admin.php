@@ -78,7 +78,7 @@ class Admin extends CI_Controller {
         $this->db->insert('admin',$data);
       }
 
-      if(!$this->db->trans_status() || !admin_verify(true)){
+      if(!$this->db->trans_status() && !admin_verify(true)){
         $this->db->trans_rollback();
 
         log_message('debug',$this->db->trans_status().' '.admin_verify(true));
