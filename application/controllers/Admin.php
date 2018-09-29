@@ -80,10 +80,11 @@ class Admin extends CI_Controller {
 
       if(!$this->db->trans_status() || !admin_verify(true)){
         $this->db->trans_rollback();
+
+        log_message('debug','invalid');
         $this->session->set_flashdata('message','Invalid registration');
       }
       else{
-        log_message('debug','successful');
         $this->db->trans_commit();
       }
       redirect('/admin','location');
