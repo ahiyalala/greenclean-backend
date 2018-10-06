@@ -112,12 +112,12 @@ class Admin extends CI_Controller {
             'admin' => $user
         );
         if($id){
-            $query = "select c.first_name as c_first_name, c.last_name as c_last_name, hs.date, hs.start_time, hs.end_time
-                    from housekeeper_schedule as hs
-                    left join housekeeper as h on h.housekeeper_id=hs.housekeeper_id
-                    left join booking_request as b on b.schedule_id=hs.schedule_id
-                    left join customer as c on c.customer_id=b.customer_id
-                    left join payment_transaction as t on t.booking_request_id = b.booking_request_id
+            $query = "select h.first_name as h_first_name, h.last_name as h_last_name, c.first_name as c_first_name, c.last_name as c_last_name, hs.date, hs.start_time, hs.end_time
+                      from housekeeper_schedule as hs
+                      inner join housekeeper as h on h.housekeeper_id=hs.housekeeper_id
+                      inner join booking_request as b
+                      inner join customer as c on c.customer_id=b.customer_id
+                      inner join payment_transaction as p on p.booking_request_id=b.booking_request_id
                     where h.housekeeper_id = ".$this->db->escape_like_str($id)." and t.is_finished = 0";
             $data['housekeepers'] = $this->housekeeper->get_specific($id);
             $data['appointments'] = $this->db->query($query)->result();
@@ -126,10 +126,11 @@ class Admin extends CI_Controller {
         else{
             $query = 'select h.first_name as h_first_name, h.last_name as h_last_name, c.first_name as c_first_name, c.last_name as c_last_name, hs.date, hs.start_time, hs.end_time
                       from housekeeper_schedule as hs
-                      left join housekeeper as h on h.housekeeper_id=hs.housekeeper_id
-                      left join booking_request as b on b.schedule_id=hs.schedule_id
-                      left join customer as c on c.customer_id=b.customer_id
-                      where hs.availability <> 0';
+                      inner join housekeeper as h on h.housekeeper_id=hs.housekeeper_id
+                      inner join booking_request as b
+                      inner join customer as c on c.customer_id=b.customer_id
+                      inner join payment_transaction as p on p.booking_request_id=b.booking_request_id
+                      where p.is_finished = 0';
             $data['housekeeper_schedules'] = $this->db->query($query)->result();
             $data['housekeepers'] = $this->housekeeper->get_all();
             $view = 'admin-4-employee';
