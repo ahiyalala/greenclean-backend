@@ -113,7 +113,7 @@
             <h2 class="display-5 pb-3">Client Status</h2>-->
 
             <div class="table-responsive-md">
-              <table class="table table-striped table-bordered table-hover" id="myTable2">
+              <table class="table table-striped table-bordered table-hover" id="appointments-table">
                 <thead>
                   <tr>
                     <th>Client Name</th>
