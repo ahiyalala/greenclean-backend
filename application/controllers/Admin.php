@@ -129,7 +129,7 @@ class Admin extends CI_Controller {
                       left join housekeeper as h on h.housekeeper_id=hs.housekeeper_id
                       left join booking_request as b on b.booking_request_id=hs.booking_request_id
                       left join customer as c on c.customer_id=b.customer_id
-                      left join payment_transaction as t on t.booking_request_id = b.booking_request_id
+                      left join payment_transaction as p on p.booking_request_id = b.booking_request_id
                       where p.is_finished = 0';
             $data['housekeeper_schedules'] = $this->db->query($query)->result();
             $data['housekeepers'] = $this->housekeeper->get_all();
