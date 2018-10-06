@@ -209,7 +209,7 @@ class Appointments extends Api_Controller{
                                         ->where($this->whereIs)->get()->row();
 
         if($id){
-            $query = $this->db->query('SELECT DISTINCT * FROM pending_appointments WHERE customer_id = ? AND service_cleaning_id = ?', array($customer->customer_id,$id));
+            $query = $this->db->query('SELECT DISTINCT * FROM all_appointments WHERE customer_id = ? AND service_cleaning_id = ?', array($customer->customer_id,$id));
             $result = $query->row();
             if($result){
                 $housekeeper_list = $this->db->query('SELECT * FROM housekeeper_data WHERE service_cleaning_id = ? AND customer_id = ?', array($result->service_cleaning_id,$customer->customer_id))->result();
