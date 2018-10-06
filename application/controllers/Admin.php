@@ -151,7 +151,7 @@ class Admin extends CI_Controller {
         left join customer as c on c.customer_id=b.customer_id
         left join payment_transaction as t on t.booking_request_id = b.booking_request_id
         where hs.availability <> 0
-        order by hs.date desc, hs.start_time, hs.end_time';
+        order by t.is_finished asc, hs.date desc, hs.start_time, hs.end_time';
         $data['schedules'] = $this->db->query($query)->result();
         $data['admin'] = $this->session->user;
 		$this->load->view('admin-6-client',$data);
