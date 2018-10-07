@@ -11,7 +11,7 @@
                               <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
                               <!-- START OF MAIN -->
                               <main class="col-sm-9 offset-sm-2 col-md-10 offset-md-1 pt-3">
-                                    <h1 class="text-center display-4"><?php// echo $housekeepers->first_name." ".$housekeepers->last_name; ?>'s Profile</h1>
+                                    <h1 class="text-center display-4"><?php //echo $housekeepers->first_name." ".$housekeepers->last_name; ?>'s Profile</h1>
                                     <div class="dropdown-divider"></div>
                                     <!-- START OF 1ST CARD -->
 
@@ -23,7 +23,7 @@
                                                       <img src="front/img/baby.jpeg" class="img-fluid rounded-circle border-dark" alt="APPLE" width="250" height="250">
                                                 </div>
                                                 <div class="text-center mb-3">
-                                                      <h3 class="h3"><?php// echo $housekeepers->last_name.", ".$housekeepers->first_name; ?></h3>
+                                                      <h3 class="h3"><?php //echo $housekeepers->last_name.", ".$housekeepers->first_name; ?></h3>
                                                 </div>
                                                 <table class="table bg-faded">
                                                       <tbody>
