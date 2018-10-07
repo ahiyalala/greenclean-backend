@@ -4,9 +4,6 @@
             
             </div> <!-- CONTAINER -->
       
-           
-            
-           
                  <footer class="footer">
                    <div class="container-fluid text-center text-light" style="background-color: #faed2c;">
                      <p class="font-weight-bold m-2 p-2 lead">
@@ -14,16 +11,7 @@
                      </p>
                    </div>
                  </footer>
-          
-        
-            
-       
-        
-          
-     
-     
-  
-  
+
      <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
