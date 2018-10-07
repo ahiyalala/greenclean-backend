@@ -6,7 +6,7 @@
              <span class="navbar-toggler-icon"></span>
            </button>
            <a class="navbar-brand" href="#">
-           <img class="rounded-circle" src="http://via.placeholder.com/26x26" alt="" >
+           <img class="" src="../front/img/GKlean name only.png" width="100" height="20"  alt="" >
            </a>
 
           <div class="collapse navbar-collapse">
