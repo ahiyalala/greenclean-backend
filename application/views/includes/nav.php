@@ -15,7 +15,7 @@
                 <a href="#" class="dropdown-item">Dashboard</a>
               </li>
               <li class="nav-item m-1 dropdown">
-                <a href="#" class="dropdown-item">MyProfile</a>
+                <a href="#" class="dropdown-item">My Profile</a>
               </li>
               <li class="nav-item m-1 dropdown">
                 <a href="#" class="dropdown-item">History</a>
@@ -32,16 +32,16 @@
                    Juan dela Cruz
                  </a>
                  <div class="dropdown-menu  dropdown-menu-right">
-                   <a href="#" class="dropdown-item">Dashboard</a>
+                   <a href="#" class="dropdown-item text-center">Dashboard</a>
                  </div>
                  <div class="dropdown-menu  dropdown-menu-right">
-                   <a href="#" class="dropdown-item">MyProfile</a>
+                   <a href="#" class="dropdown-item text-center">MyProfile</a>
                  </div>
                  <div class="dropdown-menu  dropdown-menu-right">
-                   <a href="#" class="dropdown-item">History</a>
+                   <a href="#" class="dropdown-item text-center">History</a>
                  </div>
                  <div class="dropdown-menu  dropdown-menu-right">
-                   <a href="gc_0-indexpage.html" class="dropdown-item">Logout</a>
+                   <a href="gc_0-indexpage.html" class="dropdown-item text-center">Logout <i class="fas fa-power-off"></i></a>
                  </div>
                </li>
              </ul>

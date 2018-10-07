@@ -61,7 +61,7 @@ include("includes/nav.php");
             </div>
         </div>
     </div>
-    <div class="card-dash my-2">
+    <div class="card-dash my-2" data-toggle="modal" data-target="#myAppointmentCompleted">
         <div class="row justify-content-center align-self-center">
             <div class="col-2">
                 <table id="wrapper">
@@ -101,7 +101,7 @@ include("includes/nav.php");
 
     <!-- Pending Card -->
     <div class="mt-5">
-        <p class="h3">Pending Appoints</p>
+        <p class="h3">Pending Appointments</p>
         <hr>
         <div class="row">
             <div class="col-1">
@@ -138,22 +138,51 @@ include("includes/nav.php");
                                 <tr>
                                 <td class="borderless">Date and Time:</td>
                                 <td class="borderless">10/31/2018 14:00</td>
+                               
+                                </td>
                                 </tr>
                         </table>
                     </div>
             </div>
-            <div class="col" >
+            <div class="col">
             <table id="wrapper">
                 <tr>
                     <td class="tdboy"><h4 class="h4">Price: ₱ 500</h4> </td>
                 </tr>
+
                 </table>
             </div>
         </div>
     </div>
     <!-- Pending Close Tag -->
+   
+     <!-- MODAL Reset Password -->
+     <div class="modal fade" id="myAppointmentCompleted" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-md">
+                            <div class="modal-content ">
+                                <div class="modal-header">
+                                    <h5 class="h3 text-dark d-flex justify-content-center" id="myModalLabel">Appointment Completed!</h5>
+                                    <button class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group row">
+                                        <label for="example-text-input" class="col-2 col-form-label text-dark font-weight-bold">Email:</label>
+                                        <div class="col-10">
+                                            <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer d-flex justify-content-center">
+                                        <button href="" class="btn btn-outline-success">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    </div>
+    
     
 </div>
 
-<?php include("includes/footer.php");
-?>
+
+
+
+<?php include("includes/footer.php");?>
