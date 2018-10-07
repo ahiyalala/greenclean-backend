@@ -8,9 +8,9 @@
             
            
                  <footer class="footer">
-                   <div class="container-fluid text-center text-light bg-success ">
-                     <p class="font-weight-bold m-2 p-2">
-                       <span>(c) Green Clean Copyrights 2018 Developed by CodeBehind Inc.</span>
+                   <div class="container-fluid text-center text-light" style="background-color: #faed2c;">
+                     <p class="font-weight-bold m-2 p-2 lead">
+                       <span>© Green Clean Copyrights 2018 Developed by CodeBehind Inc.</span>
                      </p>
                    </div>
                  </footer>

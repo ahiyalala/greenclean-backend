@@ -24,8 +24,8 @@
           </ul>
 
       </nav>
-      <!-- NAV END -->
       </div>
+      <!-- NAV END -->
 
       <br>
       <br>

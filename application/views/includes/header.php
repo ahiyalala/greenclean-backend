@@ -27,8 +27,11 @@
          .rounded-circle {
             border:4px solid rgb(65, 221, 104);
          }
+         
          .active {
-            background-color: yellowgreen !important;
+            /* text-decoration: underline; !important; */
+            padding-bottom: 3px;
+            border-bottom: 1px solid green;
          }
          .display-5 {
          font-weight: 300;
