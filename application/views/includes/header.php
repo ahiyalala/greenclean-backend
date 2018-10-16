@@ -27,7 +27,7 @@
 
          }
          .rounded-circle {
-            border:4px solid rgb(65, 221, 104);
+            border:2px solid rgb(65, 221, 104);
          }
          
          .active {
@@ -131,6 +131,10 @@
 
         .grey-bg {
             background-color: #F3F3F5;
+        }
+
+        .card-service{
+            font-size: 10px;
         }
 
     

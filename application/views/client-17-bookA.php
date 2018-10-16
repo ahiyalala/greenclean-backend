@@ -33,39 +33,14 @@
             </div>
         </div>
         <div class="my-2 pure-white" data-toggle="modal" data-target="#myAppointmentCompleted">
-            <div class="row justify-content-center align-self-center">
-                <div class="col-2">
-                    <table id="wrapper">
-                    <tr>
-                        <td class="tdboy"> <img src="http://via.placeholder.com/100x100" class="rounded-circle img-fluid m-2" /></td>
-                    </tr>
-                    </table>
-                </div>
-                <div class="col">
-                        <div class="table-responsive">
-                            <table class="table table-borderless borderless">
-                                    <tr>
-                                    <td class="borderless">Appointment #:</td>
-                                    <td class="borderless">000-001</td>       
-                                    </tr>
-                                    <tr>
-                                    <td class="borderless">Service Type:</td>
-                                    <td class="borderless">Service A</td>
-                                    </tr>
-                                    <tr>
-                                    <td class="borderless">Date and Time:</td>
-                                    <td class="borderless">10/31/2018 14:00</td>
-                                    </tr>
-                            </table>
-                        </div>
-                </div>
-                <div class="col" >
-                <table id="wrapper">
-                    <tr>
-                        <td class="tdboy"><h4 class="h4">Price: ₱ 500</h4> </td>
-                    </tr>
-                    </table>
-                </div>
+            <div class="row  card-service align-self-center">
+
+                   <span class="my-1 mx-3"><img src="http://via.placeholder.com/50x50" class="rounded-circle img-fluid m-2" /></span>
+                    
+                    <p class="my-1 mx-3">Appointment #: 000-001</p>
+                    <p class="my-1 mx-3">Service Type: Service A</p>
+                    <p class="my-1 mx-3">Date and Time: 10/31/2018 14:00</p>
+                    <p class="my-1 mx-3">Price: ₱ 500</p>
             </div>
         </div>
         <!-- Needs Close Tag -->
