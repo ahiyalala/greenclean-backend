@@ -1,18 +1,17 @@
  <!-- NAV START -->
 
- 
- <div></div>
- <div class="nav">
-         <nav class="navbar navbar-light navbar-toggleable-md fixed-top">
-   
+
+ <br>
+ <div class="nav" style="">
+         <nav class="navbar navbar-light navbar-toggleable-md fixed-top2">
            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav">
              <span class="navbar-toggler-icon"></span>
            </button>
            <a class="navbar-brand" href="#">
-           <img class="" src="../front/img/GKlean name only.png" width="100" height="20"  alt="" >
+           <img class="" src="../front/img/GKlean name only.png" width="70" height="10"  alt="" >
            </a>
 
-          <div class="collapse navbar-collapse">
+          <div class="collapse navbar-collapse flex-row-reverse" style="width:130%;">
             <ul class="navbar-nav">
               <li class="nav-item m-1 dropdown active">
                 <a href="#" class="dropdown-item">Dashboard</a>
@@ -28,10 +27,10 @@
 
 
 
-           <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
+           <div class="collapse navbar-collapse flex-row-reverse  white" id="navbarNav">
              <ul class="navbar-nav">
                <li class="nav-item m-1 dropdown">
-                 <a class="nav-link dropdown-toggle  dropleft" href="#" data-toggle="dropdown">
+                 <a class="nav-link dropdown-toggle  dropleft text-center" href="#" data-toggle="dropdown">
                    Juan dela Cruz
                  </a>
                  <div class="dropdown-menu  dropdown-menu-right">
@@ -51,6 +50,5 @@
          </nav>  
       </div>
       <br>
-      <br>
-      <br>
+     
       <!-- NAV END -->

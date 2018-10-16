@@ -72,10 +72,7 @@
             border-bottom: 1px solid #fff;
         }
 
-        .card-dash{
-            border-style: solid;
-            border-radius: 25px;
-        }
+       
 
         #wrapper {
             height:100%;
@@ -93,6 +90,52 @@
             background-color:#FFEBCD;
         }
 
+        .fixed-top2 {
+            /* position: fixed; */
+            /* top: 0; */
+            right: 0;
+            left: 0;
+            z-index: 1030; 
+            width: 100%;
+        }
+
+        nav {
+            border-color: yellow;
+            border-style: solid;
+            border-width: 1px;
+            background-color: white;
+            font-size: 10px;
+        }
+        body  {
+            background-color: #F2F3F5;
+        }
+
+        .white {
+            background-color: white;
+            padding: 0;
+        }
+
+        .pure-white {
+            background-color: white;
+        }
+
+        .jumbotron {
+            padding: 6rem 2rem;
+            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fefcea+0,f1da36+100;Gold+3D */
+            background: #fefcea; /* Old browsers */
+            background: -moz-linear-gradient(top, #fefcea 0%, #f1da36 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, #fefcea 0%,#f1da36 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, #fefcea 0%,#f1da36 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#f1da36',GradientType=0 ); /* IE6-9 */
+        }
+
+        .grey-bg {
+            background-color: #F3F3F5;
+        }
+
+    
+        
+
 
 
        
@@ -102,3 +145,4 @@
    </style>
 </head>
 <body>
+
