@@ -1,7 +1,7 @@
-<?php include("includes/header.php");
-include("includes/nav.php");
+<?php include("includes/header.php"); ?>
+ <div></div>
+<?php include("includes/nav.php"); ?>
 
-?>
 <div class="container">
     <div class="container">
         <div class="row">

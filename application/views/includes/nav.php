@@ -1,6 +1,9 @@
  <!-- NAV START -->
+
+ 
+ <div></div>
  <div class="nav">
-         <nav class="navbar navbar-light navbar-toggleable-md fixed-top" style="background-color: #faed2c;">
+         <nav class="navbar navbar-light navbar-toggleable-md fixed-top">
    
            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav">
              <span class="navbar-toggler-icon"></span>
