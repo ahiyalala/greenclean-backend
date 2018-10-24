@@ -11,6 +11,11 @@ class Log extends CI_Controller {
      *
      * @param String $log_date
      */
+  public function __construct(){
+      parent::__construct();
+      redirect('/admin/log','refresh',301);
+  }
+
     public function index($log_date = NULL)
 	{
 		$this->load->library('log_library');

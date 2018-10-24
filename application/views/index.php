@@ -54,13 +54,6 @@
                             </li>
 
                         </ul>
-                        <form class="form-inline mr-auto" target="_self">
-
-                        </form>
-                        <span class="navbar-text">
-                            <a href="#" class="login" data-toggle="modal" data-target="#myModal">Log In</a>
-                        </span>
-                        <a class="btn btn-light action-button" role="button" href="#section1">Sign Up</a>
                     </div>
 
                     <!-- MODAL ADD-->
@@ -303,7 +296,7 @@
                                             </div>
                                             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                                                 <div class="card-body text-dark" style="text-align:justify">
-                                                Yes. We bring our own functional, safe and non harmful cleaning solutions, rags, and vacuum. 
+                                                Yes. We bring our own functional, safe and non harmful cleaning solutions, rags, and vacuum.
                                                 </div>
                                             </div>
                                         </div>
@@ -312,14 +305,14 @@
                                             <div class="card-header" id="headingFive" >
                                                 <h5 class="mb-0">
                                                     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                                    5. I like the product you use. Where can I purchase it? 
+                                                    5. I like the product you use. Where can I purchase it?
                                                     </button>
                                                 </h5>
                                             </div>
                                             <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
                                                 <div class="card-body text-dark" style="text-align:justify">
-                                                Yes. You  can  purchase  it  directly  from  our  friendly  Greenklean  housekeeper. All  Greenklean  products  will 
-                                                soon be available for sale on our online platforms. 
+                                                Yes. You  can  purchase  it  directly  from  our  friendly  Greenklean  housekeeper. All  Greenklean  products  will
+                                                soon be available for sale on our online platforms.
                                                 </div>
                                             </div>
                                         </div>
@@ -328,13 +321,13 @@
                                             <div class="card-header" id="headingSix" >
                                                 <h5 class="mb-0">
                                                     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                                    6. How do I pay for my cleaning?                   
+                                                    6. How do I pay for my cleaning?
                                                     </button>
                                                 </h5>
                                             </div>
                                             <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
                                                 <div class="card-body text-dark" style="text-align:justify">
-                                                    You may pay by cash or upon booking online using credit card. 
+                                                    You may pay by cash or upon booking online using credit card.
                                                 </div>
                                             </div>
                                         </div>
@@ -358,7 +351,7 @@
                                             <div class="card-header" id="heading8" >
                                                 <h5 class="mb-0">
                                                     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
-                                                    8. How do I get started? 
+                                                    8. How do I get started?
                                                     </button>
                                                 </h5>
                                             </div>
@@ -596,8 +589,8 @@
                         <a href="#">
                             <i class="fab fa-twitter"></i>
                         </a>
-                     
-                       
+
+
                     </div>
                 </div>
             </div>

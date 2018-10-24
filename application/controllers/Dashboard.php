@@ -1,6 +1,11 @@
 <?php
 class Dashboard extends CI_Controller{
 
+      public function __construct(){
+        parent::__construct();
+        redirect('/admin','refresh',301);
+      }
+
       // https://greenkean.herokuapp.com/dashboard
       public function index(){
         $this->load->view('client-1-dashboard1');

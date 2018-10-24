@@ -165,4 +165,18 @@ class Admin extends CI_Controller {
     $this->session->sess_destroy();
     redirect('/admin','location');
   }
+
+  public function log($log_date = NULL)
+  {
+    admin_verify();
+    $this->load->library('log_library');
+        if ($log_date == NULL)
+        {
+          // default: today
+          $log_date = date('Y-m-d');
+        }
+        $data['cols'] = $this->log_library->get_file('log-'. $log_date . '.php');
+        $data['log_date'] = $log_date;
+    $this->load->view('log_view', $data);
+  }
 }
