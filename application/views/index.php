@@ -75,13 +75,13 @@
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-2 col-form-label text-dark font-weight-bold">Username:</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                                            <input class="form-control" type="text" value="" id="example-text-input">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-2 col-form-label text-dark font-weight-bold">Password:</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="password" value="Artisanal kale" id="example-text-input">
+                                            <input class="form-control" type="password" value="" id="example-text-input">
                                         </div>
                                     </div>
 
@@ -108,7 +108,7 @@
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-2 col-form-label text-dark font-weight-bold">Email:</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                                            <input class="form-control" type="text" value="" id="example-text-input">
                                         </div>
                                     </div>
                                     <div class="modal-footer d-flex justify-content-center">
@@ -130,7 +130,7 @@
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-2 col-form-label text-dark font-weight-bold">Email:</label>
                                         <div class="col-10">
-                                            <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                                            <input class="form-control" type="text" value="" id="example-text-input">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -571,7 +571,7 @@
                     <div>
                         <span class="fa fa-map-marker footer-contacts-icon"> </span>
                         <p>
-                            <span class="new-line-span">21 Revolution Street</span> Paris, France</p>
+                            <span class="new-line-span">21 Revolution Street</span> Quezon City, Philippines</p>
                     </div>
                     <div>
                         <i class="fa fa-phone footer-contacts-icon"></i>
