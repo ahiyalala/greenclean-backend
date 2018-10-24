@@ -3,7 +3,7 @@ class Dashboard extends CI_Controller{
 
       // https://greenkean.herokuapp.com/dashboard
       public function index(){
-        $this->load->view('client-1-dashboard1');
+        $this->load->view('coming_soon');
       }
 
       // https://greenkean.herokuapp.com/dashboard/profile
