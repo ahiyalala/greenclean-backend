@@ -59,3 +59,4 @@ $route['api/([a-z]+)']['get'] = '$1/api_get/';
 $route['api/([a-z]+)/(:any)']['get'] = '$1/api_get/$2';
 $route['api/([a-z]+)']['post'] = '$1/api_set';
 $route['api/([a-z]+)']['patch'] = '$1/api_patch';
+$route['api/([a-z]+)/(:any)']['delete'] = '$1/api_delete/$2';
