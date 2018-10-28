@@ -13,7 +13,7 @@ class Payments extends Api_Controller{
         $curl = curl_init(PAYMAYA_URL.'/customers/'.$customer->paymaya_customer_id.'/cards/');
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST,'GET');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        //curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($curl, CURLOPT_HTTPHEADER,array(
             'Content-Type: application/json',
             'Authorization: Basic '.base64_encode(PAYMAYA_SECRET.':')
@@ -79,7 +79,7 @@ class Payments extends Api_Controller{
         curl_setopt($curl, CURLOPT_POST,1);
         curl_setopt($curl, CURLOPT_POSTFIELDS,json_encode($cardDetails));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        //curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($curl, CURLOPT_HTTPHEADER,array(
             'Content-Type: application/json',
             'Authorization: Basic '.base64_encode(PAYMAYA_PUBLIC.':')
@@ -128,7 +128,7 @@ class Payments extends Api_Controller{
         curl_setopt($curl, CURLOPT_POST,1);
         curl_setopt($curl, CURLOPT_POSTFIELDS,json_encode($paymaya_data));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        //curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($curl, CURLOPT_HTTPHEADER,array(
             'Content-Type: application/json',
             'Authorization: Basic '.base64_encode(PAYMAYA_SECRET.':')
@@ -173,7 +173,7 @@ class Payments extends Api_Controller{
             $curl = curl_init(PAYMAYA_URL.'/customers/'.$user_result->paymaya_customer_id.'/cards/'.$arr['cardTokenId']);
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST,"DELETE");
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+            //curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
             curl_setopt($curl, CURLOPT_HTTPHEADER,array(
                 'Content-Type: application/json',
                 'Authorization: Basic '.base64_encode(PAYMAYA_SECRET.':')

@@ -84,7 +84,7 @@ class Users extends CI_Controller{
         if($email->exists > 0){
           return $this->output->set_status_header(400);
         }
-
+        /*
         $curl = curl_init(PAYMAYA_URL.'/customers/');
         curl_setopt($curl, CURLOPT_POST,1);
         curl_setopt($curl, CURLOPT_POSTFIELDS,json_encode($paymaya_data));
@@ -104,9 +104,9 @@ class Users extends CI_Controller{
             log_message('error','httpResponse: '.$httpResponse);
             return $this->output->set_status_header(500);
         }
-
+        */
         $data = array(
-            'paymaya_customer_id'=>$arr['id'],
+            //'paymaya_customer_id'=>$arr['id'],
             'first_name' => $user['first_name'],
             'middle_name'=>(isset($user['middle_name']))? $user['middle_name']:'',
             'last_name' => $user['last_name'],

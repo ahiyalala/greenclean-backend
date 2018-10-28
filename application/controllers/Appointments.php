@@ -43,7 +43,7 @@ class Appointments extends Api_Controller{
         $start_time = $this->db->escape_str($format_time);
         $query = "SELECT DISTINCT(h.housekeeper_id) FROM housekeeper as h
                   LEFT JOIN housekeeper_schedule AS hs ON h.housekeeper_id = hs.housekeeper_id
-                  WHERE hs.date = ? AND hs.start_time >= ? AND hs.start_time <= ?";
+                  WHERE hs.date = ? AND hs.start_time >= ? AND hs.start_time <= ? AND hs.availability = 1";
 
         $schedule_query = $this->db->query($query, array($date, $start_time, $start_time));
 
@@ -209,11 +209,11 @@ class Appointments extends Api_Controller{
                                         ->where($this->whereIs)->get()->row();
 
         if($id){
-            $query = $this->db->query('SELECT DISTINCT * FROM all_appointments WHERE customer_id = ? AND service_cleaning_id = ?', array($customer->customer_id,$id));
+            $query = $this->db->query('SELECT DISTINCT * FROM all_appointments WHERE customer_id = ? AND service_cleaning_id = ? AND (is_finished >=0)', array($customer->customer_id,$id));
             $result = $query->row();
             if($result){
-                $housekeeper_list = $this->db->query('SELECT * FROM housekeeper_data WHERE service_cleaning_id = ? AND customer_id = ?', array($result->service_cleaning_id,$customer->customer_id))->result();
-                $housekeeper_schedule = $this->db->query('SELECT * FROM housekeeper_schedule_view WHERE service_cleaning_id = ?', array($result->service_cleaning_id))->row();
+                $housekeeper_list = $this->db->query('SELECT * FROM housekeeper_data WHERE service_cleaning_id = ? AND customer_id = ? AND (is_finished >=0)', array($result->transaction_id,$customer->customer_id))->result();
+                $housekeeper_schedule = $this->db->query('SELECT * FROM housekeeper_schedule_view WHERE service_cleaning_id = ?', array($result->transaction_id))->row();
                 $appointment = $this->_curate_appointment_data($result,$housekeeper_list, $housekeeper_schedule);
             }
             else{
@@ -223,11 +223,11 @@ class Appointments extends Api_Controller{
             }
         }
         else{
-            $query = $this->db->query('SELECT DISTINCT * FROM all_appointments WHERE customer_id = ?',array($customer->customer_id))->result();
+            $query = $this->db->query('SELECT DISTINCT * FROM all_appointments WHERE customer_id = ? AND (is_finished >=0)',array($customer->customer_id))->result();
             $appointment = array();
             foreach($query as $result){
-                $housekeeper_list = $this->db->query('SELECT * FROM housekeeper_data WHERE service_cleaning_id = ? AND customer_id = ?', array($result->service_cleaning_id,$customer->customer_id))->result();
-                $housekeeper_schedule = $this->db->query('SELECT * FROM housekeeper_schedule_view WHERE service_cleaning_id = ?', array($result->service_cleaning_id))->row();
+                $housekeeper_list = $this->db->query('SELECT * FROM housekeeper_data WHERE service_cleaning_id = ? AND customer_id = ?', array($result->transaction_id,$customer->customer_id))->result();
+                $housekeeper_schedule = $this->db->query('SELECT * FROM housekeeper_schedule_view WHERE service_cleaning_id = ?', array($result->transaction_id))->row();
                 $appointment_data = $this->_curate_appointment_data($result, $housekeeper_list, $housekeeper_schedule);
                 array_push($appointment,$appointment_data);
             }
@@ -236,6 +236,53 @@ class Appointments extends Api_Controller{
         return $this->output->set_status_header(200)
                             ->set_content_type('application/json', 'utf-8')
                             ->set_output(json_encode($appointment));
+
+    }
+
+    public function api_delete($transaction_id){
+      if(!$this->isAuth)
+        return $this->output->set_status_header($this->header);
+
+      $customer = $this->db->select('*')->from('customer')
+                                        ->where($this->whereIs)->get()->row();
+
+      $query = $this->db->query('SELECT drop_code AS record_exists FROM all_appointments WHERE customer_id = ? AND is_finished = 0 AND service_cleaning_id = ?', array($customer->customer_id, $service_id))->row();
+      if($query->drop_code)
+        $this->output->set_status_header(403);
+
+      $this->db->trans_start();
+      $query_booking_id = $this->db->query('SELECT booking_request_id FROM payment_transaction WHERE transaction_id = ?', array($transaction_id))->row();
+      $this->db->where(array(
+        "transaction_id"=>$transaction_id
+      ));
+      $this->db->set('is_finished',-1);
+      $this->db->update('payment_transaction');
+      $has_updated = $this->db->affected_rows();
+      $this->db->where(array(
+        "booking_request_id"=>$query_booking_id->booking_request_id
+      ));
+      $this->db->set('availability',0);
+      $this->db->update('housekeeper_schedule');
+      $has_updated_schedule = $this->db->affected_rows();
+      if($this->db->trans_status() && $has_updated && $has_updated_schedule){
+        $this->db->trans_commit();
+        $queryHousekeepers = "SELECT h.contact_number, h.globe_access_token, s.drop_code FROM housekeeper AS h
+                              INNER JOIN service_cleaning AS s ON s.housekeeper_id = h.housekeeper_id
+                              WHERE s.transaction_id = ?"
+        $housekeepers = $this->db->query($queryHousekeepers,array($transaction_id))->result();
+        foreach($housekeepers as $housekeeper){
+          $message =  "[APPOINTMENT CANCELLED]\n".
+                      "Drop code ".$housekeeper->drop_code." has been cancelled by the user.";
+
+          send_general_message($housekeeper->contact_number, $housekeeper->globe_access_token, $message);
+        }
+
+        return $this->output->set_status_header(200);
+      }
+      else{
+        $this->db->trans_rollback();
+        return $this->output->set_status_header(500);
+      }
 
     }
 
