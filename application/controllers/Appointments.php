@@ -247,11 +247,20 @@ class Appointments extends Api_Controller{
                                         ->where($this->whereIs)->get()->row();
 
       $query = $this->db->query('SELECT drop_code AS record_exists FROM all_appointments WHERE customer_id = ? AND is_finished = 0 AND service_cleaning_id = ?', array($customer->customer_id, $service_id))->row();
+
       if($query->drop_code)
         $this->output->set_status_header(403);
 
+
+
       $this->db->trans_start();
       $query_booking_id = $this->db->query('SELECT booking_request_id FROM payment_transaction WHERE transaction_id = ?', array($transaction_id))->row();
+      $schedule_select = $this->db->query('SELECT COUNT(*) AS valid_request FROM `housekeeper_schedule` WHERE DATEDIFF(date,NOW()) >= 1 AND booking_request_id = ?', array($query_booking_id->booking_request_id))->row();
+      if($schedule_select->valid_request){
+        $this->db->trans_rollback();
+
+        return $this->output->set_status_header(403);
+      }
       $this->db->where(array(
         "transaction_id"=>$transaction_id
       ));
