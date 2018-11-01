@@ -11,15 +11,15 @@
     <br>
         <div class="row">
             <div class="col">
-                <h1 class="display-4 text-left">My Dashboard</h1>
+                <h1 class="customFont-1 text-left">My Dashboard</h1>
             </div>
-            <div class="col-4"><button class="btn btn-lg btn-outline-success mt-2 ">Schedule an Appointment <i class="fas fa-plus"></i></button></div>
+            <div class="col-4 text-right"><button class="btn btn-outline-success">Schedule an Appointment <i class="fas fa-plus"></i></button></div>
         </div>
 
         <!-- Needs Card -->
-        <div class="mt-2">
-            <p class="h3">Needs Feedback</p>
-            <hr>
+        <div class="mt-1">
+            <p class="customFont-2 mb-0">Needs Feedback</p>
+            <hr class="mt-0">
             <div class="row">
                 <div class="col-1">
                     <div class="d-flex justify-content-start"><select class="form-control form-control-sm">
@@ -47,8 +47,8 @@
 
         <!-- Pending Card -->
         <div class="mt-5">
-            <p class="h3">Pending Appointments</p>
-            <hr>
+            <p class="customFont-2 mb-0">Pending Appointments</p>
+            <hr class="mt-0">
             <div class="row">
                 <div class="col-1">
                     <div class="d-flex justify-content-start"><select class="form-control form-control-sm">
@@ -62,44 +62,17 @@
             </div>
         </div>
         <div class="my-2 pure-white">
-            <div class="row justify-content-center align-self-center">
-                <div class="col-2">
-                    <table id="wrapper">
-                    <tr>
-                        <td class="tdboy"> <img src="http://via.placeholder.com/100x100" class="rounded-circle img-fluid m-2" /></td>
-                    </tr>
-                    </table>
-                </div>
-                <div class="col">
-                        <div class="table-responsive">
-                            <table class="table table-borderless borderless">
-                                    <tr>
-                                    <td class="borderless">Appointment #:</td>
-                                    <td class="borderless">000-001</td>       
-                                    </tr>
-                                    <tr>
-                                    <td class="borderless">Service Type:</td>
-                                    <td class="borderless">Service A</td>
-                                    </tr>
-                                    <tr>
-                                    <td class="borderless">Date and Time:</td>
-                                    <td class="borderless">10/31/2018 14:00</td>
-                                
-                                    </td>
-                                    </tr>
-                            </table>
-                        </div>
-                </div>
-                <div class="col">
-                <table id="wrapper">
-                    <tr>
-                        <td class="tdboy"><h4 class="h4">Price: ₱ 500</h4> </td>
-                    </tr>
+        <div class="row  card-service align-self-center">
 
-                    </table>
-                </div>
-            </div>
+            <span class="my-1 mx-3"><img src="http://via.placeholder.com/50x50" class="rounded-circle img-fluid m-2" /></span>
+        
+            <p class="my-1 mx-3">Appointment #: 000-001</p>
+            <p class="my-1 mx-3">Service Type: Service A</p>
+            <p class="my-1 mx-3">Date and Time: 10/31/2018 14:00</p>
+            <p class="my-1 mx-3">Price: ₱ 500</p>
         </div>
+        </div>
+        <br>
         <!-- Pending Close Tag -->
     
         <!-- MODAL Reset Password -->
@@ -114,7 +87,7 @@
                                         <div class="form-group row">
                                             <label for="example-text-input" class="col-2 col-form-label text-dark font-weight-bold">Email:</label>
                                             <div class="col-10">
-                                                <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                                                <input class="form-control" type="text" value="" id="example-text-input">
                                             </div>
                                         </div>
                                         <div class="modal-footer d-flex justify-content-center">
@@ -126,7 +99,7 @@
         </div>
 </div>
 
-
+<br>
 
 
 <?php include("includes/footer.php");?>

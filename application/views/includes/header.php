@@ -18,6 +18,22 @@
            }
          }
 
+         @media (max-width: 576px) {
+           .dissap {
+             display: none;
+           }
+         }
+
+         @import url('https://fonts.googleapis.com/css?family=Oswald|PT+Sans');
+         .customFont-1{
+            font-family: 'Oswald', sans-serif;
+         }
+         .customFont-2{
+            font-family: 'PT Sans', sans-serif;
+         }
+
+         
+
          /* .row{
             border-style: solid;
             border-radius: 25px;

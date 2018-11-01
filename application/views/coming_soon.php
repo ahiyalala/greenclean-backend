@@ -32,7 +32,7 @@
 <div class="h-100 align-items-center d-flex  text-center">
   <div class="col header-green">
     <img class="img_style mb-3" src="front/img/Gklean.png"/> 
-    <p class="h-30  pstyle">WE ARE COMING SOON.</p>
+    <p class="h-30  pstyle">COMING SOON...</p>
   </div>
 </div>
 
