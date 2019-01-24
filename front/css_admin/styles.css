@@ -1,3 +1,8 @@
 *[class^='modal-'] a.btn,*[class^='modal-'] a.btn:hover, *[class^='modal-'] a.btn:focus{
   color:white;
 }
+
+.footer-company-logo{
+  width:100px;
+  height:auto;
+}

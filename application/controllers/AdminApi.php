@@ -3,8 +3,12 @@
 class AdminApi extends CI_Controller{
   public function employee_appointments($id){
     if(!$this->session->has_userdata('user')){
-      $this->output->set_status_header(401);
-      return;
+      return $this->output->set_status_header(401)
+                          ->set_content_type('application/json','utf-8')
+                          ->set_output(json_encode(array(
+                            "message"=>"Unauthorized"
+                          )));
+
     }
 
 

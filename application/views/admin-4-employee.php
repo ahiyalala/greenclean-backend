@@ -56,7 +56,7 @@
                       <a href="<?php echo base_url("/admin/employee/".$housekeeper->housekeeper_id) ?>"> <?php echo $housekeeper->last_name.", ".$housekeeper->first_name; ?> </a>
                     </td>
                     <td><?php echo $housekeeper->gender ?></td>
-                    <td><?php echo '0'.$housekeeper->contact_number ?></td>
+                    <td><?php echo $housekeeper->contact_number ?></td>
                     <th><?php echo ($housekeeper->rating > 0)? $housekeeper->rating:"Rating not yet available"; ?> </th>
                     <th>
                     <div class="btn-group w-100 btn-block" role="group">
@@ -121,7 +121,7 @@
             <button class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-          <?php echo form_open('employee/add'); ?>
+          <?php echo form_open_multipart('employee/add'); ?>
             <div class="form-group row">
             <label for="example-text-input" class="col-2 col-form-label">First Name:</label>
               <div class="col-10 mb-2">
@@ -175,7 +175,7 @@
             </div>
 
             <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Work Schedule</label>
+              <label for="example-search-input" class="col-2 col-form-label">Days off</label>
               <div class="col-10">
                 <div class="row">
                   <div class="col">
@@ -233,14 +233,12 @@
               </div>
             </div>
 
-
-<!--
             <div class="form-group row">
               <label for="example-search-input" class="col-2 col-form-label">Upload Photo:</label>
               <div class="col-10">
-                <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+                <input type="file" name="image" class="form-control-file">
               </div>
-            </div>-->
+            </div>
 
           </div>
           <div class="modal-footer d-flex justify-content-center">
@@ -314,7 +312,7 @@
             </div>
 
             <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Work Schedule</label>
+              <label for="example-search-input" class="col-2 col-form-label">Days off</label>
               <div class="col-10">
                 <div class="row">
                   <div class="col">

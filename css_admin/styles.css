@@ -2,3 +2,21 @@
     height: 600px;
     overflow-y: auto;
 }
+
+.document-container{
+  padding:20px 80px;
+}
+
+.document-subheader{
+  margin-top:40px;
+  margin-bottom: 20px;
+}
+
+.header-title{
+  margin-bottom:40px;
+}
+
+.footer-company-logo{
+  width:100px;
+  height:auto;
+}

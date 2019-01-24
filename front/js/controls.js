@@ -2,7 +2,7 @@ $(document).ready(function(){
   $("#confirmEmployee").on('show.bs.modal',function(event){
     var button = $(event.relatedTarget);
     var id = $(button).data('employee-id');
-    $("#employee-delete").attr('href','employee/delete/'+id);
+    $("#employee-delete").attr('href',window.location.origin+'/employee/delete/'+id);
   });
 
   $("#service-updater").on('change',function(){

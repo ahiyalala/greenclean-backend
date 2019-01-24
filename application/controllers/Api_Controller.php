@@ -33,6 +33,13 @@ class Api_Controller extends CI_Controller{
 
 
     }
+
+    public function api_options(){
+        $method = $_SERVER['REQUEST_METHOD'];
+        if($method == "OPTIONS") {
+            die();
+        }
+    }
 }
 
 ?>

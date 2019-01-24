@@ -1,7 +1,6 @@
 .features-blue {
-  color:#fff;
-  background:linear-gradient(135deg, #177431, #21af6b);
-  background-color:#768e18;
+  color:#000;
+  background:linear-gradient(135deg,  #ff0 90%, #090 90%);
   padding-bottom:30px;
 }
 
@@ -12,7 +11,7 @@
 }
 
 .features-blue p {
-  color:rgba(255,255,255,0.6);
+  color:#000;
 }
 
 .features-blue h2 {
@@ -69,8 +68,7 @@
 
 .features-blue .item .icon {
   font-size:40px;
-  color:rgba(200,238,92,0.94);
+  color:#090;
   float:left;
   margin-left:-65px;
 }
-

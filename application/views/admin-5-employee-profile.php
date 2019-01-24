@@ -20,7 +20,8 @@
                                           <!-- START OF 1ST CARD BODY -->
                                           <div class="card-block bg-faded">
                                                 <div class="d-flex justify-content-center">
-                                                      <img src="front/img/baby.jpeg" class="img-fluid rounded-circle border-dark" alt="APPLE" width="250" height="250">
+                                                      <?php $image = ($housekeepers->image)? $housekeepers->image: "icons8-user-96.png"; ?>
+                                                      <img src=<?php echo base_url('img/'.$image); ?> class="img-fluid rounded-circle border-dark" alt="APPLE" style="width:100px;height:100px">
                                                 </div>
                                                 <div class="text-center mb-3">
                                                       <h3 class="h3"><?php echo $housekeepers->last_name.", ".$housekeepers->first_name; ?></h3>
@@ -36,7 +37,7 @@
                                                                   <td><?php echo $housekeepers->gender; ?></td>
                                                             </tr>
                                                             <tr>
-                                                                  <th scope="row">Work Schedule: </th>
+                                                                  <th scope="row">Days off: </th>
                                                                   <td>
                                                                     <?php
                                                                         $schedule = json_decode($housekeepers->schedule_dates);
@@ -99,7 +100,7 @@
 
 
                                     <div class="card mt-3 w-75 container">
-                                          <div class="card-header bg-success h3">Work Schedule</div>
+                                          <div class="card-header bg-success h3">Days off</div>
                                           <!-- START OF 3rd CARD BODY -->
                                           <div class="card-block bg-faded">
                                             <div id="calendar"></div>
@@ -169,7 +170,7 @@
             </div>
 
             <div class="form-group row">
-              <label for="example-search-input" class="col-2 col-form-label">Work Schedule</label>
+              <label for="example-search-input" class="col-2 col-form-label">Days off</label>
               <div class="col-10">
                 <div class="row">
                   <div class="col">

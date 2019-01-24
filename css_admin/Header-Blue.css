@@ -1,8 +1,21 @@
 .header-blue {
-  background:linear-gradient(135deg, #3a7417, #21af95);
-  background-color:#188e24;
+  background:linear-gradient(0deg,rgba(255,255,0,0.8),rgba(255,255,255,0.6)), url('https://greenklean.ph/front/img/spray_full.JPG');;
   padding-bottom:80px;
   font-family:'Source Sans Pro', sans-serif;
+  background-size:cover;
+}
+
+.play-icon img{
+  width:200px;
+}
+
+.navbar-dark .navbar-nav .nav-link.active,.navbar-dark .navbar-nav .nav-link:hover{
+  color:black;
+  cursor:pointer;
+}
+
+.navbar-dark .navbar-nav .nav-link{
+  color:rgba(0,0,0,0.5);
 }
 
 @media (min-width:768px) {
@@ -103,9 +116,9 @@
 }
 
 .header-blue .action-button, .header-blue .action-button:not(.disabled):active {
-  border:1px solid rgba(255,255,255,0.7);
+  border:1px solid rgba(0,0,0,0.7);
   border-radius:40px;
-  color:#ebeff1;
+  color:#000;
   box-shadow:none;
   text-shadow:none;
   padding:.3rem .8rem;
@@ -115,7 +128,7 @@
 }
 
 .header-blue .action-button:hover {
-  color:#fff;
+  color:#000;
 }
 
 .header-blue .navbar .form-inline label {
@@ -146,13 +159,13 @@
 
 @media (min-width:768px) {
   .header-blue .hero {
-    margin-top:60px;
+    margin:20px 60px 60px 60px;
     text-align:left;
   }
 }
 
 .header-blue .hero h1 {
-  color:#fff;
+  color:#000;
   font-size:40px;
   margin-top:0;
   margin-bottom:15px;
@@ -169,7 +182,7 @@
 }
 
 .header-blue .hero p {
-  color:rgba(255,255,255,0.8);
+  color:#000;
   font-size:20px;
   margin-bottom:30px;
   font-weight:300;
@@ -217,4 +230,3 @@
   transform:rotate(-19deg);
   opacity:0.2;
 }
-

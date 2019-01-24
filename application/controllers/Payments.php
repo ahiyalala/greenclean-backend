@@ -3,7 +3,11 @@ include 'Api_Controller.php';
 class Payments extends Api_Controller{
     public function api_get(){
       if(!$this->isAuth)
-        return $this->output->set_status_header(401);
+        return $this->output->set_status_header(401)
+                            ->set_content_type('application/json','utf-8')
+                            ->set_output(json_encode(array(
+                              "message"=>"Unauthorized"
+                            )));
 
         $customer = $this->db->select('*')->from('customer')
                                           ->where($this->whereIs)
@@ -26,13 +30,21 @@ class Payments extends Api_Controller{
 
         if($httpResponse != 200){
             log_message('error','httpResponse: '.$httpResponse);
-            return $this->output->set_status_header($httpResponse);
+            return $this->output->set_status_header($httpResponse)
+                                ->set_content_type('application/json','utf-8')
+                                ->set_output(json_encode(array(
+                                  "message"=>"Internal server error"
+                                )));
         }
 
         $cards = json_decode($result,true);
 
         if(sizeof($cards) == 0){
-          return $this->output->set_status_header(404);
+          return $this->output->set_status_header(404)
+                              ->set_content_type('application/json','utf-8')
+                              ->set_output(json_encode(array(
+                                "message"=>"No cards found"
+                              )));
         }
 
         foreach ($cards as $card) {
@@ -52,7 +64,11 @@ class Payments extends Api_Controller{
               $this->db->trans_complete();
 
               if(!$this->db->trans_status()){
-                return $this->output->set_status_header(500);
+                return $this->output->set_status_header(500)
+                                    ->set_content_type('application/json','utf-8')
+                                    ->set_output(json_encode(array(
+                                      "message"=>"Internal server error"
+                                    )));
               }
           }
         }
@@ -71,7 +87,11 @@ class Payments extends Api_Controller{
 
     public function api_set(){
       if(!$this->isAuth)
-        return $this->output->set_status_header(401);
+        return $this->output->set_status_header(401)
+                            ->set_content_type('application/json','utf-8')
+                            ->set_output(json_encode(array(
+                              "message"=>"Unauthorized"
+                            )));
 
       $cardDetails = json_decode(file_get_contents('php://input'),true);
 
@@ -87,13 +107,18 @@ class Payments extends Api_Controller{
 
         $result = curl_exec($curl);
         $httpResponse = curl_getinfo($curl,CURLINFO_HTTP_CODE);
-        $paymentToken = json_decode($result,true);
         curl_close($curl);
 
         if($httpResponse != 200){
             log_message('error','httpResponse: '.$httpResponse);
-            return $this->output->set_status_header(500);
+            return $this->output->set_status_header(500)
+                                ->set_content_type('application/json','utf-8')
+                                ->set_output(json_encode(array(
+                                  "message"=>"Unauthorized"
+                                )));
         }
+
+        $paymentToken = json_decode($result,true);
         /*
         {
             "state": "AVAILABLE",
@@ -182,7 +207,11 @@ class Payments extends Api_Controller{
             $httpResponse = curl_getinfo($curl,CURLINFO_HTTP_CODE);
             curl_close($curl);
             log_message('error',$this->db->error());
-            return $this->output->set_status_header(500);
+            return $this->output->set_status_header(403)
+                                ->set_content_type('application/json','utf-8')
+                                ->set_output(json_encode(array(
+                                  "message"=>"Bad request"
+                                )));
         }
     }
 }

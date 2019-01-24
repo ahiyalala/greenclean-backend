@@ -19,17 +19,25 @@ class Sms extends CI_Controller{
 
     private function _unsubscribe($data){
         $this->db->trans_start();
-        $this->db->update('housekeeper', array('globe_access_token'=>null),array('contact_number'=>$data['subscriber_number']));
+        $this->db->update('housekeeper', array('globe_access_token'=>null),array('contact_number'=>"0".$data['subscriber_number']));
         $count = $this->db->affected_rows();
         $this->db->trans_complete();
         if($this->db->trans_status() == FALSE){
 
             $message = 'Server failed to register employee\'s subscription details:\n'.json_encode(array('access_token'=>$data['access_token'],'subscriber_number'=>$data['subscriber_number']));
             log_message('error', $message);
-            return $this->output->set_status_header(500);
+            return $this->output->set_status_header(500)
+                                ->set_content_type('application/json','utf-8')
+                                ->set_output(json_encode(array(
+                                  "message"=>"Unauthorized"
+                                )));
         }
         else if($count == 0){
-            return $this->output->set_status_header(400);
+            return $this->output->set_status_header(400)
+                                ->set_content_type('application/json','utf-8')
+                                ->set_output(json_encode(array(
+                                  "message"=>"Bad request"
+                                )));
         }
         else{
             log_message('info',json_encode($data));
@@ -43,7 +51,7 @@ class Sms extends CI_Controller{
 
     private function _get_receiver($data){
         $token = $data['token'];
-        $number = $data['subscriber_number'];
+        $number = "0".$data['subscriber_number'];
 
         /*
         {
@@ -59,10 +67,18 @@ class Sms extends CI_Controller{
 
             $message = 'Server failed to register employee\'s subscription details:\n'.json_encode(array('access_token'=>$token,'subscriber_number'=>$number));
             log_message('error', $message);
-            return $this->output->set_status_header(500);
+            return $this->output->set_status_header(500)
+                                ->set_content_type('application/json','utf-8')
+                                ->set_output(json_encode(array(
+                                  "message"=>"Internal server error"
+                                )));
         }
         else if($count == 0){
-            return $this->output->set_status_header(400);
+            return $this->output->set_status_header(400)
+                                ->set_content_type('application/json','utf-8')
+                                ->set_output(json_encode(array(
+                                  "message"=>"Bad request"
+                                )));
         }
         else{
             $this->load->helper('sms_helper');
@@ -107,7 +123,7 @@ class Sms extends CI_Controller{
         switch(strtoupper($command[0])){
           case "END":
               $this->load->model('AppointmentModel');
-              $contact_number = str_replace('tel:+63','',$message['senderAddress']);
+              $contact_number = str_replace('tel:+63','0',$message['senderAddress']);
               $status = $this->AppointmentModel->close_appointment($command[1],$contact_number);
         }
       }

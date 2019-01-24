@@ -1,6 +1,5 @@
 .header-blue {
-  background:linear-gradient(135deg, #3a7417, #21af95);
-  background-color:#188e24;
+  background:linear-gradient(0deg,rgba(255,255,0,0.5),rgba(255,255,255,0.7)), url('https://greenklean.ph/front/img/plant spray.jpg');
   padding-bottom:80px;
   font-family:'Source Sans Pro', sans-serif;
 }
@@ -217,4 +216,3 @@
   transform:rotate(-19deg);
   opacity:0.2;
 }
-

@@ -28,7 +28,7 @@ if ( ! function_exists('sms_helper'))
           curl_setopt($curl, CURLOPT_POST,1);
           curl_setopt($curl, CURLOPT_POSTFIELDS,json_encode($data));
           curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-          curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+          //curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
           curl_setopt($curl, CURLOPT_HTTPHEADER,array(
               'Content-Type: application/json'
           ));
@@ -60,7 +60,7 @@ if ( ! function_exists('sms_helper'))
       curl_setopt($curl, CURLOPT_POST,1);
       curl_setopt($curl, CURLOPT_POSTFIELDS,json_encode($data));
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+      //curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
       curl_setopt($curl, CURLOPT_HTTPHEADER,array(
           'Content-Type: application/json'
       ));

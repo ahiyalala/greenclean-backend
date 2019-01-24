@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to GreenKlean!</title>
+    <title>GreenKlean - Frequently Asked Questions</title>
     <link rel="stylesheet" href="<?php echo base_url('css/bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('fonts/font-awesome.min.css'); ?>">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cookie">

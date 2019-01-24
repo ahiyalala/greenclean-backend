@@ -3,7 +3,11 @@ include 'Api_Controller.php';
 class Places extends Api_Controller{
     public function api_get(){
       if(!$this->isAuth)
-        return $this->output->set_status_header($this->header);
+        return $this->output->set_status_header($this->header)
+                            ->set_content_type('application/json','utf-8')
+                            ->set_output(json_encode(array(
+                              "message"=>"Unauthorized"
+                            )));
 
             $query = $this->db->select('location.*')
                                 ->from('location')
@@ -20,7 +24,11 @@ class Places extends Api_Controller{
 
     public function api_set(){
       if(!$this->isAuth)
-        return $this->output->set_status_header($this->header);
+        return $this->output->set_status_header($this->header)
+                            ->set_content_type('application/json','utf-8')
+                            ->set_output(json_encode(array(
+                              "message"=>"Unauthorized"
+                            )));
 
         $data = json_decode(file_get_contents('php://input'),true);
 
@@ -36,6 +44,21 @@ class Places extends Api_Controller{
                       ->set_content_type('application/json', 'utf-8')
                       ->set_output(json_encode($result));
         }
+    }
+
+    public function get_location_dictionary(){
+      if(!$this->isAuth)
+      return $this->output->set_status_header($this->header)
+                          ->set_content_type('application/json','utf-8')
+                          ->set_output(json_encode(array(
+                            "message"=>"Unauthorized"
+                          )));
+
+      $cities = $this->db->query('SELECT * FROM cities')->result();
+
+      return $this->output->set_status_header(200)
+                          ->set_content_type('application/json', 'utf-8')
+                          ->set_output(json_encode($cities));
     }
 
 }

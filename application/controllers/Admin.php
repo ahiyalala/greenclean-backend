@@ -102,6 +102,26 @@ class Admin extends CI_Controller {
         $this->load->view('admin-3-service',$data);
     }
 
+    public function delete_employee($id){
+      admin_verify();
+
+      $query = "UPDATE housekeeper
+                SET relieved = 1
+                WHERE housekeeper_id = ?";
+
+      $this->db->trans_start();
+      $this->db->query($query);
+      if(!$this->db->trans_status()){
+        log_message('error','Employee deletion failed');
+        $this->db->trans_rollback();
+      }
+      else{
+        $this->db->trans_commit();
+      }
+
+
+    }
+
     public function employee($id=null){
         admin_verify();
 

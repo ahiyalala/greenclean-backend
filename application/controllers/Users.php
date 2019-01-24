@@ -1,6 +1,13 @@
 <?php
 
 class Users extends CI_Controller{
+    public function api_options(){
+          $method = $_SERVER['REQUEST_METHOD'];
+          if($method == "OPTIONS") {
+              die();
+          }
+    }
+
     public function api_get(){
         $auth = $this->input->get_request_header('Authentication');
         $auth_arr = explode(" ",$auth);
@@ -52,7 +59,11 @@ class Users extends CI_Controller{
         }
         else{
           $this->db->trans_rollback();
-          return $this->output->set_status_header(500);
+          return $this->output->set_status_header(500)
+                              ->set_content_type('application/json','utf-8')
+                              ->set_output(json_encode(array(
+                                "message"=>"Internal server error"
+                              )));
         }
       }
       else{
@@ -81,8 +92,12 @@ class Users extends CI_Controller{
 
         $email = $this->db->query("SELECT COUNT(*) AS exist FROM customer WHERE email_address = ?",array($user['email_address']))->row();
 
-        if($email->exists > 0){
-          return $this->output->set_status_header(400);
+        if($email->exist > 0){
+          return $this->output->set_status_header(400)
+                              ->set_content_type('application/json','utf-8')
+                              ->set_output(json_encode(array(
+                                "message"=>"Bad request"
+                              )));
         }
         /*
         $curl = curl_init(PAYMAYA_URL.'/customers/');
@@ -124,7 +139,10 @@ class Users extends CI_Controller{
         }
         else{
             $this->output->set_status_header(500)
-                            ->set_content_type('application/json', 'utf-8');
+                            ->set_content_type('application/json', 'utf-8')
+                            ->set_output(json_encode(array(
+                              "message"=>"Internal server error"
+                            )));
         }
     }
 
@@ -144,12 +162,17 @@ class Users extends CI_Controller{
             $result = $pwquery->row();
 
             if(password_verify($user['password'],$result->password)){
+                $result = json_decode(json_encode($result),TRUE);
+                unset($result['password']);
                 return $this->output->set_status_header(200)
                                 ->set_output(json_encode($result));
             }
         }
 
         return $this->output->set_status_header(401)
-                            ->set_output('Invalid login');
+                        ->set_content_type('application/json', 'utf-8')
+                        ->set_output(json_encode(array(
+                          "message"=>"Unauthorized"
+                        )));
     }
 }

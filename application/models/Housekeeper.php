@@ -10,6 +10,7 @@ class Housekeeper extends CI_Model{
     public $contact_number;
     public $gender;
     public $schedule_dates;
+    public $image;
 
     public function get_all(){
         return $this->db->select('*')
@@ -36,6 +37,24 @@ class Housekeeper extends CI_Model{
     }
 
     public function add(){
+
+        $config['upload_path'] = "./img/";
+        $config['allowed_types'] = "gif|jpg|png|jpeg";
+        $config['max_size'] = "5120";
+
+        $this->load->library('upload',$config);
+
+        if($this->upload->do_upload('image')){
+
+
+          $data = $this->upload->data();
+
+          $this->image = $data['raw_name'].$data['file_ext'];
+        }
+        else{
+          log_message('error',$this->upload->display_errors());
+        }
+
         $this->first_name = $this->input->post('first_name');
 
         if(isset($_POST['middle_name']))
@@ -44,7 +63,7 @@ class Housekeeper extends CI_Model{
         $this->last_name = $this->input->post('last_name');
 
         $this->birth_date = $this->input->post('birth_date');
-        $this->email_address = $this->input->post('email_address');
+        $this->email_address = $this->input->post('email');
         $this->contact_number = $this->input->post('contact_number');
         $schedule = $this->input->post('work_schedule');
         $this->schedule_dates = json_encode($schedule);

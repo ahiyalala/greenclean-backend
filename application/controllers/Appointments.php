@@ -1,10 +1,19 @@
 <?php
 include 'Api_Controller.php';
+
 class Appointments extends Api_Controller{
+
+    public function __construct(){
+      parent::__construct();
+    }
 
     public function api_set(){
       if(!$this->isAuth)
-        return $this->output->set_status_header($this->header);
+        return $this->output->set_status_header($this->header)
+                            ->set_content_type('application/json','utf-8')
+                            ->set_output(json_encode(array(
+                              "message"=>"Error"
+                            )));
 
       /*Post Data
         {
@@ -21,7 +30,7 @@ class Appointments extends Api_Controller{
 
         $post_data = json_decode(file_get_contents('php://input'),true);
         if(!$this->is_valid_request($post_data)){
-          return $this->output->set_status_header(401)
+          return $this->output->set_status_header(403)
                               ->set_content_type('application/json', 'utf-8')
                               ->set_output(json_encode(array("message"=>"Bad request")));
         }
@@ -29,8 +38,8 @@ class Appointments extends Api_Controller{
         if(strpos(strtoupper($post_data['service_type_key']), 'COMMERCIAL') !== false){
           $post_data['number_of_housekeepers'] = ceil(($post_data['location_area'] - 1) / 100);
         }
-        else if($post_data['number_of_housekeepers'] <= 0 || $post_data['number_of_housekeepers'] > 3){
-          return $this->output->set_status_header(401)
+        else if($post_data['number_of_housekeepers'] <= 0 || $post_data['number_of_housekeepers'] > 5){
+          return $this->output->set_status_header(403)
                               ->set_content_type('application/json', 'utf-8')
                               ->set_output(json_encode(array("message"=>"Bad request")));
         }
@@ -142,6 +151,7 @@ class Appointments extends Api_Controller{
             $transaction = $this->db->query("SELECT * FROM payment_transaction WHERE transaction_id = ?", array($transaction_id))->row();
             $housekeepers = array();
             foreach($list_query as $housekeeper){
+              $image = (!$housekeeper->image)? "https://greenklean.ph/img/icons8-user-96.png":$housekeeper->image;
               array_push($housekeepers, array(
                 'housekeeper_id'=>$housekeeper->housekeeper_id,
                 'first_name'=>$housekeeper->first_name,
@@ -149,11 +159,12 @@ class Appointments extends Api_Controller{
                 'last_name'=>$housekeeper->last_name,
                 'contact_number'=>$housekeeper->contact_number,
                 'gender'=>$housekeeper->gender,
-                'rating'=>$housekeeper->rating
+                'rating'=>$housekeeper->rating,
+                'images'=>$image
               ));
             }
             $appointment_data = array(
-                'service_cleaning_id'=>$service_id,
+                'service_cleaning_id'=>$transaction_id,
                 'service'=>$service,
                 'location'=>$location,
                 'housekeepers'=>$housekeepers,
@@ -202,18 +213,22 @@ class Appointments extends Api_Controller{
 
     public function api_get($id = null){
       if(!$this->isAuth)
-        return $this->output->set_status_header($this->header);
+        return $this->output->set_status_header($this->header)
+                            ->set_content_type('application/json','utf-8')
+                            ->set_output(json_encode(array(
+                              "message"=>"Error"
+                            )));
 
 
         $customer = $this->db->select('*')->from('customer')
                                         ->where($this->whereIs)->get()->row();
 
         if($id){
-            $query = $this->db->query('SELECT DISTINCT * FROM all_appointments WHERE customer_id = ? AND service_cleaning_id = ? AND (is_finished >=0)', array($customer->customer_id,$id));
+            $query = $this->db->query('SELECT DISTINCT * FROM all_appointments WHERE customer_id = ? AND transaction_id = ? AND (is_finished >=0)', array($customer->customer_id,$id));
             $result = $query->row();
             if($result){
-                $housekeeper_list = $this->db->query('SELECT * FROM housekeeper_data WHERE service_cleaning_id = ? AND customer_id = ? AND (is_finished >=0)', array($result->transaction_id,$customer->customer_id))->result();
-                $housekeeper_schedule = $this->db->query('SELECT * FROM housekeeper_schedule_view WHERE service_cleaning_id = ?', array($result->transaction_id))->row();
+                $housekeeper_list = $this->db->query('SELECT * FROM housekeeper_data WHERE transaction_id = ? AND customer_id = ? AND (is_finished >=0)', array($result->transaction_id,$customer->customer_id))->result();
+                $housekeeper_schedule = $this->db->query('SELECT * FROM housekeeper_schedule_view WHERE transaction_id = ?', array($result->transaction_id))->row();
                 $appointment = $this->_curate_appointment_data($result,$housekeeper_list, $housekeeper_schedule);
             }
             else{
@@ -226,8 +241,8 @@ class Appointments extends Api_Controller{
             $query = $this->db->query('SELECT DISTINCT * FROM all_appointments WHERE customer_id = ? AND (is_finished >=0)',array($customer->customer_id))->result();
             $appointment = array();
             foreach($query as $result){
-                $housekeeper_list = $this->db->query('SELECT * FROM housekeeper_data WHERE service_cleaning_id = ? AND customer_id = ?', array($result->transaction_id,$customer->customer_id))->result();
-                $housekeeper_schedule = $this->db->query('SELECT * FROM housekeeper_schedule_view WHERE service_cleaning_id = ?', array($result->transaction_id))->row();
+                $housekeeper_list = $this->db->query('SELECT * FROM housekeeper_data WHERE transaction_id = ? AND customer_id = ?', array($result->transaction_id,$customer->customer_id))->result();
+                $housekeeper_schedule = $this->db->query('SELECT * FROM housekeeper_schedule_view WHERE transaction_id = ?', array($result->transaction_id))->row();
                 $appointment_data = $this->_curate_appointment_data($result, $housekeeper_list, $housekeeper_schedule);
                 array_push($appointment,$appointment_data);
             }
@@ -241,25 +256,39 @@ class Appointments extends Api_Controller{
 
     public function api_delete($transaction_id){
       if(!$this->isAuth)
-        return $this->output->set_status_header($this->header);
+        return $this->output->set_status_header($this->header)
+                            ->set_content_type('application/json','utf-8')
+                            ->set_output(json_encode(array(
+                              "message"=>"Unauthorized"
+                            )));
 
+      $this->load->helper('sms_helper');
       $customer = $this->db->select('*')->from('customer')
                                         ->where($this->whereIs)->get()->row();
 
-      $query = $this->db->query('SELECT drop_code AS record_exists FROM all_appointments WHERE customer_id = ? AND is_finished = 0 AND service_cleaning_id = ?', array($customer->customer_id, $service_id))->row();
+      $query = $this->db->query('SELECT COUNT(*) AS record_exists FROM all_appointments WHERE customer_id = ? AND is_finished = 0 AND transaction_id = ?', array($customer->customer_id, $transaction_id))->row();
 
-      if($query->drop_code)
-        $this->output->set_status_header(403);
-
+      if(!$query->record_exists){
+        log_message("ERROR","Invalid request:0");
+        $this->output->set_status_header(403)
+                      ->set_content_type('application/json','utf-8')
+                      ->set_output(json_encode(array(
+                        "message"=>"Drop code doesn't exist"
+                      )));
+      }
 
 
       $this->db->trans_start();
       $query_booking_id = $this->db->query('SELECT booking_request_id FROM payment_transaction WHERE transaction_id = ?', array($transaction_id))->row();
       $schedule_select = $this->db->query('SELECT COUNT(*) AS valid_request FROM `housekeeper_schedule` WHERE DATEDIFF(date,NOW()) >= 1 AND booking_request_id = ?', array($query_booking_id->booking_request_id))->row();
-      if($schedule_select->valid_request){
+      if(!$schedule_select->valid_request){
         $this->db->trans_rollback();
-
-        return $this->output->set_status_header(403);
+        log_message("ERROR","Invalid request:1");
+        return $this->output->set_status_header(403)
+                            ->set_content_type('application/json','utf-8')
+                            ->set_output(json_encode(array(
+                              "message"=>"Invalid request"
+                            )));
       }
       $this->db->where(array(
         "transaction_id"=>$transaction_id
@@ -277,7 +306,7 @@ class Appointments extends Api_Controller{
         $this->db->trans_commit();
         $queryHousekeepers = "SELECT h.contact_number, h.globe_access_token, s.drop_code FROM housekeeper AS h
                               INNER JOIN service_cleaning AS s ON s.housekeeper_id = h.housekeeper_id
-                              WHERE s.transaction_id = ?"
+                              WHERE s.transaction_id = ?";
         $housekeepers = $this->db->query($queryHousekeepers,array($transaction_id))->result();
         foreach($housekeepers as $housekeeper){
           $message =  "[APPOINTMENT CANCELLED]\n".
@@ -286,11 +315,20 @@ class Appointments extends Api_Controller{
           send_general_message($housekeeper->contact_number, $housekeeper->globe_access_token, $message);
         }
 
-        return $this->output->set_status_header(200);
+        return $this->output->set_status_header(200)
+                            ->set_content_type('application/json','utf-8')
+                            ->set_output(json_encode(array(
+                              "message"=>"OK"
+                            )));
       }
       else{
         $this->db->trans_rollback();
-        return $this->output->set_status_header(500);
+        log_message("ERROR","Internal error");
+        return $this->output->set_status_header(500)
+                            ->set_content_type('application/json','utf-8')
+                            ->set_output(json_encode(array(
+                              "message"=>"Internal server error"
+                            )));
       }
 
     }
@@ -298,8 +336,12 @@ class Appointments extends Api_Controller{
     private function _curate_appointment_data($result, $housekeeper_list, $housekeeper_schedule){
         $this->load->model('ServicesModel');
         $service = $this->ServicesModel->get($result->service_type_key);
+        foreach($housekeeper_list as $housekeeper){
+          $housekeeper->image = (!$housekeeper->image)? "https://greenklean.ph/img/icons8-user-96.png":$housekeeper->image;
+        }
+
         return array(
-            'service_cleaning_id'=>$result->service_cleaning_id,
+            'service_cleaning_id'=>$result->transaction_id,
             'service'=>$service,
             'location'=>array("location_street"=>$result->location_street,"location_barangay"=>$result->location_barangay,"location_city"=>$result->location_city),
             'housekeepers'=>$housekeeper_list,

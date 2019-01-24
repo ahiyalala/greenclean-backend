@@ -3,7 +3,11 @@ include 'Api_Controller.php';
 class Feedback extends Api_Controller{
   public function api_set(){
     if(!$this->isAuth)
-      return $this->output->set_status_header($this->header);
+      return $this->output->set_status_header($this->header)
+                          ->set_content_type('application/json','utf-8')
+                          ->set_output(json_encode(array(
+                            "message"=>"Unauthorized"
+                          )));
 
     $post_data = json_decode(file_get_contents('php://input'),true);
 
@@ -62,7 +66,7 @@ class Feedback extends Api_Controller{
                                       INNER JOIN payment_transaction AS t ON t.booking_request_id = b.booking_request_id
                                       INNER JOIN service_cleaning AS s ON s.transaction_id = t.transaction_id
                                       SET b.rating = ?, b.comment = ?
-                                      WHERE s.service_cleaning_id = ?";
+                                      WHERE t.transaction_id = ?";
 
 
     foreach($housekeeper_ids as $housekeeper_id){
@@ -76,20 +80,32 @@ class Feedback extends Api_Controller{
       $this->db->query($housekeeper_update_string, array($post_data["rating"],$housekeeper_ids));
       if(!$this->db->trans_status()){
         $this->db->trans_rollback();
-        return $this->output->set_status_header(500);
+        return $this->output->set_status_header(500)
+                            ->set_content_type('application/json','utf-8')
+                            ->set_output(json_encode(array(
+                              "message"=>"Internal server error"
+                            )));
       }
     }
     $this->db->query($service_cleaning_query_string, array($post_data["rating"],$post_data["comment"],$post_data['service_cleaning_id']));
     $affected_appointment = $this->db->affected_rows();
     if($this->db->trans_status() && $affected_appointment){
-      $check_update_query = "SELECT * FROM service_cleaning AS s INNER JOIN payment_transaction AS p ON p.transaction_id = s.transaction_id INNER JOIN housekeeper AS h ON h.housekeeper_id = s.housekeeper_id WHERE service_cleaning_id = ?";
+      $check_update_query = "SELECT * FROM service_cleaning AS s INNER JOIN payment_transaction AS p ON p.transaction_id = s.transaction_id INNER JOIN housekeeper AS h ON h.housekeeper_id = s.housekeeper_id WHERE transaction_id = ?";
       $check_update = $this->db->query($check_update_query, array($post_data['service_cleaning_id']));
       $this->db->trans_commit();
-      return $this->output->set_status_header(200);
+      return $this->output->set_status_header(200)
+                          ->set_content_type('application/json','utf-8')
+                          ->set_output(json_encode(array(
+                            "message"=>"OK"
+                          )));
     }
     else{
       $this->db->trans_rollback();
-      return $this->output->set_status_header(500);
+      return $this->output->set_status_header(500)
+                          ->set_content_type('application/json','utf-8')
+                          ->set_output(json_encode(array(
+                            "message"=>"Internal server error"
+                          )));
     }
   }
 }
