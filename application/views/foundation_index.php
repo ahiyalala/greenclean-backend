@@ -124,7 +124,7 @@ functional, safe and non harmful cleaning solutions.
                 be available for sale on our online platforms.</p>
               <p class="nospace"><strong>6. How do I pay for my cleaning?</strong></p>
               <p style="margin-top:0px !important;">You may pay by cash or upon booking online using credit
-                card. Availability of cleaners varies since they are selected randomly. The best way is to cancel your booking and create a new one.</p>
+                card [SOON].</p>
 
               <p class="nospace"><strong>7. How do I amend my booking?</strong></p>
               <p style="margin-top:0px !important;">Since we randomize our cleaners and their availability varies, the best way is to cancel your booking and book a new one for another date. </p>
