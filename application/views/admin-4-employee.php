@@ -61,7 +61,6 @@
                     <th>
                     <div class="btn-group w-100 btn-block" role="group">
                         <button type="button" class="btn btn-danger employee-delete" data-employee-id="<?php echo $housekeeper->housekeeper_id; ?>" data-toggle="modal" data-target="#confirmEmployee"><i class="fas fa-trash-alt"></i> Delete</button>
-                        <button type="button" class="btn btn-success employee-update" data-employee-id="<?php echo $housekeeper->housekeeper_id; ?>" data-toggle="modal" data-target="#updateEmployee"><i class="fas fa-edit"></i> Update</button>
                     </div>
                     </th>
                   </tr>

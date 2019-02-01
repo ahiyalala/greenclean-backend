@@ -18,21 +18,6 @@ class ServicesModel extends CI_Model{
         $this->service_price = $this->input->post('service_price');
         $this->service_duration = $this->input->post('service_duration');
 
-        $config['upload_path'] = "./img/";
-        $config['allowed_types'] = "gif|jpg|png";
-        $config['max_size'] = "1024";
-
-        $this->load->library('upload',$config);
-
-        if(!$this->upload->do_upload('service_image')){
-          log_message('error',$this->upload->display_errors());
-          return;
-        }
-
-        $data = $this->upload->data();
-
-        $this->service_image = $data['raw_name'].$data['file_ext'];
-
         $this->db->trans_start();
         $this->db->insert('services',$this);
         $id = $this->db->insert_id();

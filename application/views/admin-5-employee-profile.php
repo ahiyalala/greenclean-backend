@@ -29,16 +29,15 @@
                                                 <table class="table bg-faded">
                                                       <tbody>
                                                             <tr>
-                                                                  <th scope="row">Birthday: </th>
-                                                                  <td><?php echo $housekeepers->birth_date; ?></td>
-                                                            </tr>
-                                                            <tr>
                                                                   <th scope="row">Gender: </th>
                                                                   <td><?php echo $housekeepers->gender; ?></td>
                                                             </tr>
                                                             <tr>
                                                                   <th scope="row">Days off: </th>
                                                                   <td>
+                                                                    <?php
+                                                                      if($housekeepers->schedule_dates != "null"):
+                                                                    ?>
                                                                     <?php
                                                                         $schedule = json_decode($housekeepers->schedule_dates);
                                                                         $dates = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
@@ -53,6 +52,9 @@
                                                                           echo " ";
                                                                         }
                                                                     ?>
+                                                                  <?php else: ?>
+                                                                    <span>No day off</span>
+                                                                  <?php endif; ?>
                                                                   </td>
                                                             </tr>
                                                       </tbody>
@@ -116,56 +118,33 @@
             <button class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-
+            <?php echo form_open('admin/update_employee/'.$housekeepers->housekeeper_id); ?>
             <div class="form-group row">
             <label for="example-text-input" class="col-2 col-form-label">First Name:</label>
               <div class="col-10 mb-2">
-                <input class="form-control" type="text" name="first_name" placeholder="John" id="example-text-input">
+                <input class="form-control" readonly type="text" name="first_name" placeholder="John" id="example-text-input" value=<?php echo $housekeepers->first_name; ?>>
               </div>
               <label for="example-text-input" class="col-2 col-form-label">Middle Name:</label>
               <div class="col-10 mb-2">
-                <input class="form-control" type="text" name="middle_name" placeholder="Vincent" id="example-text-input">
+                <input class="form-control" readonly type="text" name="middle_name" placeholder="Vincent" id="example-text-input" value=<?php echo $housekeepers->middle_name; ?>>
               </div>
               <label for="example-text-input" class="col-2 col-form-label">Last Name:</label>
               <div class="col-10">
-                <input class="form-control" type="text" name="last_name" placeholder="Doe" id="example-text-input">
-              </div>
-            </div>
-
-            <div class="form-group row">
-
-              <label for="example-search-input" class="col-2 col-form-label">Birthday:</label>
-              <div class="col-4">
-                <input class="form-control" type="date" name="birth_date" placeholder="How do I shoot web" id="example-search-input">
-              </div>
-
-
-              <label for="example-text-input" class="col-1 col-form-label">Gender:</label>
-              <div class="col-5 mt-2">
-                <label class="custom-control custom-radio">
-                  <input id="radio1" name="gender" type="radio" value="Male" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">Male</span>
-                </label>
-                <label class="custom-control custom-radio">
-                  <input id="radio2" name="gender" type="radio" value="Female" class="custom-control-input">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">Female</span>
-                </label>
+                <input class="form-control" readonly type="text" name="last_name" placeholder="Doe" id="example-text-input" value=<?php echo $housekeepers->last_name; ?>>
               </div>
             </div>
 
             <div class="form-group row">
               <label for="example-search-input" class="col-2 col-form-label">Contact number:</label>
               <div class="col-10">
-                <input class="form-control" type="tel" name="contact_number" placeholder="9361234567" id="example-search-input">
+                <input class="form-control" type="text" name="contact_number" placeholder="9361234567" id="example-search-input" value=<?php echo $housekeepers->contact_number; ?>>
               </div>
             </div>
 
             <div class="form-group row">
               <label for="example-email-input" class="col-2 col-form-label">E-mail Address:</label>
               <div class="col-10">
-                <input class="form-control" type="email" name="email" placeholder="bootstrap@example.com" id="example-email-input">
+                <input class="form-control" type="email" name="email" placeholder="bootstrap@example.com" id="example-email-input" value=<?php echo $housekeepers->email_address; ?>>
               </div>
             </div>
 
@@ -239,9 +218,8 @@
 -->
           </div>
           <div class="modal-footer d-flex justify-content-center">
-            <button class="btn btn-outline-success">Update</button>
-          </div>
-
+            <button type="submit" class="btn btn-outline-success">Update</button>
+          </div><?php echo form_close(); ?>
         </div>
       </div>
     </div>

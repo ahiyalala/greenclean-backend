@@ -99,7 +99,10 @@ class Users extends CI_Controller{
                                 "message"=>"Bad request"
                               )));
         }
+
+
         /*
+        //PAYMAYA BLOCK
         $curl = curl_init(PAYMAYA_URL.'/customers/');
         curl_setopt($curl, CURLOPT_POST,1);
         curl_setopt($curl, CURLOPT_POSTFIELDS,json_encode($paymaya_data));

@@ -337,7 +337,8 @@ class Appointments extends Api_Controller{
         $this->load->model('ServicesModel');
         $service = $this->ServicesModel->get($result->service_type_key);
         foreach($housekeeper_list as $housekeeper){
-          $housekeeper->image = (!$housekeeper->image)? "https://greenklean.ph/img/icons8-user-96.png":$housekeeper->image;
+          $img = (!$housekeeper->image)? "icons8-user-96.png":$housekeeper->image;
+          $housekeeper->image = "https://greenklean.ph/img/".$img;
         }
 
         return array(

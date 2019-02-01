@@ -110,7 +110,7 @@ class Admin extends CI_Controller {
                 WHERE housekeeper_id = ?";
 
       $this->db->trans_start();
-      $this->db->query($query);
+      $this->db->query($query, array($id));
       if(!$this->db->trans_status()){
         log_message('error','Employee deletion failed');
         $this->db->trans_rollback();
@@ -120,6 +120,43 @@ class Admin extends CI_Controller {
       }
 
 
+    }
+
+    public function update_employee($id){
+      admin_verify();
+      $contact_number = $this->input->post('contact_number');
+      $email = $this->input->post('email');
+      $schedules = $this->input->post('work_schedule');
+      $query = "UPDATE housekeeper
+                SET contact_number = ?,
+                    email_address =?,
+                    schedule_dates = ?
+                WHERE housekeeper_id = ?";
+
+      $this->db->trans_start();
+      if($schedules){
+      foreach($schedules as $schedule){
+          $date = new DateTime('today');
+          for($x = 0; $x < 12; $x++){
+              $date->modify('next '.$schedule);
+
+              $this->db->insert('housekeeper_schedule',array(
+                  'housekeeper_id'=>$id,
+                  'date'=>$date->format('Y-m-d'),
+                  'availability'=>0
+              ));
+          }
+      }
+      }
+      $this->db->query($query, array($contact_number, $email, json_encode($schedules), $id));
+      if(!$this->db->trans_status()){
+        log_message('error','Employee deletion failed');
+        $this->db->trans_rollback();
+      }
+      else{
+        $this->db->trans_commit();
+      }
+      redirect('/admin/employee'.$id,'location');
     }
 
     public function employee($id=null){

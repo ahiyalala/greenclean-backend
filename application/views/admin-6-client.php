@@ -121,7 +121,6 @@
                     <th> Service Type </td>
                     <th>Date of Service</th>
                     <th>Status</th>
-                    <th> </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -134,6 +133,7 @@
                     <td><?php echo date('M d Y',strtotime($schedule->date)); ?></td>
                     <td><?php echo ($schedule->is_finished)? "Finished":"Pending" ?></td>
                     <td>
+                    <?php /*
                     <div class="btn-group w-100 btn-block" role="group">
                         <?php if(!$schedule->is_finished): ?>
                         <button type="button" class="btn btn-info " data-toggle="modal" data-target="#assignEmployee"><i class="fas fa-edit"></i> Re-assign</button>
@@ -141,6 +141,8 @@
                         <button type="button" class="btn btn-info " data-toggle="modal" data-target="#confirmRefund"><i class="fas fa-exclamation"></i> Refund</button>
                         <?php endif; ?>
                     </div>
+                    */
+                    ?>
                     </td>
 
                   </tr>

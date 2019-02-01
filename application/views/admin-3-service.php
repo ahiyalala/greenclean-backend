@@ -106,9 +106,6 @@
                         <div class="form-group">
                           <textarea class="form-control" id="service_description" name="service_description" placeholder="Description" required ></textarea>
                         </div>
-                        <div class="form-group">
-                          <input class="form-control" id="service_image" name="service_image" type="file" accept="image/*" required />
-                        </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group col-sm-12 d-flex justify-content-center">
