@@ -66,17 +66,19 @@ class Appointments extends Api_Controller{
         foreach($day_offs_id->result_array() as $row){
               $day_off = json_decode($row['schedule_dates']);
 
-              if(in_array($day_of_week,$day_off)){
-                array_push($values, $row['housekeeper_id']);
+              if($day_off){
+                if(in_array($day_of_week,$day_off)){
+                  array_push($values, $row['housekeeper_id']);
+                }
               }
         }
 
         if(count($values)>0){
-            $list_query_string = "SELECT * FROM housekeeper WHERE housekeeper_id NOT IN ? AND relieved = 0 ORDER BY RAND() LIMIT ?";
+            $list_query_string = "SELECT * FROM housekeeper WHERE housekeeper_id NOT IN ? AND relieved = 0 AND globe_access_token NOT NULL ORDER BY RAND() LIMIT ?";
             $list_query = $this->db->query($list_query_string, array($values,$post_data['number_of_housekeepers']))->result();
         }
         else{
-            $list_query = $this->db->query("SELECT * FROM housekeeper WHERE relieved = 0 ORDER BY RAND() LIMIT ?", array($post_data['number_of_housekeepers']))->result();
+            $list_query = $this->db->query("SELECT * FROM housekeeper WHERE relieved = 0 AND globe_access_token NOT NULL ORDER BY RAND() LIMIT ?", array($post_data['number_of_housekeepers']))->result();
         }
 
         if(count($list_query) < $post_data['number_of_housekeepers']){

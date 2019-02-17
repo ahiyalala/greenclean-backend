@@ -21,8 +21,7 @@ class Home extends CI_Controller{
       return $this->output->set_status_header(200)
                           ->set_content_type('application/json','utf-8')
                           ->set_output(json_encode(array(
-                            "Mobile"=>"09361234567",
-                            "Landline"=>"02 123 4567",
+                            "Mobile"=>"09365855236",
                             "Email"=>"greenklean.ph@gmail.com"
                           )));
     }

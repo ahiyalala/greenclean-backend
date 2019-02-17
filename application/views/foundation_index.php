@@ -5,10 +5,12 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Foundation for Sites</title>
+  <title>Greenklean Products and Services</title>
   <link rel="stylesheet" href="<?php echo base_url('assets/css/app.css'); ?>">
   <link rel="shortcut icon" type="image/png" href="https://greenklean.ph/front/img/GKlean.png"/>
   <link rel='shortcut icon' type='image/x-icon' href='https://greenklean.ph/front/img/GKlean.png' />
+<meta property="og:title" content="Greenklean Products and Services" />
+<meta property="og:image" content="https://greenklean.ph/front/img/greenklean-og.png" />
 </head>
 
 <body>

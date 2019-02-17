@@ -92,6 +92,6 @@ defined('PAYMAYA_SECRET')      OR define('PAYMAYA_SECRET','sk-BoTm71oqA1jdCd6bwL
 
 
 //Globe API stuff
-defined('GLOBE_SHORT_CODE') OR define('GLOBE_SHORT_CODE','3910');
-defined('GLOBE_API_ID') OR define('GLOBE_API_ID','rgaRHKAXAzhMoc6xjyTXMKh75gzxHkEg');
-defined('GLOBE_APP_SECRET') OR define('GLOBE_APP_SECRET','c58e409e960c2d6f3838aaab21103ed7c7b941d0d2c61a5785fe80930326f7b5');
+defined('GLOBE_SHORT_CODE') OR define('GLOBE_SHORT_CODE','9840');
+defined('GLOBE_API_ID') OR define('GLOBE_API_ID','k6arfqLa8RfA7czMxGTa6EfaE6onfLgA');
+defined('GLOBE_APP_SECRET') OR define('GLOBE_APP_SECRET','8e574682ef6f421a056645eddec5d7d168104fdf2da20df995e863a3ce2ba152');
