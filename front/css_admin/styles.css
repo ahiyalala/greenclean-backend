@@ -6,3 +6,28 @@
   width:100px;
   height:auto;
 }
+
+.profit-breakdown{
+  padding:1rem;
+}
+
+.profit-summary{
+  margin-top:1rem;
+}
+.profit-block{
+  padding:0 3rem 3rem 3rem;
+  text-align:center;
+  margin:0 1rem;
+}
+.profit-summary{
+  display:flex;
+  justify-content:center;
+}
+
+.profit-title{
+  display:block;
+}
+
+.profit-value{
+  font-size:3rem;
+}

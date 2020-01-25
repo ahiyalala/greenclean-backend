@@ -59,10 +59,10 @@ class Users extends CI_Controller{
         }
         else{
           $this->db->trans_rollback();
-          return $this->output->set_status_header(500)
+          return $this->output->set_status_header(400)
                               ->set_content_type('application/json','utf-8')
                               ->set_output(json_encode(array(
-                                "message"=>"Internal server error"
+                                "message"=>"Bad request"
                               )));
         }
       }
@@ -84,7 +84,6 @@ class Users extends CI_Controller{
             'firstName' => $user['first_name'],
             'middleName'=>(isset($user['middle_name']))? $user['middle_name']:'',
             'lastName' => $user['last_name'],
-            'birthday' => $user['birth_date'],
             'contact' => array(
                 'email'=>$user['email_address']
             )
@@ -128,11 +127,9 @@ class Users extends CI_Controller{
             'first_name' => $user['first_name'],
             'middle_name'=>(isset($user['middle_name']))? $user['middle_name']:'',
             'last_name' => $user['last_name'],
-            'birth_date' => $user['birth_date'],
             'email_address' => $user['email_address'],
             'password' => $user['password'],
             'contact_number' => $user['contact_number'],
-            'gender'=>$user['gender'],
             'user_token'=> bin2hex(openssl_random_pseudo_bytes(64))
         );
 
@@ -141,10 +138,10 @@ class Users extends CI_Controller{
                             ->set_content_type('application/json', 'utf-8');
         }
         else{
-            $this->output->set_status_header(500)
+            $this->output->set_status_header(400)
                             ->set_content_type('application/json', 'utf-8')
                             ->set_output(json_encode(array(
-                              "message"=>"Internal server error"
+                              "message"=>"Bad Request"
                             )));
         }
     }

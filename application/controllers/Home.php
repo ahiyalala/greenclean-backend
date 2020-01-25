@@ -2,6 +2,7 @@
 
 class Home extends CI_Controller{
     public function index(){
+        $this->load->helper('form');
         $this->load->view('foundation_index');
     }
 
@@ -24,5 +25,27 @@ class Home extends CI_Controller{
                             "Mobile"=>"09365855236",
                             "Email"=>"greenklean.ph@gmail.com"
                           )));
+    }
+
+    public function booking(){
+      $this->load->view('booking-index');
+    }
+
+    public function send_feedback(){
+        $this->load->library('email');
+        $name = $this->input->post('name');
+        $email = $this->input->post('email');
+        $message = html_escape($this->input->post('message'));
+
+        $this->email->from($email, $name);
+        $this->email->to('sales@greenklean.ph');
+
+        $this->email->subject("Message from ".$name." via contact form!");
+        $this->email->message($message);
+
+        if(!$this->email->send()){
+          log_message('ERROR', 'Failed to send');
+        }
+          redirect('/','location');
     }
 }

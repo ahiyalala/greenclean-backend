@@ -31,6 +31,15 @@ class Places extends Api_Controller{
                             )));
 
         $data = json_decode(file_get_contents('php://input'),true);
+        $queryString = "SELECT COUNT(*) as result FROM customer WHERE email_address = ? AND customer_id = ?";
+        $row = $this->db->query($queryString, array($this->email, $data['customer_id']))->row();
+        if($row->result != 1){
+          return $this->output->set_status_header(401)
+                            ->set_content_type('application/json','utf-8')
+                            ->set_output(json_encode(array(
+                              "message"=>"Unauthorized"
+                            )));
+        }
 
         if($this->db->insert('location',$data)){
             $data["location_id"] = $this->db->insert_id();
@@ -40,9 +49,11 @@ class Places extends Api_Controller{
         }
         else{
             $result = $this->db->error();
-            $this->output->set_status_header(500)
+            $this->output->set_status_header(400)
                       ->set_content_type('application/json', 'utf-8')
-                      ->set_output(json_encode($result));
+                      ->set_output(json_encode(array(
+                        "message"=>"Bad request"
+                      )));
         }
     }
 

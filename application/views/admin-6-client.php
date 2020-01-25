@@ -12,114 +12,37 @@
           <main class="col-sm-9 offset-sm-2 col-md-10 offset-md-1 pt-3">
             <h1 class="text-center display-4">Appointments Management</h1>
             <div class="dropdown-divider"></div>
-<!---
-            <h2 class="display-5 pt-5 pb-3">Clients</h2>
-
-            <div class="table-responsive">
-              <table class="table table-striped table-hover table-bordered text-center" id="myTable">
-                <thead>
-                  <tr>
-
-                    <th class="text-center">No.</th>
-                    <th class="text-center">Full Name</th>
-                    <th class="text-center">Gender</th>
-                    <th class="text-center">Date Registered</th>
-                    <th class="text-center">Services Rendered</th>
-                    <th> </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-
-                    <td>1</td>
-                    <td>
-                      Kat Cruz
-                    </td>
-                    <td>F</td>
-                    <td>January 4, 2018</td>
-                    <td>  3 </td>
-                    <td>
-                        <div class="btn-group w-100 btn-block" role="group">
-                        <button type="button" class="btn btn-danger btn-block " data-toggle="modal" data-target="#confirmAdmin"><i class="fas fa-trash-alt"></i> Delete</button>
-                        <!- <button type="button" class="btn btn-success " data-toggle="modal" data-target="#updateAdminModal"><i class="fas fa-edit"></i> Update</button> ->
-                        </div>
-                      </td>
-                  </tr>
-                  <tr>
-
-                    <td>2</td>
-                    <td>
-                      Pat Santos
-                    </td>
-                    <td>F</td>
-                    <td>January 9, 2018</td>
-                    <td> 2 </td>
-                    <td>
-                        <div class="btn-group w-100 btn-block" role="group">
-                        <button type="button" class="btn btn-danger btn-block " data-toggle="modal" data-target="#confirmAdmin"><i class="fas fa-trash-alt"></i> Delete</button>
-                        <!- <button type="button" class="btn btn-success " data-toggle="modal" data-target="#updateAdminModal"><i class="fas fa-edit"></i> Update</button> ->
-                        </div>
-                      </td>
-                  </tr>
-                  <tr>
-
-                    <td>3</td>
-                    <td>
-                    Juan dela Cruz
-                    </td>
-                    <td>M</td>
-                    <td>January 11, 2018</td>
-                    <td> 0 </td>
-                    <td>
-                        <div class="btn-group w-100 btn-block" role="group">
-                        <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#confirmAdmin"><i class="fas fa-trash-alt"></i> Delete</button>
-
-                    </div>
-                      </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-
-
-
-
-        <!- Modal Delete ->
-        <div class="modal fade" id="confirmAdmin" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-sm">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Delete Confirmation</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      Are you sure you want to delete this user?
-                      <div class="form-row">
-                        <div class="form-group my-3 col-sm-12 d-flex justify-content-center">
-                          <button type="submit" class="mx-2 btn btn-danger">Yes</button>
-						  <button type="submit" class="mx-2 btn btn-primary" data-dismiss="modal">No</button>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
+            <div class="profit-breakdown">
+              <h3>For this month:</h3>
+              <div class="profit-summary">
+                <div class="profit-block">
+                  <span class="profit-title">Finished</span>
+                  <span class="profit-value">
+                    <?php echo ($accumulated_profit)?$accumulated_profit->profit:0; ?>
+                  </span>
                 </div>
-          </div>
-
-            <hr class="py-2">
-            <h2 class="display-5 pb-3">Client Status</h2>-->
-
+                  <div class="profit-block">
+                    <span class="profit-title">Pending</span>
+                    <span class="profit-value">
+                      <?php echo ($pending_profit)?$pending_profit->profit:0; ?>
+                    </span>
+                  </div>
+                    <div class="profit-block">
+                      <span class="profit-title">Expected</span>
+                      <span class="profit-value">
+                        <?php echo ($expected_profit)?$expected_profit->profit:0; ?>
+                      </span>
+                    </div>
+              </div>
+            </div>
             <div class="table-responsive-md">
               <table class="table table-striped table-bordered table-hover" id="appointments-table">
                 <thead>
                   <tr>
                     <th>Client Name</th>
-                    <th>Assigned Employee</th>
                     <th> Service Type </td>
                     <th>Date of Service</th>
+                    <th>Total Price</th>
                     <th>Status</th>
                   </tr>
                 </thead>
@@ -127,10 +50,10 @@
                   <?php foreach($schedules as $schedule): ?>
                   <tr>
 
-                    <td><?php echo $schedule->c_first_name.' '.$schedule->c_last_name; ?></td>
-                    <td><?php echo $schedule->h_first_name.' '.$schedule->h_last_name; ?></td>
+                    <td><?php echo $schedule->first_name.' '.$schedule->last_name; ?></td>
                     <td><?php echo $schedule->service_type_key; ?></td>
-                    <td><?php echo date('M d Y',strtotime($schedule->date)); ?></td>
+                    <td><?php echo date('M d Y',strtotime($schedule->date)).', '.date('h:iA', strtotime($schedule->start_time)); ?></td>
+                    <td><?php echo $schedule->total_price; ?></td>
                     <td><?php echo ($schedule->is_finished)? "Finished":"Pending" ?></td>
                     <td>
                     <?php /*

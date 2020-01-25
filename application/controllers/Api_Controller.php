@@ -5,6 +5,7 @@ class Api_Controller extends CI_Controller{
     public $whereIs;
     public $header;
     public $isAuth;
+    public $email;
 
     public function __construct(){
         parent::__construct();
@@ -30,6 +31,8 @@ class Api_Controller extends CI_Controller{
           $this->isAuth = false;
           return null;
         }
+
+        $this->email = $auth_arr[0];
 
 
     }

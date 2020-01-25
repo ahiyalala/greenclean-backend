@@ -26,7 +26,7 @@ class Sms extends CI_Controller{
 
             $message = 'Server failed to register employee\'s subscription details:\n'.json_encode(array('access_token'=>$data['access_token'],'subscriber_number'=>$data['subscriber_number']));
             log_message('error', $message);
-            return $this->output->set_status_header(500)
+            return $this->output->set_status_header(401)
                                 ->set_content_type('application/json','utf-8')
                                 ->set_output(json_encode(array(
                                   "message"=>"Unauthorized"
@@ -67,10 +67,10 @@ class Sms extends CI_Controller{
 
             $message = 'Server failed to register employee\'s subscription details:\n'.json_encode(array('access_token'=>$token,'subscriber_number'=>$number));
             log_message('error', $message);
-            return $this->output->set_status_header(500)
+            return $this->output->set_status_header(400)
                                 ->set_content_type('application/json','utf-8')
                                 ->set_output(json_encode(array(
-                                  "message"=>"Internal server error"
+                                  "message"=>"Bad Request"
                                 )));
         }
         else if($count == 0){

@@ -80,10 +80,12 @@ class Feedback extends Api_Controller{
       $this->db->query($housekeeper_update_string, array($post_data["rating"],$housekeeper_ids));
       if(!$this->db->trans_status()){
         $this->db->trans_rollback();
-        return $this->output->set_status_header(500)
+          $error = $this->db->error();
+          log_message("error", $error['message']);
+        return $this->output->set_status_header(400)
                             ->set_content_type('application/json','utf-8')
                             ->set_output(json_encode(array(
-                              "message"=>"Internal server error"
+                              "message"=>"Bad request"
                             )));
       }
     }
@@ -101,10 +103,12 @@ class Feedback extends Api_Controller{
     }
     else{
       $this->db->trans_rollback();
-      return $this->output->set_status_header(500)
+        $error = $this->db->error();
+        log_message("error", $error['message']);
+      return $this->output->set_status_header(400)
                           ->set_content_type('application/json','utf-8')
                           ->set_output(json_encode(array(
-                            "message"=>"Internal server error"
+                            "message"=>"Bad request"
                           )));
     }
   }

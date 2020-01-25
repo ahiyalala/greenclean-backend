@@ -202,14 +202,34 @@ class Admin extends CI_Controller {
         $this->load->model('housekeeper');
 
 
-        $query = 'select t.is_finished, b.service_type_key, h.first_name as h_first_name, h.last_name as h_last_name, c.first_name as c_first_name, c.last_name as c_last_name, hs.date, hs.start_time, hs.end_time
-        from housekeeper_schedule as hs
-        left join housekeeper as h on h.housekeeper_id=hs.housekeeper_id
-        left join booking_request as b on b.booking_request_id=hs.booking_request_id
-        left join customer as c on c.customer_id=b.customer_id
-        left join payment_transaction as t on t.booking_request_id = b.booking_request_id
-        where hs.availability <> 0
-        order by t.is_finished asc, hs.date desc, hs.start_time, hs.end_time';
+        $query = 'SELECT DISTINCT hs.date, hs.start_time, hs.end_time, va.*,c.*
+                  FROM all_appointments AS va
+                  INNER JOIN customer AS c ON va.customer_id = c.customer_id
+                  INNER JOIN housekeeper_schedule_view AS hs ON hs.transaction_id = va.transaction_id
+                  WHERE va.is_finished > -1
+                  ORDER BY va.is_finished ASC';
+        $expected_total_profit = 'SELECT MONTH(hs.date) AS month, SUM(va.total_price) AS profit
+                  FROM all_appointments AS va
+                  INNER JOIN housekeeper_schedule_view AS hs ON hs.transaction_id = va.transaction_id
+                  WHERE va.is_finished <> -1 AND MONTH(hs.date) = MONTH(CURDATE())
+                  GROUP BY MONTH(hs.date)';
+
+        $pending_profit = 'SELECT MONTH(hs.date) AS month, SUM(va.total_price) AS profit
+                  FROM all_appointments AS va
+                  INNER JOIN housekeeper_schedule_view AS hs ON hs.transaction_id = va.transaction_id
+                  WHERE va.is_finished = 0 AND MONTH(hs.date) = MONTH(CURDATE())
+                  GROUP BY MONTH(hs.date)';
+        $accumulated_profit = 'SELECT MONTH(CURDATE()), SUM(va.total_price) AS profit
+                  FROM all_appointments AS va
+                  INNER JOIN housekeeper_schedule_view AS hs ON hs.transaction_id = va.transaction_id
+                  WHERE va.is_finished = 1 AND MONTH(hs.date) = MONTH(CURDATE())
+                  GROUP BY MONTH(hs.date)';
+        $accumulated = ($this->db->query($accumulated_profit)->num_rows()>0)?$this->db->query($accumulated_profit)->row():0;
+        $pending = ($this->db->query($pending_profit)->num_rows()>0)?$this->db->query($pending_profit)->row():0;
+        $expected = ($this->db->query($expected_total_profit)->num_rows()>0)?$this->db->query($expected_total_profit)->row():0;
+        $data['expected_profit'] = $expected;
+        $data['pending_profit'] = $pending;
+        $data['accumulated_profit'] = $accumulated;
         $data['schedules'] = $this->db->query($query)->result();
         $data['admin'] = $this->session->user;
 		$this->load->view('admin-6-client',$data);

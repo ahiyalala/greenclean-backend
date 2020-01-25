@@ -74,11 +74,11 @@ class Appointments extends Api_Controller{
         }
 
         if(count($values)>0){
-            $list_query_string = "SELECT * FROM housekeeper WHERE housekeeper_id NOT IN ? AND relieved = 0 AND globe_access_token NOT NULL ORDER BY RAND() LIMIT ?";
+            $list_query_string = "SELECT * FROM housekeeper WHERE housekeeper_id NOT IN ? AND relieved = 0 ORDER BY RAND() LIMIT ?";
             $list_query = $this->db->query($list_query_string, array($values,$post_data['number_of_housekeepers']))->result();
         }
         else{
-            $list_query = $this->db->query("SELECT * FROM housekeeper WHERE relieved = 0 AND globe_access_token NOT NULL ORDER BY RAND() LIMIT ?", array($post_data['number_of_housekeepers']))->result();
+            $list_query = $this->db->query("SELECT * FROM housekeeper WHERE relieved = 0 ORDER BY RAND() LIMIT ?", array($post_data['number_of_housekeepers']))->result();
         }
 
         if(count($list_query) < $post_data['number_of_housekeepers']){
@@ -188,11 +188,12 @@ class Appointments extends Api_Controller{
                             ->set_output(json_encode($appointment_data));
             }
             else{
+                log_message('error',$this->db->display_error());
                 $this->db->trans_rollback();
                 $trans_error = array(
                     'message'=>'Failed to provide you a booking'
                 );
-                return $this->output->set_status_header(401)
+                return $this->output->set_status_header(404)
                         ->set_content_type('application/json', 'utf-8')
                         ->set_output(json_encode($trans_error));
             }
@@ -271,7 +272,8 @@ class Appointments extends Api_Controller{
       $query = $this->db->query('SELECT COUNT(*) AS record_exists FROM all_appointments WHERE customer_id = ? AND is_finished = 0 AND transaction_id = ?', array($customer->customer_id, $transaction_id))->row();
 
       if(!$query->record_exists){
-        log_message("ERROR","Invalid request:0");
+        $error = $this->db->error();
+        log_message("error", $error['message']);
         $this->output->set_status_header(403)
                       ->set_content_type('application/json','utf-8')
                       ->set_output(json_encode(array(
@@ -285,8 +287,9 @@ class Appointments extends Api_Controller{
       $schedule_select = $this->db->query('SELECT COUNT(*) AS valid_request FROM `housekeeper_schedule` WHERE DATEDIFF(date,NOW()) >= 1 AND booking_request_id = ?', array($query_booking_id->booking_request_id))->row();
       if(!$schedule_select->valid_request){
         $this->db->trans_rollback();
-        log_message("ERROR","Invalid request:1");
-        return $this->output->set_status_header(403)
+          $error = $this->db->error();
+          log_message("error", $error['message']);
+        return $this->output->set_status_header(400)
                             ->set_content_type('application/json','utf-8')
                             ->set_output(json_encode(array(
                               "message"=>"Invalid request"
@@ -325,8 +328,9 @@ class Appointments extends Api_Controller{
       }
       else{
         $this->db->trans_rollback();
-        log_message("ERROR","Internal error");
-        return $this->output->set_status_header(500)
+          $error = $this->db->error();
+          log_message("error", $error['message']);
+        return $this->output->set_status_header(400)
                             ->set_content_type('application/json','utf-8')
                             ->set_output(json_encode(array(
                               "message"=>"Internal server error"

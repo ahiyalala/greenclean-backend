@@ -64,10 +64,12 @@ class Payments extends Api_Controller{
               $this->db->trans_complete();
 
               if(!$this->db->trans_status()){
-                return $this->output->set_status_header(500)
+                $error = $this->db->error();
+                log_message("error", $error['message']);
+                return $this->output->set_status_header(400)
                                     ->set_content_type('application/json','utf-8')
                                     ->set_output(json_encode(array(
-                                      "message"=>"Internal server error"
+                                      "message"=>"Bad request"
                                     )));
               }
           }
@@ -111,7 +113,7 @@ class Payments extends Api_Controller{
 
         if($httpResponse != 200){
             log_message('error','httpResponse: '.$httpResponse);
-            return $this->output->set_status_header(500)
+            return $this->output->set_status_header(401)
                                 ->set_content_type('application/json','utf-8')
                                 ->set_output(json_encode(array(
                                   "message"=>"Unauthorized"
@@ -166,8 +168,7 @@ class Payments extends Api_Controller{
 
         if($httpResponse != 200){
             log_message('error',$result);
-            return $this->output->set_status_header(500)
-                                ->set_output($result);
+            return $this->output->set_status_header(400);
         }
 
         $this->db->trans_start();
